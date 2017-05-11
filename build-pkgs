@@ -1,0 +1,57 @@
+#!/bin/bash
+
+if [ $# -eq 0 ];
+then
+
+		command='build'
+else
+
+		command=$1
+fi
+
+echo -n "Input package version: "
+read VER
+
+function build_package()
+{
+
+	clean_build_files
+
+	(
+		dh_make -p nxs-fw-ctl_${VER} --email b.ershov@nixys.ru --single --templates `pwd`/build-pkgs-tpls/debian --yes --createorig
+
+		echo -n > ./debian/nxs-fw-ctl.install
+
+		echo "./objs/nxs-fw-ctl /usr/bin/" >> ./debian/nxs-fw-ctl.install
+		echo "./nxs-fw-ctl.conf /etc/nxs-fw-ctl/" >> ./debian/nxs-fw-ctl.install
+		echo "./tpls /usr/share/nxs-fw-ctl/" >> ./debian/nxs-fw-ctl.install
+
+		dpkg-buildpackage
+
+		rm -rf ./debian
+  )
+}
+
+function clean_build_files()
+{
+
+	rm ../nxs-fw-ctl_${VER}-1_amd64.changes ../nxs-fw-ctl_${VER}-1_amd64.deb ../nxs-fw-ctl_${VER}-1.debian.tar.xz ../nxs-fw-ctl_${VER}-1.dsc ../nxs-fw-ctl_${VER}.orig.tar.xz
+}
+
+case $command in
+
+	build)
+
+		build_package
+		;;
+
+	clean)
+
+		clean_build_files
+		;;
+
+	*)
+
+		echo "Unknown command: $command"
+		;;
+esac

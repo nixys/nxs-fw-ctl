@@ -1,0 +1,9 @@
+#ifndef _INCLUDE_TEST_P_MAIN_SUBPROC_H
+#define _INCLUDE_TEST_P_MAIN_SUBPROC_H
+
+// clang-format off
+
+/*%%_NXS_TPL_HEADERS_BEGIN_%%*/
+/*%%_NXS_TPL_HEADERS_END_%%*/
+
+#endif /* _INCLUDE_TEST_P_MAIN_SUBPROC_H */

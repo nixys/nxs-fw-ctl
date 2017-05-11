@@ -1,0 +1,78 @@
+#include <nxs-core/nxs-core.h>
+
+// clang-format off
+
+/* Project core include */
+#include <%%NXS_TPL_PROJ_NAME%%-core.h>
+#include <%%NXS_TPL_PROJ_NAME%%-meta.h>
+#include <%%NXS_TPL_PROJ_NAME%%-collections.h>
+#include <%%NXS_TPL_PROJ_NAME%%-units.h>
+
+#include <proc/%%NXS_TPL_P_RPATH%%%%NXS_TPL_P_FILENAME%%.h>
+#include <proc/%%NXS_TPL_P_RPATH%%ctx/%%NXS_TPL_P_FILENAME%%-ctx.h>
+#include <proc/%%NXS_TPL_P_RPATH%%%%NXS_TPL_P_FILENAME%%-subproc.h>
+
+/* Definitions */
+
+
+
+/* Project globals */
+extern		nxs_process_t				process;
+extern		%%NXS_TPL_PROJ_INLINE_NAME%%_cfg_t		%%NXS_TPL_PROJ_INLINE_NAME%%_cfg;
+
+/* Module typedefs */
+
+
+
+/* Module declarations */
+
+
+
+/* Module internal (static) functions prototypes */
+
+// clang-format on
+
+// clang-format off
+
+/* Module initializations */
+
+
+
+/* Module global functions */
+
+// clang-format on
+
+%%NXS_TPL_PROJ_INLINE_NAME%%_err_t %%NXS_TPL_P_INLINE_NAME%%_runtime(void)
+{
+
+	/*
+	pid_t pid;
+
+	if((pid = nxs_proc_fork(&process, NXS_PROCESS_CHLD_SIG_SAVE, (u_char *)"%%NXS_TPL_P_FILENAME%%")) == NXS_PROCESS_FORK_ERR){
+
+		return %%NXS_TPL_PROJ_UPCASE_NAME%%_E_ERR;
+	}
+
+	if(pid == NXS_PROCESS_FORK_CHILD){
+
+		nxs_log_write_debug(&process, "child (pid: %d, ppid: %d)\n", nxs_proc_get_pid(&process), nxs_proc_get_ppid(&process));
+
+		// Call subprocess runtime function here
+	}
+	else{
+
+		nxs_log_write_debug(&process, "parent (pid: %d, cpid: %d)\n", nxs_proc_get_pid(&process), pid);
+
+		while(1){
+
+			sleep(60);
+		}
+	}
+	*/
+
+	return %%NXS_TPL_PROJ_UPCASE_NAME%%_E_OK;
+}
+
+/* Module internal (static) functions */
+
+
