@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 			exit(EXIT_FAILURE);
 	}
 
-	nxs_proc_setlog(&process, %%NXS_TPL_P_INLINE_NAME%%_cfg.log_level, NXS_LOG_MODE_KEEP_OPEN, NXS_LOG_SYSLOG_DONT_USE, &%%NXS_TPL_P_INLINE_NAME%%_cfg.log_path);
+	nxs_proc_setlog(&process, %%NXS_TPL_P_INLINE_NAME%%_cfg.log.level, NXS_LOG_MODE_KEEP_OPEN, NXS_LOG_SYSLOG_DONT_USE, &(%%NXS_TPL_P_INLINE_NAME%%_cfg.log.path));
 
 	rc = %%NXS_TPL_P_INLINE_NAME%%_p_bootstrap();
 

@@ -1,4 +1,6 @@
 {
-	"loglevel": 31,
-	"logpath": "./logs/%%NXS_TPL_P_NAME%%.log"
+	"logging": {
+		"level": 31,
+		"path": "./logs/%%NXS_TPL_P_NAME%%.log"
+	}
 }

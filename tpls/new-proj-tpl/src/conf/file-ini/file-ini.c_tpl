@@ -41,8 +41,8 @@ nxs_cfg_par_t cfg_par[] =
 {
 	/* project config file settings */
 
-	{nxs_string("loglevel"),		&%%NXS_TPL_P_INLINE_NAME%%_cfg.log_level,		NULL,			NXS_CFG_TYPE_INT,		0,	31,		NXS_CFG_REQUIRED_NO,	NXS_CFG_TWICE_DEFINITION_NO},
-	{nxs_string("logpath"),			&%%NXS_TPL_P_INLINE_NAME%%_cfg.log_path,		NULL,			NXS_CFG_TYPE_STRING,		0,	0,		NXS_CFG_REQUIRED_YES,	NXS_CFG_TWICE_DEFINITION_NO},
+	{nxs_string("loglevel"),		&%%NXS_TPL_P_INLINE_NAME%%_cfg.log.level,		NULL,			NXS_CFG_TYPE_INT,		0,	31,		NXS_CFG_REQUIRED_NO,	NXS_CFG_TWICE_DEFINITION_NO},
+	{nxs_string("logpath"),			&%%NXS_TPL_P_INLINE_NAME%%_cfg.log.path,		NULL,			NXS_CFG_TYPE_STRING,		0,	0,		NXS_CFG_REQUIRED_YES,	NXS_CFG_TWICE_DEFINITION_NO},
 
 	NXS_CFG_NULL
 };

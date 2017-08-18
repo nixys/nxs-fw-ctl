@@ -39,8 +39,13 @@ typedef struct
 
 typedef struct
 {
-	nxs_string_t				log_path;
-	int					log_level;
+	nxs_string_t				path;
+	int					level;
+} %%NXS_TPL_P_INLINE_NAME%%_cfg_log_t;
+
+typedef struct
+{
+	%%NXS_TPL_P_INLINE_NAME%%_cfg_log_t	log;
 } %%NXS_TPL_P_INLINE_NAME%%_cfg_t;
 
 /* Project includes */

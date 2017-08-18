@@ -100,9 +100,9 @@ static void nxs_%%NXS_TPL_P_INLINE_NAME%%_conf_cfg_ctx_init(%%NXS_TPL_P_INLINE_N
 
 	/* Init config values */
 
-	nxs_string_init(&%%NXS_TPL_P_INLINE_NAME%%_cfg.log_path);
+	nxs_string_init(&%%NXS_TPL_P_INLINE_NAME%%_cfg.log.path);
 
-	%%NXS_TPL_P_INLINE_NAME%%_cfg.log_level = NXS_LOG_LEVEL_MEM | NXS_LOG_LEVEL_INFO | NXS_LOG_LEVEL_WARN | NXS_LOG_LEVEL_ERROR;
+	%%NXS_TPL_P_INLINE_NAME%%_cfg.log.level = NXS_LOG_LEVEL_MEM | NXS_LOG_LEVEL_INFO | NXS_LOG_LEVEL_WARN | NXS_LOG_LEVEL_ERROR;
 
 	/* Init cfg context values */
 
