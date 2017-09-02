@@ -92,14 +92,18 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_clean(nxs_string_t *dir_path)
 
 				if(S_ISREG(file_stat.st_mode)) {
 
-					if(nxs_fs_unlink(&dirent) < 0) {
+					/* skip files begining with '.' */
+					if(nxs_string_get_char(dir_entry.d_name, 0) != (u_char)'.') {
 
-						nxs_log_write_error(&process,
-						                    "can't remove core-object file: %s (path: %s)",
-						                    strerror(errno),
-						                    nxs_string_str(&dirent));
+						if(nxs_fs_unlink(&dirent) < 0) {
 
-						nxs_error(rc, NXS_FW_CTL_E_ERR, error);
+							nxs_log_write_error(&process,
+							                    "can't remove core-object file: %s (path: %s)",
+							                    strerror(errno),
+							                    nxs_string_str(&dirent));
+
+							nxs_error(rc, NXS_FW_CTL_E_ERR, error);
+						}
 					}
 				}
 			}
