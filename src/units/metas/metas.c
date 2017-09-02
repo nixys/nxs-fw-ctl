@@ -58,7 +58,7 @@ struct nxs_fw_ctl_u_metas_s
 
 // clang-format on
 
-static nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_make_genfiles(nxs_fw_ctl_u_metas_t *u_ctx);
+static nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_make_genfiles(nxs_fw_ctl_u_metas_t *u_ctx, nxs_string_t *fw_version);
 static nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_make_sub_headers(nxs_fw_ctl_u_metas_t *u_ctx);
 
 // clang-format off
@@ -158,7 +158,7 @@ void nxs_fw_ctl_u_metas_setup(nxs_fw_ctl_u_metas_t *u_ctx, nxs_string_t *proj_na
 	nxs_string_free(&m_full_name);
 }
 
-nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_add(nxs_fw_ctl_u_metas_t *u_ctx)
+nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_add(nxs_fw_ctl_u_metas_t *u_ctx, nxs_string_t *fw_version)
 {
 	nxs_fw_ctl_err_t rc;
 	nxs_string_t     meta_path;
@@ -193,7 +193,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_add(nxs_fw_ctl_u_metas_t *u_ctx)
 
 	/* Создание "meta" */
 
-	if(nxs_fw_ctl_u_metas_make_genfiles(u_ctx) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_metas_make_genfiles(u_ctx, fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -269,7 +269,7 @@ error:
 
 /* Module internal (static) functions */
 
-static nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_make_genfiles(nxs_fw_ctl_u_metas_t *u_ctx)
+static nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_make_genfiles(nxs_fw_ctl_u_metas_t *u_ctx, nxs_string_t *fw_version)
 {
 	nxs_string_t     tpl_path, dst_path;
 	nxs_array_t      subs;
@@ -290,8 +290,9 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_make_genfiles(nxs_fw_ctl_u_metas_t *u
 	for(i = 0; nxs_string_len(&genfiles[i].src) > 0; i++) {
 
 		nxs_string_printf_dyn(&tpl_path,
-		                      "%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_METAS "/%r",
+		                      "%r/%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_METAS "/%r",
 		                      &nxs_fw_ctl_cfg.tpls_path,
+		                      fw_version,
 		                      &genfiles[i].src);
 		nxs_string_printf_dyn(&dst_path, "%r%r", &u_ctx->path, &genfiles[i].dst);
 

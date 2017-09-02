@@ -1,0 +1,46 @@
+CC						=	cc
+CFLAGS						=	-pipe -O -W -Wall -Wpointer-arith -Wno-unused-parameter -Werror -g -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=2
+CFLAGS32					=
+LINK						=	$(CC)
+
+ifeq ($(shell getconf LONG_BIT),32)
+CFLAGS32					=	-D_FILE_OFFSET_BITS=64
+endif
+
+NXS_FW_VERSION					=	%%NXS_TPL_FW_VERSION%%
+
+NXS_FW_CORE_INCLUDES_PATH			=	/usr/include/nxs-fw
+NXS_FW_CORE_LIBS_PATH				=	/usr/lib/nxs-fw
+
+USE_NXS_MODULES					=	%%NXS_TPL_USE_MODULES%%
+
+NXS_CORE_INCLUDES				=	-I $(NXS_FW_CORE_INCLUDES_PATH)/$(NXS_FW_VERSION)
+
+PROJ_INCLUDES					=	-I ./src
+
+NXS_CORE_HEADERS				=	$(shell find $(NXS_FW_CORE_INCLUDES_PATH)/$(NXS_FW_VERSION) -type f -name "*.h")
+NXS_CORE_LINKS					=	%%NXS_TPL_CORE_LINKS%%
+
+NXS_INCLUDES					=	%%NXS_TPL_INCLUDES%%
+NXS_LINKS					=	%%NXS_TPL_LINKS%%
+
+NXS_USER_INCLUDES				=	
+NXS_USER_LINKS					=	
+
+PROJ_CORE_HEADERS				=	./src/%%NXS_TPL_P_NAME%%-core.h
+
+PROJ_UNITS_HEADERS				=	./src/%%NXS_TPL_P_NAME%%-units.h \
+								$(shell find ./src/units/ -mindepth 2 -maxdepth 2 -type f -name "*.h")
+
+PROJ_COLLECTIONS_HEADERS			=	./src/%%NXS_TPL_P_NAME%%-collections.h \
+								$(shell find ./src/collections/ -mindepth 2 -maxdepth 2 -type f -name "*.h")
+
+PROJ_DAL_HEADERS				=	./src/%%NXS_TPL_P_NAME%%-dal.h \
+								$(shell find ./src/dal/ -mindepth 2 -maxdepth 2 -type f -name "*.h")
+
+PROJ_META_HEADERS				=	$(shell find ./src/meta/ -type f -name "*.h")
+
+PROJ_CONF_HEADERS				=	./src/%%NXS_TPL_P_NAME%%-conf.h
+
+PROJ_PROC_HEADERS				=	./src/%%NXS_TPL_P_NAME%%-proc.h \
+								$(shell find ./src/proc/ -type f -name "*.h")

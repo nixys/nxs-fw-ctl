@@ -62,7 +62,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_makefiles(nxs_fw_ctl_u_projec
                                                              nxs_string_t *           link_opts,
                                                              nxs_string_t *           includes,
                                                              nxs_string_t *           core_links);
-static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_genfiles(nxs_fw_ctl_u_projects_t *u_ctx);
+static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_genfiles(nxs_fw_ctl_u_projects_t *u_ctx, nxs_string_t *fw_version);
 
 static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_up_config_mk(nxs_string_t *path,
                                                            nxs_string_t *fw_version,
@@ -298,7 +298,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_add(nxs_fw_ctl_u_projects_t *u_ctx)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	if(nxs_fw_ctl_u_projects_make_genfiles(u_ctx) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_projects_make_genfiles(u_ctx, &nxs_fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -725,7 +725,8 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_makefiles(nxs_fw_ctl_u_projec
 
 	for(i = 0; nxs_string_len(&makefiles[i].src) > 0; i++) {
 
-		nxs_string_printf_dyn(&tpl_path, "%r/" NXS_FW_CTL_DIR_NEW_PROJ_TPL "/%r", &nxs_fw_ctl_cfg.tpls_path, &makefiles[i].src);
+		nxs_string_printf_dyn(
+		        &tpl_path, "%r/%r/" NXS_FW_CTL_DIR_NEW_PROJ_TPL "/%r", &nxs_fw_ctl_cfg.tpls_path, fw_version, &makefiles[i].src);
 		nxs_string_printf_dyn(&dst_path, "%r%r", &u_ctx->root, &makefiles[i].dst);
 
 		if(nxs_fw_ctl_c_copy_tpl(&subs, &tpl_path, &dst_path) != NXS_FW_CTL_E_OK) {
@@ -744,7 +745,7 @@ error:
 	return rc;
 }
 
-static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_genfiles(nxs_fw_ctl_u_projects_t *u_ctx)
+static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_genfiles(nxs_fw_ctl_u_projects_t *u_ctx, nxs_string_t *fw_version)
 {
 	nxs_string_t     tpl_path, dst_path;
 	nxs_array_t      subs;
@@ -764,7 +765,8 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_genfiles(nxs_fw_ctl_u_project
 
 	for(i = 0; nxs_string_len(&genfiles[i].src) > 0; i++) {
 
-		nxs_string_printf_dyn(&tpl_path, "%r/" NXS_FW_CTL_DIR_NEW_PROJ_TPL "/%r", &nxs_fw_ctl_cfg.tpls_path, &genfiles[i].src);
+		nxs_string_printf_dyn(
+		        &tpl_path, "%r/%r/" NXS_FW_CTL_DIR_NEW_PROJ_TPL "/%r", &nxs_fw_ctl_cfg.tpls_path, fw_version, &genfiles[i].src);
 		nxs_string_printf_dyn(&dst_path, "%r%r", &u_ctx->root, &genfiles[i].dst);
 
 		nxs_fw_ctl_c_copy_tpl_path(&subs, &dst_path);

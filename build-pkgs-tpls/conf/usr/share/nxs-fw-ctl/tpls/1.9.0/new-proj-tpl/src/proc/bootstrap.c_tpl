@@ -1,0 +1,58 @@
+#include <nxs-core/nxs-core.h>
+
+// clang-format off
+
+/* Project core include */
+#include <%%NXS_TPL_P_NAME%%-core.h>
+#include <%%NXS_TPL_P_NAME%%-meta.h>
+#include <%%NXS_TPL_P_NAME%%-proc.h>
+
+#include <proc/bootstrap-subproc.h>
+
+/* Definitions */
+
+
+/* Project globals */
+extern		nxs_process_t				process;
+extern		%%NXS_TPL_P_INLINE_NAME%%_cfg_t		%%NXS_TPL_P_INLINE_NAME%%_cfg;
+
+/* Module typedefs */
+
+
+
+/* Module declarations */
+
+
+
+/* Module internal (static) functions prototypes */
+
+// clang-format on
+
+// clang-format off
+
+/* Module initializations */
+
+
+
+/* Module global functions */
+
+// clang-format on
+
+%%NXS_TPL_P_INLINE_NAME%%_err_t %%NXS_TPL_P_INLINE_NAME%%_p_bootstrap(void)
+{
+	%%NXS_TPL_P_INLINE_NAME%%_err_t	rc;
+
+	/*
+	if(%%NXS_TPL_P_INLINE_NAME%%_cfg.daemonized == NXS_YES){
+
+		nxs_proc_daemonize(&process, NXS_PROCESS_CHLD_SIG_CLEAR, NULL, NXS_PROCESS_NO_UID, NXS_PROCESS_NO_UMASK, NULL);
+	}
+	*/
+
+	rc = %%NXS_TPL_P_UPCASE_NAME%%_E_OK;
+	// rc = /* Call subprocess runtime function here */;
+
+	return rc;
+}
+
+/* Module internal (static) functions */

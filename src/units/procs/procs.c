@@ -74,8 +74,8 @@ struct nxs_fw_ctl_u_procs_s
 // clang-format on
 
 static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_fs_struct(nxs_fw_ctl_u_procs_t *u_ctx);
-static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_makefiles(nxs_fw_ctl_u_procs_t *u_ctx);
-static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_genfiles(nxs_fw_ctl_u_procs_t *u_ctx);
+static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_makefiles(nxs_fw_ctl_u_procs_t *u_ctx, nxs_string_t *fw_version);
+static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_genfiles(nxs_fw_ctl_u_procs_t *u_ctx, nxs_string_t *fw_version);
 static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_sub_headers(nxs_fw_ctl_u_procs_t *u_ctx);
 
 // clang-format off
@@ -309,7 +309,7 @@ error:
 	return rc;
 }
 
-nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_add(nxs_fw_ctl_u_procs_t *u_ctx)
+nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_add(nxs_fw_ctl_u_procs_t *u_ctx, nxs_string_t *fw_version)
 {
 	nxs_fw_ctl_err_t rc;
 
@@ -320,12 +320,12 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_add(nxs_fw_ctl_u_procs_t *u_ctx)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	if(nxs_fw_ctl_u_procs_make_makefiles(u_ctx) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_procs_make_makefiles(u_ctx, fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	if(nxs_fw_ctl_u_procs_make_genfiles(u_ctx) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_procs_make_genfiles(u_ctx, fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -478,7 +478,7 @@ error:
 	return rc;
 }
 
-static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_makefiles(nxs_fw_ctl_u_procs_t *u_ctx)
+static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_makefiles(nxs_fw_ctl_u_procs_t *u_ctx, nxs_string_t *fw_version)
 {
 	nxs_string_t     tpl_path, dst_path;
 	nxs_array_t      subs;
@@ -499,8 +499,9 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_makefiles(nxs_fw_ctl_u_procs_t *
 	for(i = 0; nxs_string_len(&makefiles[i].src) > 0; i++) {
 
 		nxs_string_printf_dyn(&tpl_path,
-		                      "%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_PROCS "/%r",
+		                      "%r/%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_PROCS "/%r",
 		                      &nxs_fw_ctl_cfg.tpls_path,
+		                      fw_version,
 		                      &makefiles[i].src);
 		nxs_string_printf_dyn(&dst_path, "%r/%r", &u_ctx->path, &makefiles[i].dst);
 
@@ -520,7 +521,7 @@ error:
 	return rc;
 }
 
-static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_genfiles(nxs_fw_ctl_u_procs_t *u_ctx)
+static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_genfiles(nxs_fw_ctl_u_procs_t *u_ctx, nxs_string_t *fw_version)
 {
 	nxs_string_t     tpl_path, dst_path;
 	nxs_array_t      subs;
@@ -546,8 +547,9 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_genfiles(nxs_fw_ctl_u_procs_t *u
 	for(i = 0; nxs_string_len(&genfiles[i].src) > 0; i++) {
 
 		nxs_string_printf_dyn(&tpl_path,
-		                      "%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_PROCS "/%r",
+		                      "%r/%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_PROCS "/%r",
 		                      &nxs_fw_ctl_cfg.tpls_path,
+		                      fw_version,
 		                      &genfiles[i].src);
 		nxs_string_printf_dyn(&dst_path, "%r/%r", &u_ctx->path, &genfiles[i].dst);
 

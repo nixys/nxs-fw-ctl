@@ -298,13 +298,14 @@ error:
 static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_unit_add(void)
 {
 	nxs_fw_ctl_u_units_t *unit_ctx;
-	nxs_string_t *        name, p_name, pwd;
+	nxs_string_t *        name, p_name, pwd, fw_version;
 	nxs_fw_ctl_err_t      rc;
 
 	rc = NXS_FW_CTL_E_OK;
 
 	nxs_string_init(&pwd);
 	nxs_string_init(&p_name);
+	nxs_string_init(&fw_version);
 
 	nxs_fs_getcwd(&pwd);
 
@@ -317,7 +318,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_unit_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	if(nxs_fw_ctl_u_projects_settingsfile_get_name(&pwd, &p_name) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_projects_settingsfile_get_version(&pwd, &p_name, &fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -329,9 +330,9 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_unit_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	if(nxs_fw_ctl_u_units_add(unit_ctx) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_units_add(unit_ctx, &fw_version) != NXS_FW_CTL_E_OK) {
 
-		nxs_log_write_console(&process, "unit '%s' successfully error", nxs_string_str(name));
+		nxs_log_write_console(&process, "unit '%s' creation error", nxs_string_str(name));
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -342,6 +343,7 @@ error:
 
 	nxs_string_free(&pwd);
 	nxs_string_free(&p_name);
+	nxs_string_free(&fw_version);
 
 	unit_ctx = nxs_fw_ctl_u_units_free(unit_ctx);
 
@@ -418,13 +420,14 @@ error:
 static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_collection_add(void)
 {
 	nxs_fw_ctl_u_collections_t *coll_ctx;
-	nxs_string_t *              name, p_name, pwd;
+	nxs_string_t *              name, p_name, pwd, fw_version;
 	nxs_fw_ctl_err_t            rc;
 
 	rc = NXS_FW_CTL_E_OK;
 
 	nxs_string_init(&pwd);
 	nxs_string_init(&p_name);
+	nxs_string_init(&fw_version);
 
 	nxs_fs_getcwd(&pwd);
 
@@ -437,7 +440,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_collection_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	if(nxs_fw_ctl_u_projects_settingsfile_get_name(&pwd, &p_name) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_projects_settingsfile_get_version(&pwd, &p_name, &fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -446,7 +449,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_collection_add(void)
 
 	nxs_fw_ctl_u_collections_setup(coll_ctx, &p_name, &pwd, name);
 
-	if(nxs_fw_ctl_u_collections_add(coll_ctx) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_collections_add(coll_ctx, &fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -457,6 +460,7 @@ error:
 
 	nxs_string_free(&pwd);
 	nxs_string_free(&p_name);
+	nxs_string_free(&fw_version);
 
 	coll_ctx = nxs_fw_ctl_u_collections_free(coll_ctx);
 
@@ -530,13 +534,14 @@ error:
 static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_meta_add(void)
 {
 	nxs_fw_ctl_u_metas_t *meta_ctx;
-	nxs_string_t *        name, p_name, pwd;
+	nxs_string_t *        name, p_name, pwd, fw_version;
 	nxs_fw_ctl_err_t      rc;
 
 	rc = NXS_FW_CTL_E_OK;
 
 	nxs_string_init(&pwd);
 	nxs_string_init(&p_name);
+	nxs_string_init(&fw_version);
 
 	nxs_fs_getcwd(&pwd);
 
@@ -549,7 +554,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_meta_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	if(nxs_fw_ctl_u_projects_settingsfile_get_name(&pwd, &p_name) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_projects_settingsfile_get_version(&pwd, &p_name, &fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -558,7 +563,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_meta_add(void)
 
 	nxs_fw_ctl_u_metas_setup(meta_ctx, &p_name, &pwd, name);
 
-	if(nxs_fw_ctl_u_metas_add(meta_ctx) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_metas_add(meta_ctx, &fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -569,6 +574,7 @@ error:
 
 	nxs_string_free(&pwd);
 	nxs_string_free(&p_name);
+	nxs_string_free(&fw_version);
 
 	meta_ctx = nxs_fw_ctl_u_metas_free(meta_ctx);
 
@@ -642,13 +648,14 @@ error:
 static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_proc_add(void)
 {
 	nxs_fw_ctl_u_procs_t *proc_ctx;
-	nxs_string_t *        name, p_name, pwd;
+	nxs_string_t *        name, p_name, pwd, fw_version;
 	nxs_fw_ctl_err_t      rc;
 
 	rc = NXS_FW_CTL_E_OK;
 
 	nxs_string_init(&pwd);
 	nxs_string_init(&p_name);
+	nxs_string_init(&fw_version);
 
 	nxs_fs_getcwd(&pwd);
 
@@ -661,7 +668,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_proc_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	if(nxs_fw_ctl_u_projects_settingsfile_get_name(&pwd, &p_name) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_projects_settingsfile_get_version(&pwd, &p_name, &fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -673,7 +680,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_proc_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	if(nxs_fw_ctl_u_procs_add(proc_ctx) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_procs_add(proc_ctx, &fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -684,6 +691,7 @@ error:
 
 	nxs_string_free(&pwd);
 	nxs_string_free(&p_name);
+	nxs_string_free(&fw_version);
 
 	proc_ctx = nxs_fw_ctl_u_procs_free(proc_ctx);
 
@@ -760,13 +768,14 @@ error:
 static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_conf_add(void)
 {
 	nxs_fw_ctl_u_confs_t *conf_ctx;
-	nxs_string_t *        name, p_name, pwd;
+	nxs_string_t *        name, p_name, pwd, fw_version;
 	nxs_fw_ctl_err_t      rc;
 
 	rc = NXS_FW_CTL_E_OK;
 
 	nxs_string_init(&pwd);
 	nxs_string_init(&p_name);
+	nxs_string_init(&fw_version);
 
 	nxs_fs_getcwd(&pwd);
 
@@ -779,7 +788,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_conf_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	if(nxs_fw_ctl_u_projects_settingsfile_get_name(&pwd, &p_name) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_projects_settingsfile_get_version(&pwd, &p_name, &fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -788,7 +797,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_conf_add(void)
 
 	nxs_fw_ctl_u_confs_setup(conf_ctx, &p_name, &pwd, name);
 
-	if(nxs_fw_ctl_u_confs_add(conf_ctx) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_confs_add(conf_ctx, &fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -799,6 +808,7 @@ error:
 
 	nxs_string_free(&pwd);
 	nxs_string_free(&p_name);
+	nxs_string_free(&fw_version);
 
 	conf_ctx = nxs_fw_ctl_u_confs_free(conf_ctx);
 
@@ -872,13 +882,14 @@ error:
 static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_dal_add(void)
 {
 	nxs_fw_ctl_u_dals_t *dal_ctx;
-	nxs_string_t *       name, p_name, pwd;
+	nxs_string_t *       name, p_name, pwd, fw_version;
 	nxs_fw_ctl_err_t     rc;
 
 	rc = NXS_FW_CTL_E_OK;
 
 	nxs_string_init(&pwd);
 	nxs_string_init(&p_name);
+	nxs_string_init(&fw_version);
 
 	nxs_fs_getcwd(&pwd);
 
@@ -891,7 +902,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_dal_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	if(nxs_fw_ctl_u_projects_settingsfile_get_name(&pwd, &p_name) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_projects_settingsfile_get_version(&pwd, &p_name, &fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -903,7 +914,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_dal_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	if(nxs_fw_ctl_u_dals_add(dal_ctx) != NXS_FW_CTL_E_OK) {
+	if(nxs_fw_ctl_u_dals_add(dal_ctx, &fw_version) != NXS_FW_CTL_E_OK) {
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -914,6 +925,7 @@ error:
 
 	nxs_string_free(&pwd);
 	nxs_string_free(&p_name);
+	nxs_string_free(&fw_version);
 
 	dal_ctx = nxs_fw_ctl_u_dals_free(dal_ctx);
 
