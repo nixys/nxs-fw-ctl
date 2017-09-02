@@ -15,6 +15,7 @@
 #define %%NXS_TPL_P_UPCASE_NAME%%_CONF_ARGS_HELP_MSG			"%%NXS_TPL_P_NAME%% short description \n" \
 										"Available options:\n" \
 										"\t-v: show program version\n" \
+										"\t-V: show bare program version\n" \
 										"\t-h: show help (this message)\n" \
 										"\t-c CONFIG_PATH: change default config file path (default path: %s )"
 
@@ -39,6 +40,7 @@ static int		%%NXS_TPL_P_INLINE_NAME%%_conf_args_post		(nxs_args_t args, int argc
 static int		%%NXS_TPL_P_INLINE_NAME%%_conf_args_freeargs		(nxs_args_t args, int argc, int argind, u_char **argv);
 static int		%%NXS_TPL_P_INLINE_NAME%%_conf_args_help		(nxs_args_t args, u_char arg, u_char *optarg);
 static int		%%NXS_TPL_P_INLINE_NAME%%_conf_args_version		(nxs_args_t args, u_char arg, u_char *optarg);
+static int		%%NXS_TPL_P_INLINE_NAME%%_conf_args_bare_version	(nxs_args_t args, u_char arg, u_char *optarg);
 static int		%%NXS_TPL_P_INLINE_NAME%%_conf_args_conf		(nxs_args_t args, u_char arg, u_char *optarg);
 
 // clang-format off
@@ -49,6 +51,7 @@ nxs_args_shortopt_t shortopts[] =
 {
 	{'h',	NXS_ARGS_HAVE_ARGS_NO,		&%%NXS_TPL_P_INLINE_NAME%%_conf_args_help},
 	{'v',	NXS_ARGS_HAVE_ARGS_NO,		&%%NXS_TPL_P_INLINE_NAME%%_conf_args_version},
+	{'V',	NXS_ARGS_HAVE_ARGS_NO,		&%%NXS_TPL_P_INLINE_NAME%%_conf_args_bare_version},
 	{'c',	NXS_ARGS_HAVE_ARGS_YES,		&%%NXS_TPL_P_INLINE_NAME%%_conf_args_conf},
 
 	NXS_ARGS_NULL
@@ -157,6 +160,14 @@ static int %%NXS_TPL_P_INLINE_NAME%%_conf_args_version(nxs_args_t args, u_char a
 {
 
 	nxs_log_write_info(&process, "version: %s (nxs-fw v%s)", %%NXS_TPL_P_UPCASE_NAME%%_VERSION, NXS_VERSION);
+
+	return NXS_ARGS_CONF_OK_EXIT;
+}
+
+static int %%NXS_TPL_P_INLINE_NAME%%_conf_args_bare_version(nxs_args_t args, u_char arg, u_char *optarg)
+{
+
+	nxs_log_write_console(&process, "%s", %%NXS_TPL_P_UPCASE_NAME%%_VERSION);
 
 	return NXS_ARGS_CONF_OK_EXIT;
 }

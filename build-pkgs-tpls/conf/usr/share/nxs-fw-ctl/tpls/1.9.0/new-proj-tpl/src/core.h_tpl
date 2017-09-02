@@ -8,7 +8,7 @@
 
 /* Project basic global definitions */
 
-#define	%%NXS_TPL_P_UPCASE_NAME%%_CONF_PATH_DEFAULT	"./%%NXS_TPL_P_NAME%%.conf"
+#define	%%NXS_TPL_P_UPCASE_NAME%%_CONF_PATH_DEFAULT	"/etc/%%NXS_TPL_P_NAME%%/%%NXS_TPL_P_NAME%%.conf"
 
 /* Project global typedefs */
 

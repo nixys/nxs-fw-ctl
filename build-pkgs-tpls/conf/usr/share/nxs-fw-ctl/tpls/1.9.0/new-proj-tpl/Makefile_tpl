@@ -5,7 +5,7 @@ PROJ_OBJS	= $(shell find ./objs/ -type f -name "*.o")
 default:	build
 
 run:	build
-	objs/%%NXS_TPL_P_NAME%% -c %%NXS_TPL_P_NAME%%.conf
+	objs/%%NXS_TPL_P_NAME%% -c ./%%NXS_TPL_P_NAME%%.conf
 
 build:	core \
 	units \

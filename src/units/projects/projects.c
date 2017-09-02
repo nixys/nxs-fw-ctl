@@ -49,6 +49,7 @@ struct nxs_fw_ctl_u_projects_path_s
 {
 	nxs_string_t						src;
 	nxs_string_t						dst;
+	mode_t							mode;
 };
 
 /* Module internal (static) functions prototypes */
@@ -100,71 +101,84 @@ static nxs_string_t _s_question_project_del			= nxs_string("\tyou realy want to 
 
 static nxs_string_t init_dirs[] =
 {
-	nxs_string("%r"),
-	nxs_string("%r.nxs-fw-settings"),
-	nxs_string("%rdocs/"),
-	nxs_string("%rlogs/"),
-	nxs_string("%robjs/"),
-	nxs_string("%rsrc/"),
-	nxs_string("%rsrc/collections/"),
-	nxs_string("%rsrc/conf/"),
-	nxs_string("%rsrc/conf/args/"),
-	nxs_string("%rsrc/conf/file-ini/"),
-	nxs_string("%rsrc/conf/file-json/"),
-	nxs_string("%rsrc/dal/"),
-	nxs_string("%rsrc/meta/"),
-	nxs_string("%rsrc/proc/"),
-	nxs_string("%rsrc/units/"),
+	nxs_string(""),
+	nxs_string(".nxs-fw-settings"),
+	nxs_string("docs/"),
+	nxs_string("logs/"),
+	nxs_string("objs/"),
+	nxs_string("src/"),
+	nxs_string("src/collections/"),
+	nxs_string("src/conf/"),
+	nxs_string("src/conf/args/"),
+	nxs_string("src/conf/file-ini/"),
+	nxs_string("src/conf/file-json/"),
+	nxs_string("src/dal/"),
+	nxs_string("src/meta/"),
+	nxs_string("src/proc/"),
+	nxs_string("src/units/"),
+	nxs_string("build-pkgs-tpls"),
+	nxs_string("build-pkgs-tpls/conf"),
+	nxs_string("build-pkgs-tpls/conf/etc"),
+	nxs_string("build-pkgs-tpls/conf/etc/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME),
+	nxs_string("build-pkgs-tpls/debian"),
 
 	{NULL, 0, 0}
 };
 
 static nxs_fw_ctl_u_projects_path_t makefiles[] =
 {
-	{nxs_string("Makefile_tpl"),					nxs_string("Makefile")},
-	{nxs_string("config.mk_tpl"),					nxs_string("config.mk")},
-	{nxs_string("src/collections/Makefile_tpl"),			nxs_string("src/collections/Makefile")},
-	{nxs_string("src/conf/Makefile_tpl"),				nxs_string("src/conf/Makefile")},
-	{nxs_string("src/conf/args/Makefile_tpl"),			nxs_string("src/conf/args/Makefile")},
-	{nxs_string("src/conf/file-ini/Makefile_tpl"),			nxs_string("src/conf/file-ini/Makefile")},
-	{nxs_string("src/conf/file-json/Makefile_tpl"),			nxs_string("src/conf/file-json/Makefile")},
-	{nxs_string("src/dal/Makefile_tpl"),				nxs_string("src/dal/Makefile")},
-	{nxs_string("src/proc/Makefile_tpl"),				nxs_string("src/proc/Makefile")},
-	{nxs_string("src/units/Makefile_tpl"),				nxs_string("src/units/Makefile")},
+	{nxs_string("Makefile_tpl"),					nxs_string("Makefile"),														NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("config.mk_tpl"),					nxs_string("config.mk"),													NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/collections/Makefile_tpl"),			nxs_string("src/collections/Makefile"),												NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/conf/Makefile_tpl"),				nxs_string("src/conf/Makefile"),												NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/conf/args/Makefile_tpl"),			nxs_string("src/conf/args/Makefile"),												NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/conf/file-ini/Makefile_tpl"),			nxs_string("src/conf/file-ini/Makefile"),											NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/conf/file-json/Makefile_tpl"),			nxs_string("src/conf/file-json/Makefile"),											NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/dal/Makefile_tpl"),				nxs_string("src/dal/Makefile"),													NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/proc/Makefile_tpl"),				nxs_string("src/proc/Makefile"),												NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/units/Makefile_tpl"),				nxs_string("src/units/Makefile"),												NXS_FW_CTL_FILE_MODE_DEF},
 
-	{{NULL, 0, 0}, {NULL, 0, 0}}
+	{{NULL, 0, 0}, {NULL, 0, 0}, 0}
 };
 
 static nxs_fw_ctl_u_projects_path_t genfiles[] =
 {
-	{nxs_string(".conf.dist-ini_tpl"),				nxs_string("" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME ".conf.dist-ini")},
-	{nxs_string(".conf.dist-json_tpl"),				nxs_string("" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME ".conf.dist-json")},
-	{nxs_string("src/collections.h_tpl"),				nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-collections.h")},
-	{nxs_string("src/conf.h_tpl"),					nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-conf.h")},
-	{nxs_string("src/core.c_tpl"),					nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-core.c")},
-	{nxs_string("src/core.h_tpl"),					nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-core.h")},
-	{nxs_string("src/dal.h_tpl"),					nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-dal.h")},
-	{nxs_string("src/meta.h_tpl"),					nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-meta.h")},
-	{nxs_string("src/proc.h_tpl"),					nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-proc.h")},
-	{nxs_string("src/units.h_tpl"),					nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-units.h")},
-	{nxs_string("src/conf/conf.c_tpl"),				nxs_string("src/conf/conf.c")},
-	{nxs_string("src/conf/conf.h_tpl"),				nxs_string("src/conf/conf.h")},
-	{nxs_string("src/conf/args/args.c_tpl"),			nxs_string("src/conf/args/args.c")},
-	{nxs_string("src/conf/args/args.h_tpl"),			nxs_string("src/conf/args/args.h")},
-	{nxs_string("src/conf/file-ini/file-ini.c_tpl"),		nxs_string("src/conf/file-ini/file-ini.c")},
-	{nxs_string("src/conf/file-ini/file-ini.h_tpl"),		nxs_string("src/conf/file-ini/file-ini.h")},
-	{nxs_string("src/conf/file-json/file-json.c_tpl"),		nxs_string("src/conf/file-json/file-json.c")},
-	{nxs_string("src/conf/file-json/file-json.h_tpl"),		nxs_string("src/conf/file-json/file-json.h")},
-	{nxs_string("src/proc/bootstrap.c_tpl"),			nxs_string("src/proc/bootstrap.c")},
-	{nxs_string("src/proc/bootstrap.h_tpl"),			nxs_string("src/proc/bootstrap.h")},
-	{nxs_string("src/proc/bootstrap-subproc.h_tpl"),		nxs_string("src/proc/bootstrap-subproc.h")},
-	{nxs_string(".clang-format_tpl"),				nxs_string(".clang-format")},
-	{nxs_string(".gitignore_tpl"),					nxs_string(".gitignore")},
-	{nxs_string("docs/.placeholder"),				nxs_string("docs/.placeholder")},
-	{nxs_string("logs/.gitignore"),					nxs_string("logs/.gitignore")},
-	{nxs_string("objs/.gitignore"),					nxs_string("objs/.gitignore")},
+	{nxs_string(".conf.dist-ini_tpl"),				nxs_string("" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME ".conf.dist-ini"),								NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string(".conf.dist-json_tpl"),				nxs_string("" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME ".conf.dist-json"),								NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/collections.h_tpl"),				nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-collections.h"),								NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/conf.h_tpl"),					nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-conf.h"),									NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/core.c_tpl"),					nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-core.c"),									NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/core.h_tpl"),					nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-core.h"),									NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/dal.h_tpl"),					nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-dal.h"),									NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/meta.h_tpl"),					nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-meta.h"),									NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/proc.h_tpl"),					nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-proc.h"),									NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/units.h_tpl"),					nxs_string("src/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "-units.h"),									NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/conf/conf.c_tpl"),				nxs_string("src/conf/conf.c"),													NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/conf/conf.h_tpl"),				nxs_string("src/conf/conf.h"),													NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/conf/args/args.c_tpl"),			nxs_string("src/conf/args/args.c"),												NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/conf/args/args.h_tpl"),			nxs_string("src/conf/args/args.h"),												NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/conf/file-ini/file-ini.c_tpl"),		nxs_string("src/conf/file-ini/file-ini.c"),											NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/conf/file-ini/file-ini.h_tpl"),		nxs_string("src/conf/file-ini/file-ini.h"),											NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/conf/file-json/file-json.c_tpl"),		nxs_string("src/conf/file-json/file-json.c"),											NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/conf/file-json/file-json.h_tpl"),		nxs_string("src/conf/file-json/file-json.h"),											NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/proc/bootstrap.c_tpl"),			nxs_string("src/proc/bootstrap.c"),												NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/proc/bootstrap.h_tpl"),			nxs_string("src/proc/bootstrap.h"),												NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("src/proc/bootstrap-subproc.h_tpl"),		nxs_string("src/proc/bootstrap-subproc.h"),											NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string(".clang-format_tpl"),				nxs_string(".clang-format"),													NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string(".gitignore_tpl"),					nxs_string(".gitignore"),													NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("docs/.placeholder"),				nxs_string("docs/.placeholder"),												NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("logs/.gitignore"),					nxs_string("logs/.gitignore"),													NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("objs/.gitignore"),					nxs_string("objs/.gitignore"),													NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("build-pkgs"),					nxs_string("build-pkgs"),													0755},
+	{nxs_string("build-pkgs-tpls/conf/etc/prog/.conf_tpl"),		nxs_string("build-pkgs-tpls/conf/etc/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME ".conf"),		NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("build-pkgs-tpls/debian/.install_tpl"),		nxs_string("build-pkgs-tpls/debian/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME ".install"),						NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("build-pkgs-tpls/debian/README.Debian_tpl"),	nxs_string("build-pkgs-tpls/debian/README.Debian"),										NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("build-pkgs-tpls/debian/README.source_tpl"),	nxs_string("build-pkgs-tpls/debian/README.source"),										NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("build-pkgs-tpls/debian/changelog_tpl"),		nxs_string("build-pkgs-tpls/debian/changelog"),											NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("build-pkgs-tpls/debian/compat_tpl"),		nxs_string("build-pkgs-tpls/debian/compat"),											NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("build-pkgs-tpls/debian/control_tpl"),		nxs_string("build-pkgs-tpls/debian/control"),											NXS_FW_CTL_FILE_MODE_DEF},
 
-	{{NULL, 0, 0}, {NULL, 0, 0}}
+	{{NULL, 0, 0}, {NULL, 0, 0}, 0}
 };
 
 /* Module global functions */
@@ -663,6 +677,7 @@ error:
 static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_fs_struct(nxs_fw_ctl_u_projects_t *u_ctx)
 {
 	nxs_string_t     path;
+	nxs_array_t      subs;
 	nxs_fw_ctl_err_t rc;
 	size_t           i;
 
@@ -670,9 +685,17 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_fs_struct(nxs_fw_ctl_u_projec
 
 	nxs_string_init(&path);
 
+	nxs_fw_ctl_c_copy_tpl_init(&subs);
+
+	nxs_fw_ctl_c_copy_tpl_add(&subs, &_s_tpl_p_name, &u_ctx->name);
+	nxs_fw_ctl_c_copy_tpl_add(&subs, &_s_tpl_p_inline_name, &u_ctx->inline_name);
+	nxs_fw_ctl_c_copy_tpl_add(&subs, &_s_tpl_p_upcase_name, &u_ctx->upcase_name);
+
 	for(i = 0; nxs_string_str(&init_dirs[i]) != NULL; i++) {
 
-		nxs_string_printf_dyn(&path, (char *)nxs_string_str(&init_dirs[i]), &u_ctx->root);
+		nxs_string_printf_dyn(&path, "%r%r", &u_ctx->root, &init_dirs[i]);
+
+		nxs_fw_ctl_c_copy_tpl_path(&subs, &path);
 
 		if(nxs_fs_mkdir(&path, NXS_FW_CTL_DIR_MODE_DEF) < 0) {
 
@@ -689,6 +712,8 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_fs_struct(nxs_fw_ctl_u_projec
 	}
 
 error:
+
+	nxs_fw_ctl_c_copy_tpl_free(&subs);
 
 	nxs_string_free(&path);
 
@@ -729,7 +754,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_makefiles(nxs_fw_ctl_u_projec
 		        &tpl_path, "%r/%r/" NXS_FW_CTL_DIR_NEW_PROJ_TPL "/%r", &nxs_fw_ctl_cfg.tpls_path, fw_version, &makefiles[i].src);
 		nxs_string_printf_dyn(&dst_path, "%r%r", &u_ctx->root, &makefiles[i].dst);
 
-		if(nxs_fw_ctl_c_copy_tpl(&subs, &tpl_path, &dst_path) != NXS_FW_CTL_E_OK) {
+		if(nxs_fw_ctl_c_copy_tpl(&subs, &tpl_path, &dst_path, makefiles[i].mode) != NXS_FW_CTL_E_OK) {
 
 			nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 		}
@@ -771,7 +796,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_genfiles(nxs_fw_ctl_u_project
 
 		nxs_fw_ctl_c_copy_tpl_path(&subs, &dst_path);
 
-		if(nxs_fw_ctl_c_copy_tpl(&subs, &tpl_path, &dst_path) != NXS_FW_CTL_E_OK) {
+		if(nxs_fw_ctl_c_copy_tpl(&subs, &tpl_path, &dst_path, genfiles[i].mode) != NXS_FW_CTL_E_OK) {
 
 			nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 		}

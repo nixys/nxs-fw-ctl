@@ -43,6 +43,7 @@ struct nxs_fw_ctl_u_collections_path_s
 {
 	nxs_string_t						src;
 	nxs_string_t						dst;
+	mode_t							mode;
 };
 
 struct nxs_fw_ctl_u_collections_s
@@ -91,17 +92,17 @@ static nxs_string_t _s_question_collection_del			= nxs_string("\tyou realy want 
 
 static nxs_fw_ctl_u_collections_path_t makefiles[] =
 {
-	{nxs_string("Makefile_tpl"),		nxs_string("Makefile")},
+	{nxs_string("Makefile_tpl"),		nxs_string("Makefile"),						NXS_FW_CTL_FILE_MODE_DEF},
 
-	{{NULL, 0, 0}, {NULL, 0, 0}}
+	{{NULL, 0, 0}, {NULL, 0, 0}, 0}
 };
 
 static nxs_fw_ctl_u_collections_path_t genfiles[] =
 {
-	{nxs_string("collection.c_tpl"),	nxs_string("" NXS_FW_CTL_U_COLLS_TPL_C_FILENAME ".c")},
-	{nxs_string("collection.h_tpl"),	nxs_string("" NXS_FW_CTL_U_COLLS_TPL_C_FILENAME ".h")},
+	{nxs_string("collection.c_tpl"),	nxs_string("" NXS_FW_CTL_U_COLLS_TPL_C_FILENAME ".c"),		NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("collection.h_tpl"),	nxs_string("" NXS_FW_CTL_U_COLLS_TPL_C_FILENAME ".h"),		NXS_FW_CTL_FILE_MODE_DEF},
 
-	{{NULL, 0, 0}, {NULL, 0, 0}},
+	{{NULL, 0, 0}, {NULL, 0, 0}, 0},
 };
 
 /* Module global functions */
@@ -326,7 +327,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_collections_make_makefiles(nxs_fw_ctl_u_col
 		                      &makefiles[i].src);
 		nxs_string_printf_dyn(&dst_path, "%r/%r", &u_ctx->path, &makefiles[i].dst);
 
-		if(nxs_fw_ctl_c_copy_tpl(&subs, &tpl_path, &dst_path) != NXS_FW_CTL_E_OK) {
+		if(nxs_fw_ctl_c_copy_tpl(&subs, &tpl_path, &dst_path, makefiles[i].mode) != NXS_FW_CTL_E_OK) {
 
 			nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 		}
@@ -375,7 +376,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_collections_make_genfiles(nxs_fw_ctl_u_coll
 
 		nxs_fw_ctl_c_copy_tpl_path(&subs, &dst_path);
 
-		if(nxs_fw_ctl_c_copy_tpl(&subs, &tpl_path, &dst_path) != NXS_FW_CTL_E_OK) {
+		if(nxs_fw_ctl_c_copy_tpl(&subs, &tpl_path, &dst_path, genfiles[i].mode) != NXS_FW_CTL_E_OK) {
 
 			nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 		}

@@ -64,7 +64,7 @@ void nxs_fw_ctl_c_copy_tpl_add(nxs_array_t *subs, nxs_string_t *tpl, nxs_string_
 	s_sub->dst = dst;
 }
 
-nxs_fw_ctl_err_t nxs_fw_ctl_c_copy_tpl(nxs_array_t *subs, nxs_string_t *src, nxs_string_t *dst)
+nxs_fw_ctl_err_t nxs_fw_ctl_c_copy_tpl(nxs_array_t *subs, nxs_string_t *src, nxs_string_t *dst, mode_t mode)
 {
 	nxs_string_t         file;
 	nxs_fw_ctl_m_subs_t *s_sub;
@@ -86,7 +86,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_copy_tpl(nxs_array_t *subs, nxs_string_t *src, nxs
 		nxs_string_subs(&file, NULL, s_sub->tpl, s_sub->dst, 0);
 	}
 
-	if(nxs_fs_write_file(dst, (nxs_buf_t *)&file, NXS_FW_CTL_FILE_MODE_DEF) < 0) {
+	if(nxs_fs_write_file(dst, (nxs_buf_t *)&file, mode) < 0) {
 
 		nxs_log_write_error(&process, "can't write template file: %s (src: %s, dst: %s)", strerror(errno), nxs_string_str(dst));
 
