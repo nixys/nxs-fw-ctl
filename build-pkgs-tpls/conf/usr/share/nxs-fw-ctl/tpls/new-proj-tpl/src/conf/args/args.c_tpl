@@ -62,7 +62,7 @@ void %%NXS_TPL_P_INLINE_NAME%%_conf_args_init(nxs_args_t *args, void *user_ctx)
 {
 
 	nxs_string_init(&args->help);
-	nxs_string_printf_dyn(&args->help, %%NXS_TPL_P_UPCASE_NAME%%_CONF_ARGS_HELP_MSG, %%NXS_TPL_P_UPCASE_NAME%%_CONF_PATH_DEFAULT);
+	nxs_string_printf(&args->help, %%NXS_TPL_P_UPCASE_NAME%%_CONF_ARGS_HELP_MSG, %%NXS_TPL_P_UPCASE_NAME%%_CONF_PATH_DEFAULT);
 
 	args->prep_function		= &%%NXS_TPL_P_INLINE_NAME%%_conf_args_prep;
 	args->post_function		= &%%NXS_TPL_P_INLINE_NAME%%_conf_args_post;
@@ -165,7 +165,7 @@ static int %%NXS_TPL_P_INLINE_NAME%%_conf_args_conf(nxs_args_t args, u_char arg,
 {
 	%%NXS_TPL_P_INLINE_NAME%%_cfg_ctx_t	*cfg_ctx = nxs_args_get_ctx(args);
 
-	nxs_string_char_cpy_dyn(&cfg_ctx->cfg_path, 0, optarg);
+	nxs_string_char_cpy(&cfg_ctx->cfg_path, 0, optarg);
 
 	return NXS_ARGS_CONF_OK;
 }

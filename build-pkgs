@@ -20,12 +20,6 @@ function build_package()
 	(
 		dh_make -p nxs-fw-ctl_${VER} --email b.ershov@nixys.ru --single --templates `pwd`/build-pkgs-tpls/debian --yes --createorig
 
-		echo -n > ./debian/nxs-fw-ctl.install
-
-		echo "./objs/nxs-fw-ctl /usr/bin/" >> ./debian/nxs-fw-ctl.install
-		echo "./nxs-fw-ctl.conf /etc/nxs-fw-ctl/" >> ./debian/nxs-fw-ctl.install
-		echo "./tpls /usr/share/nxs-fw-ctl/" >> ./debian/nxs-fw-ctl.install
-
 		dpkg-buildpackage
 
 		rm -rf ./debian

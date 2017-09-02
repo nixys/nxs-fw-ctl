@@ -159,6 +159,10 @@ static nxs_fw_ctl_u_projects_path_t genfiles[] =
 	{nxs_string("src/proc/bootstrap.h_tpl"),			nxs_string("src/proc/bootstrap.h")},
 	{nxs_string("src/proc/bootstrap-subproc.h_tpl"),		nxs_string("src/proc/bootstrap-subproc.h")},
 	{nxs_string(".clang-format_tpl"),				nxs_string(".clang-format")},
+	{nxs_string(".gitignore_tpl"),					nxs_string(".gitignore")},
+	{nxs_string("docs/.placeholder"),				nxs_string("docs/.placeholder")},
+	{nxs_string("logs/.gitignore"),					nxs_string("logs/.gitignore")},
+	{nxs_string("objs/.gitignore"),					nxs_string("objs/.gitignore")},
 
 	{{NULL, 0, 0}, {NULL, 0, 0}}
 };

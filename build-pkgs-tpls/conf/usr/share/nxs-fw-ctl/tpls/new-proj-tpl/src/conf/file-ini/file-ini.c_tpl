@@ -64,7 +64,7 @@ void %%NXS_TPL_P_INLINE_NAME%%_conf_file_ini_init(nxs_cfg_t *cfg, %%NXS_TPL_P_IN
 %%NXS_TPL_P_INLINE_NAME%%_err_t %%NXS_TPL_P_INLINE_NAME%%_conf_file_ini_runtime(nxs_cfg_t cfg, %%NXS_TPL_P_INLINE_NAME%%_cfg_ctx_t *cfg_ctx)
 {
 
-	nxs_string_cpy_dyn(&cfg.cfg_path, 0, &cfg_ctx->cfg_path, 0);
+	nxs_string_cpy(&cfg.cfg_path, 0, &cfg_ctx->cfg_path, 0);
 
 	if(nxs_cfg_read(&process, cfg) != NXS_CFG_CONF_OK){
 
