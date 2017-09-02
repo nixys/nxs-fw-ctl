@@ -123,7 +123,7 @@ static nxs_cfg_json_state_t nxs_fw_ctl_conf_file_json_post(nxs_cfg_json_t cfg)
 
 	if((u_char)nxs_string_get_char(&nxs_fw_ctl_cfg.proj_root, nxs_string_len(&nxs_fw_ctl_cfg.proj_root) - 1) != '/') {
 
-		nxs_string_char_add_char_dyn(&nxs_fw_ctl_cfg.proj_root, (u_char)'/');
+		nxs_string_char_add_char(&nxs_fw_ctl_cfg.proj_root, (u_char)'/');
 	}
 
 	return NXS_CFG_JSON_CONF_OK;
@@ -150,7 +150,7 @@ static nxs_cfg_json_state_t nxs_fw_ctl_conf_file_json_projs_root(nxs_process_t *
 
 	if(nxs_string_len(var) == 0) {
 
-		nxs_string_cpy_dyn(var, 0, nxs_json_string_val(json), 0);
+		nxs_string_cpy(var, 0, nxs_json_string_val(json), 0);
 	}
 
 	return NXS_CFG_JSON_CONF_OK;

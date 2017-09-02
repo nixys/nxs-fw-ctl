@@ -232,7 +232,7 @@ nxs_fw_ctl_err_t
 
 		nxs_string_init(s);
 
-		nxs_string_ncpy_dyn(s, 0, p_name_str, o, c - b - o);
+		nxs_string_ncpy(s, 0, p_name_str, o, c - b - o);
 	}
 
 	if(o < l) {
@@ -241,7 +241,7 @@ nxs_fw_ctl_err_t
 
 		nxs_string_init(s);
 
-		nxs_string_ncpy_dyn(s, 0, p_name_str, o, l - o);
+		nxs_string_ncpy(s, 0, p_name_str, o, l - o);
 	}
 
 	if((l = nxs_array_count(&u_ctx->procs_chain)) == 0) {
@@ -261,7 +261,7 @@ nxs_fw_ctl_err_t
 
 	s = nxs_array_get(&u_ctx->procs_chain, l - 1);
 
-	nxs_string_cpy_dyn(&u_ctx->name, 0, s, 0);
+	nxs_string_cpy(&u_ctx->name, 0, s, 0);
 
 	/* Заполнение временной строки, которая потом будет использована для формирования путей */
 
@@ -269,34 +269,34 @@ nxs_fw_ctl_err_t
 
 		s = nxs_array_get(&u_ctx->procs_chain, i);
 
-		nxs_string_printf2_cat_dyn(&tmp_str, "%r/", s);
+		nxs_string_printf2_cat(&tmp_str, "%r/", s);
 	}
 
 	/* ppath, path, prpath, rpath */
 
 	s = nxs_array_get(&u_ctx->procs_chain, l - 1);
 
-	nxs_string_printf_dyn(&u_ctx->ppath, "%r/src/proc/%r", proj_root, &tmp_str);
-	nxs_string_printf_dyn(&u_ctx->path, "%r%r/", &u_ctx->ppath, s);
-	nxs_string_printf_dyn(&u_ctx->prpath, "%r", &tmp_str);
-	nxs_string_printf_dyn(&u_ctx->rpath, "%r%r/", &tmp_str, s);
+	nxs_string_printf(&u_ctx->ppath, "%r/src/proc/%r", proj_root, &tmp_str);
+	nxs_string_printf(&u_ctx->path, "%r%r/", &u_ctx->ppath, s);
+	nxs_string_printf(&u_ctx->prpath, "%r", &tmp_str);
+	nxs_string_printf(&u_ctx->rpath, "%r%r/", &tmp_str, s);
 
 	/* obj_name, upcase_name, inline_name */
 
-	nxs_string_printf_dyn(&p_full_name, "%r-p", proj_name);
+	nxs_string_printf(&p_full_name, "%r-p", proj_name);
 
 	for(i = 0; i < l; i++) {
 
 		s = nxs_array_get(&u_ctx->procs_chain, i);
 
-		nxs_string_printf2_cat_dyn(&p_full_name, "-%r", s);
+		nxs_string_printf2_cat(&p_full_name, "-%r", s);
 	}
 
 	nxs_fw_ctl_c_set_names(&p_full_name, &u_ctx->obj_name, &u_ctx->upcase_name, &u_ctx->inline_name);
 
 	/* proj_root */
 
-	nxs_string_cpy_dyn(&u_ctx->proj_root, 0, proj_root, 0);
+	nxs_string_cpy(&u_ctx->proj_root, 0, proj_root, 0);
 
 	/* proj_name */
 
@@ -356,7 +356,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_del(nxs_fw_ctl_u_procs_t *u_ctx)
 	nxs_array_init(&sub_objects, 0, sizeof(nxs_string_t), 1);
 	nxs_array_init(&skips, 0, sizeof(nxs_string_t), 1);
 
-	nxs_string_printf_dyn(&objs_path, "%r/objs/", &u_ctx->proj_root);
+	nxs_string_printf(&objs_path, "%r/objs/", &u_ctx->proj_root);
 
 	s = nxs_array_add(&skips);
 
@@ -366,12 +366,12 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_del(nxs_fw_ctl_u_procs_t *u_ctx)
 
 		if(i > 0) {
 
-			nxs_string_char_add_char_dyn(&proc_name, (u_char)'.');
+			nxs_string_char_add_char(&proc_name, (u_char)'.');
 		}
 
 		s = nxs_array_get(&u_ctx->procs_chain, i);
 
-		nxs_string_printf2_cat_dyn(&proc_name, "%r", s);
+		nxs_string_printf2_cat(&proc_name, "%r", s);
 	}
 
 	/* Получение массива имён дочерних объектов */
@@ -449,7 +449,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_fs_struct(nxs_fw_ctl_u_procs_t *
 
 	for(i = 0; nxs_string_str(&init_dirs[i]) != NULL; i++) {
 
-		nxs_string_printf_dyn(&path, (char *)nxs_string_str(&init_dirs[i]), &u_ctx->path);
+		nxs_string_printf(&path, (char *)nxs_string_str(&init_dirs[i]), &u_ctx->path);
 
 		if(nxs_fs_mkdir(&path, NXS_FW_CTL_DIR_MODE_DEF) < 0) {
 
@@ -499,12 +499,12 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_makefiles(nxs_fw_ctl_u_procs_t *
 
 	for(i = 0; nxs_string_len(&makefiles[i].src) > 0; i++) {
 
-		nxs_string_printf_dyn(&tpl_path,
-		                      "%r/%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_PROCS "/%r",
-		                      &nxs_fw_ctl_cfg.tpls_path,
-		                      fw_version,
-		                      &makefiles[i].src);
-		nxs_string_printf_dyn(&dst_path, "%r/%r", &u_ctx->path, &makefiles[i].dst);
+		nxs_string_printf(&tpl_path,
+		                  "%r/%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_PROCS "/%r",
+		                  &nxs_fw_ctl_cfg.tpls_path,
+		                  fw_version,
+		                  &makefiles[i].src);
+		nxs_string_printf(&dst_path, "%r/%r", &u_ctx->path, &makefiles[i].dst);
 
 		if(nxs_fw_ctl_c_copy_tpl(&subs, &tpl_path, &dst_path, makefiles[i].mode) != NXS_FW_CTL_E_OK) {
 
@@ -547,12 +547,12 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_genfiles(nxs_fw_ctl_u_procs_t *u
 
 	for(i = 0; nxs_string_len(&genfiles[i].src) > 0; i++) {
 
-		nxs_string_printf_dyn(&tpl_path,
-		                      "%r/%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_PROCS "/%r",
-		                      &nxs_fw_ctl_cfg.tpls_path,
-		                      fw_version,
-		                      &genfiles[i].src);
-		nxs_string_printf_dyn(&dst_path, "%r/%r", &u_ctx->path, &genfiles[i].dst);
+		nxs_string_printf(&tpl_path,
+		                  "%r/%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_PROCS "/%r",
+		                  &nxs_fw_ctl_cfg.tpls_path,
+		                  fw_version,
+		                  &genfiles[i].src);
+		nxs_string_printf(&dst_path, "%r/%r", &u_ctx->path, &genfiles[i].dst);
 
 		nxs_fw_ctl_c_copy_tpl_path(&subs, &dst_path);
 
@@ -600,13 +600,13 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_sub_headers(nxs_fw_ctl_u_procs_t
 
 		s = nxs_array_get(&sub_els, i);
 
-		if(nxs_string_cmp(s, 0, &_s_ctx, 0) == NXS_STRING_CMP_NE) {
+		if(nxs_string_cmp(s, 0, &_s_ctx, 0) == NXS_NO) {
 
-			nxs_string_printf2_cat_dyn(&proc_headers, "#include <proc/%r%r/%r.h>\n", &u_ctx->prpath, s, s);
+			nxs_string_printf2_cat(&proc_headers, "#include <proc/%r%r/%r.h>\n", &u_ctx->prpath, s, s);
 		}
 	}
 
-	nxs_string_char_cat_dyn(&proc_headers, (u_char *)NXS_FW_CTL_U_PROCS_TPL_P_HEADERS_E);
+	nxs_string_char_cat(&proc_headers, (u_char *)NXS_FW_CTL_U_PROCS_TPL_P_HEADERS_E);
 
 	/*
 	 * Процесс замещения блока 'includes'
@@ -617,7 +617,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_sub_headers(nxs_fw_ctl_u_procs_t
 
 		/* Для процесса нулевого уровня (которые размещены непосредственно в proc/) */
 
-		nxs_string_printf_dyn(&header_path, "%rsrc/proc/bootstrap-subproc.h", &u_ctx->proj_root, &u_ctx->proj_name);
+		nxs_string_printf(&header_path, "%rsrc/proc/bootstrap-subproc.h", &u_ctx->proj_root, &u_ctx->proj_name);
 	}
 	else {
 
@@ -625,7 +625,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_sub_headers(nxs_fw_ctl_u_procs_t
 
 		s = nxs_array_get(&u_ctx->procs_chain, u_ctx->level - 1);
 
-		nxs_string_printf_dyn(&header_path, "%r%r-subproc.h", &u_ctx->ppath, s);
+		nxs_string_printf(&header_path, "%r%r-subproc.h", &u_ctx->ppath, s);
 	}
 
 	/* headers */

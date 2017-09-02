@@ -22,6 +22,7 @@
 								"\tnxs-fw-ctl [-c CONFIG_PATH] -i (core | version) : get current nxs-fw core modules list or current Nixys Framework version\n" \
 								"Available options:\n" \
 								"\t-v: show program version\n" \
+								"\t-V: show bare program version\n" \
 								"\t-h: show help (this message)\n" \
 								"\t-c CONFIG_PATH: change default config file path (default path: %s )\n" \
 								"\t-r PROJECT_ROOT: set new project root directory (default path setting up in config file)\n" \
@@ -57,6 +58,7 @@ static int nxs_fw_ctl_conf_args_post(nxs_args_t args, int argc, u_char **argv);
 static int nxs_fw_ctl_conf_args_freeargs(nxs_args_t args, int argc, int argind, u_char **argv);
 static int nxs_fw_ctl_conf_args_help(nxs_args_t args, u_char arg, u_char *optarg);
 static int nxs_fw_ctl_conf_args_version(nxs_args_t args, u_char arg, u_char *optarg);
+static int nxs_fw_ctl_conf_args_bare_version(nxs_args_t args, u_char arg, u_char *optarg);
 static int nxs_fw_ctl_conf_args_conf(nxs_args_t args, u_char arg, u_char *optarg);
 static int nxs_fw_ctl_conf_args_add(nxs_args_t args, u_char arg, u_char *optarg);
 static int nxs_fw_ctl_conf_args_del(nxs_args_t args, u_char arg, u_char *optarg);
@@ -72,6 +74,7 @@ nxs_args_shortopt_t shortopts[] =
 {
 	{'h',	NXS_ARGS_HAVE_ARGS_NO,		&nxs_fw_ctl_conf_args_help},
 	{'v',	NXS_ARGS_HAVE_ARGS_NO,		&nxs_fw_ctl_conf_args_version},
+	{'V',	NXS_ARGS_HAVE_ARGS_NO,		&nxs_fw_ctl_conf_args_bare_version},
 	{'c',	NXS_ARGS_HAVE_ARGS_YES,		&nxs_fw_ctl_conf_args_conf},
 	{'a',	NXS_ARGS_HAVE_ARGS_YES,		&nxs_fw_ctl_conf_args_add},
 	{'d',	NXS_ARGS_HAVE_ARGS_YES,		&nxs_fw_ctl_conf_args_del},
@@ -132,7 +135,7 @@ void nxs_fw_ctl_conf_args_init(nxs_args_t *args, void *user_ctx)
 {
 
 	nxs_string_init(&args->help);
-	nxs_string_printf_dyn(&args->help, NXS_FW_CTL_CONF_ARGS_HELP_MSG, NXS_FW_CTL_CONF_PATH_DEFAULT);
+	nxs_string_printf(&args->help, NXS_FW_CTL_CONF_ARGS_HELP_MSG, NXS_FW_CTL_CONF_PATH_DEFAULT);
 
 	args->prep_function     = &nxs_fw_ctl_conf_args_prep;
 	args->post_function     = &nxs_fw_ctl_conf_args_post;
@@ -214,11 +217,19 @@ static int nxs_fw_ctl_conf_args_version(nxs_args_t args, u_char arg, u_char *opt
 	return NXS_ARGS_CONF_OK_EXIT;
 }
 
+static int nxs_fw_ctl_conf_args_bare_version(nxs_args_t args, u_char arg, u_char *optarg)
+{
+
+	nxs_log_write_console(&process, "%s", NXS_FW_CTL_VERSION);
+
+	return NXS_ARGS_CONF_OK_EXIT;
+}
+
 static int nxs_fw_ctl_conf_args_conf(nxs_args_t args, u_char arg, u_char *optarg)
 {
 	nxs_fw_ctl_cfg_ctx_t *cfg_ctx = nxs_args_get_ctx(args);
 
-	nxs_string_char_cpy_dyn(&cfg_ctx->cfg_path, 0, optarg);
+	nxs_string_char_cpy(&cfg_ctx->cfg_path, 0, optarg);
 
 	return NXS_ARGS_CONF_OK;
 }
@@ -236,7 +247,7 @@ static int nxs_fw_ctl_conf_args_add(nxs_args_t args, u_char arg, u_char *optarg)
 
 	for(i = 0; nxs_string_str(&add_types[i].cmd) != NULL; i++) {
 
-		if(nxs_string_char_cmp(&add_types[i].cmd, 0, optarg) == NXS_STRING_CMP_EQ) {
+		if(nxs_string_char_cmp(&add_types[i].cmd, 0, optarg) == NXS_YES) {
 
 			nxs_fw_ctl_cfg.runtime_type = add_types[i].runtime_type;
 		}
@@ -265,7 +276,7 @@ static int nxs_fw_ctl_conf_args_del(nxs_args_t args, u_char arg, u_char *optarg)
 
 	for(i = 0; nxs_string_str(&del_types[i].cmd) != NULL; i++) {
 
-		if(nxs_string_char_cmp(&del_types[i].cmd, 0, optarg) == NXS_STRING_CMP_EQ) {
+		if(nxs_string_char_cmp(&del_types[i].cmd, 0, optarg) == NXS_YES) {
 
 			nxs_fw_ctl_cfg.runtime_type = del_types[i].runtime_type;
 		}
@@ -294,7 +305,7 @@ static int nxs_fw_ctl_conf_args_update(nxs_args_t args, u_char arg, u_char *opta
 
 	for(i = 0; nxs_string_str(&upd_types[i].cmd) != NULL; i++) {
 
-		if(nxs_string_char_cmp(&upd_types[i].cmd, 0, optarg) == NXS_STRING_CMP_EQ) {
+		if(nxs_string_char_cmp(&upd_types[i].cmd, 0, optarg) == NXS_YES) {
 
 			nxs_fw_ctl_cfg.runtime_type = upd_types[i].runtime_type;
 		}
@@ -323,7 +334,7 @@ static int nxs_fw_ctl_conf_args_info(nxs_args_t args, u_char arg, u_char *optarg
 
 	for(i = 0; nxs_string_str(&info_types[i].cmd) != NULL; i++) {
 
-		if(nxs_string_char_cmp(&info_types[i].cmd, 0, optarg) == NXS_STRING_CMP_EQ) {
+		if(nxs_string_char_cmp(&info_types[i].cmd, 0, optarg) == NXS_YES) {
 
 			nxs_fw_ctl_cfg.runtime_type = info_types[i].runtime_type;
 		}
@@ -349,7 +360,7 @@ static int nxs_fw_ctl_conf_args_project_root(nxs_args_t args, u_char arg, u_char
 		return NXS_ARGS_CONF_ERROR;
 	}
 
-	nxs_string_char_cpy_dyn(&nxs_fw_ctl_cfg.proj_root, 0, optarg);
+	nxs_string_char_cpy(&nxs_fw_ctl_cfg.proj_root, 0, optarg);
 
 	return NXS_ARGS_CONF_OK;
 }

@@ -76,17 +76,17 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_set_names(nxs_string_t *src_name, nxs_string_t *na
 
 		if(name != NULL) {
 
-			nxs_string_char_add_char_dyn(name, c);
+			nxs_string_char_add_char(name, c);
 		}
 
 		if(upcase_name != NULL) {
 
-			nxs_string_char_add_char_dyn(upcase_name, c_upcase);
+			nxs_string_char_add_char(upcase_name, c_upcase);
 		}
 
 		if(inline_name != NULL) {
 
-			nxs_string_char_add_char_dyn(inline_name, c_inline);
+			nxs_string_char_add_char(inline_name, c_inline);
 		}
 	}
 

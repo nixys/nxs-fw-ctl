@@ -300,10 +300,10 @@ void nxs_fw_ctl_u_projects_core_modules_select(nxs_fw_ctl_u_projects_core_module
 
 			for(j = 0; j < max_len - nxs_string_len(&mod->name); j++) {
 
-				nxs_string_char_add_char_dyn(&spaces, (u_char)' ');
+				nxs_string_char_add_char(&spaces, (u_char)' ');
 			}
 
-			nxs_string_printf_dyn(&sm->prompt, "\t%r%r[y/n]: ", &spaces, &mod->name);
+			nxs_string_printf(&sm->prompt, "\t%r%r[y/n]: ", &spaces, &mod->name);
 		}
 	}
 
@@ -319,7 +319,7 @@ void nxs_fw_ctl_u_projects_core_modules_select(nxs_fw_ctl_u_projects_core_module
 
 				s = nxs_array_get(selected_mods, j);
 
-				if(nxs_string_cmp(s, 0, &sm->name, 0) == NXS_STRING_CMP_EQ) {
+				if(nxs_string_cmp(s, 0, &sm->name, 0) == NXS_YES) {
 
 					d = &_s_y;
 
@@ -357,7 +357,7 @@ void nxs_fw_ctl_u_projects_core_modules_select(nxs_fw_ctl_u_projects_core_module
 
 		sm = nxs_array_get(&select_mods, i);
 
-		if(nxs_string_cmp(&sm->using, 0, &_s_y, 0) == NXS_STRING_CMP_EQ) {
+		if(nxs_string_cmp(&sm->using, 0, &_s_y, 0) == NXS_YES) {
 
 			nxs_fw_ctl_u_projects_core_modules_using_add_mod(u_ctx, &sm->name);
 			nxs_fw_ctl_u_projects_core_modules_selected_add_mod(u_ctx, &sm->name);
@@ -509,7 +509,7 @@ static void nxs_fw_ctl_u_projects_core_modules_using_add_mod(nxs_fw_ctl_u_projec
 
 		s = nxs_array_get(&u_ctx->using.mods, i);
 
-		if(nxs_string_cmp(mod_name, 0, s, 0) == NXS_STRING_CMP_EQ) {
+		if(nxs_string_cmp(mod_name, 0, s, 0) == NXS_YES) {
 
 			/* Такой модуль уже добавлен */
 
@@ -521,7 +521,7 @@ static void nxs_fw_ctl_u_projects_core_modules_using_add_mod(nxs_fw_ctl_u_projec
 
 		mod = nxs_array_get(&u_ctx->modules, i);
 
-		if(nxs_string_cmp(mod_name, 0, &mod->name, 0) == NXS_STRING_CMP_EQ) {
+		if(nxs_string_cmp(mod_name, 0, &mod->name, 0) == NXS_YES) {
 
 			/* Добавление модуля в выборку */
 
@@ -531,24 +531,24 @@ static void nxs_fw_ctl_u_projects_core_modules_using_add_mod(nxs_fw_ctl_u_projec
 
 			if(nxs_string_len(&mod->use_flag) > 0) {
 
-				nxs_string_printf2_cat_dyn(&u_ctx->using.use_flags, "-D %r ", &mod->use_flag);
+				nxs_string_printf2_cat(&u_ctx->using.use_flags, "-D %r ", &mod->use_flag);
 			}
 
 			if(nxs_string_len(&mod->link_opt) > 0) {
 
-				nxs_string_printf2_cat_dyn(&u_ctx->using.link_opts, "%r ", &mod->link_opt);
+				nxs_string_printf2_cat(&u_ctx->using.link_opts, "%r ", &mod->link_opt);
 			}
 
 			if(nxs_string_len(&mod->includes) > 0) {
 
-				nxs_string_printf2_cat_dyn(&u_ctx->using.includes, "%r ", &mod->includes);
+				nxs_string_printf2_cat(&u_ctx->using.includes, "%r ", &mod->includes);
 			}
 
 			for(j = 0; j < nxs_array_count(&mod->libs); j++) {
 
 				s = nxs_array_get(&mod->libs, j);
 
-				nxs_string_printf2_cat_dyn(&u_ctx->using.core_links, "-l%r ", s);
+				nxs_string_printf2_cat(&u_ctx->using.core_links, "-l%r ", s);
 			}
 
 			/* Проход по всем зависимым модулям и добавление их в выборку */
@@ -575,7 +575,7 @@ static void nxs_fw_ctl_u_projects_core_modules_selected_add_mod(nxs_fw_ctl_u_pro
 
 		s = nxs_array_get(&u_ctx->selected_modules, i);
 
-		if(nxs_string_cmp(mod_name, 0, s, 0) == NXS_STRING_CMP_EQ) {
+		if(nxs_string_cmp(mod_name, 0, s, 0) == NXS_YES) {
 
 			/* Такой модуль уже добавлен */
 
@@ -587,7 +587,7 @@ static void nxs_fw_ctl_u_projects_core_modules_selected_add_mod(nxs_fw_ctl_u_pro
 
 		mod = nxs_array_get(&u_ctx->modules, i);
 
-		if(nxs_string_cmp(mod_name, 0, &mod->name, 0) == NXS_STRING_CMP_EQ) {
+		if(nxs_string_cmp(mod_name, 0, &mod->name, 0) == NXS_YES) {
 
 			/* Добавление модуля в выборку */
 
@@ -656,5 +656,5 @@ static void nxs_fw_ctl_u_projects_core_modules_using_mod_cleanup(nxs_fw_ctl_u_pr
 	nxs_string_clear(&u_ctx->using.link_opts);
 	nxs_string_clear(&u_ctx->using.includes);
 
-	nxs_string_char_cpy_dyn(&u_ctx->using.core_links, 0, (u_char *)NXS_FW_CTL_NXS_CORE_LINKS_INIT);
+	nxs_string_char_cpy(&u_ctx->using.core_links, 0, (u_char *)NXS_FW_CTL_NXS_CORE_LINKS_INIT);
 }

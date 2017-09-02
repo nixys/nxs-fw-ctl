@@ -230,11 +230,11 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_setup(nxs_fw_ctl_u_projects_t *u_ctx, nxs
 		return NXS_FW_CTL_E_ERR;
 	}
 
-	nxs_string_cpy_dyn(&u_ctx->root, 0, proj_root, 0);
+	nxs_string_cpy(&u_ctx->root, 0, proj_root, 0);
 
 	if(nxs_string_get_char(proj_root, nxs_string_len(proj_root) - 1) != (u_char)'/') {
 
-		nxs_string_char_add_char_dyn(proj_root, (u_char)'/');
+		nxs_string_char_add_char(proj_root, (u_char)'/');
 	}
 
 	return nxs_fw_ctl_c_set_names(proj_name, &u_ctx->name, &u_ctx->upcase_name, &u_ctx->inline_name);
@@ -255,8 +255,8 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_add(nxs_fw_ctl_u_projects_t *u_ctx)
 	nxs_string_init(&nxs_core_desc_path);
 	nxs_string_init(&nxs_fw_version);
 
-	nxs_string_printf_dyn(&setting_path, "%r.nxs-fw-settings/settings.json", &u_ctx->root);
-	nxs_string_printf_dyn(&core_mods_dst, "%r", &u_ctx->root);
+	nxs_string_printf(&setting_path, "%r.nxs-fw-settings/settings.json", &u_ctx->root);
+	nxs_string_printf(&core_mods_dst, "%r", &u_ctx->root);
 
 	nxs_array_init(&versions, 0, sizeof(nxs_string_t), 1);
 
@@ -279,7 +279,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_add(nxs_fw_ctl_u_projects_t *u_ctx)
 
 	nxs_fw_ctl_u_projects_version_select(&nxs_fw_version, &versions);
 
-	nxs_string_printf_dyn(
+	nxs_string_printf(
 	        &nxs_core_desc_path, "%r/%r/%s", &nxs_fw_ctl_cfg.nxs_fw_desc_path, &nxs_fw_version, NXS_FW_CTL_NXS_FW_MODS_DESC_PATH);
 
 	if(nxs_fw_ctl_u_projects_core_modules_read(c_mods, &nxs_core_desc_path) != NXS_FW_CTL_E_OK) {
@@ -389,9 +389,9 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_change_core_mods(nxs_fw_ctl_u_projects_t 
 	nxs_string_init(&nxs_core_desc_path);
 	nxs_string_init(&name);
 
-	nxs_string_printf_dyn(&setting_path, "%r.nxs-fw-settings/settings.json", &u_ctx->root);
-	nxs_string_printf_dyn(&configmk_path, "%rconfig.mk", &u_ctx->root);
-	nxs_string_printf_dyn(&proj_objs_dst, "%r/objs/", &u_ctx->root);
+	nxs_string_printf(&setting_path, "%r.nxs-fw-settings/settings.json", &u_ctx->root);
+	nxs_string_printf(&configmk_path, "%rconfig.mk", &u_ctx->root);
+	nxs_string_printf(&proj_objs_dst, "%r/objs/", &u_ctx->root);
 
 	c_mods = nxs_fw_ctl_u_projects_core_modules_init();
 
@@ -401,7 +401,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_change_core_mods(nxs_fw_ctl_u_projects_t 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_string_printf_dyn(
+	nxs_string_printf(
 	        &nxs_core_desc_path, "%r/%r/%s", &nxs_fw_ctl_cfg.nxs_fw_desc_path, &nxs_fw_version, NXS_FW_CTL_NXS_FW_MODS_DESC_PATH);
 
 	if(nxs_fw_ctl_u_projects_core_modules_read(c_mods, &nxs_core_desc_path) != NXS_FW_CTL_E_OK) {
@@ -484,9 +484,9 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_change_core_version(nxs_fw_ctl_u_projects
 	nxs_string_init(&nxs_core_desc_path);
 	nxs_string_init(&name);
 
-	nxs_string_printf_dyn(&setting_path, "%r.nxs-fw-settings/settings.json", &u_ctx->root);
-	nxs_string_printf_dyn(&configmk_path, "%rconfig.mk", &u_ctx->root);
-	nxs_string_printf_dyn(&proj_objs_dst, "%r/objs/", &u_ctx->root);
+	nxs_string_printf(&setting_path, "%r.nxs-fw-settings/settings.json", &u_ctx->root);
+	nxs_string_printf(&configmk_path, "%rconfig.mk", &u_ctx->root);
+	nxs_string_printf(&proj_objs_dst, "%r/objs/", &u_ctx->root);
 
 	c_mods = nxs_fw_ctl_u_projects_core_modules_init();
 
@@ -505,7 +505,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_change_core_version(nxs_fw_ctl_u_projects
 
 	nxs_fw_ctl_u_projects_version_select(&nxs_fw_version, &versions);
 
-	nxs_string_printf_dyn(
+	nxs_string_printf(
 	        &nxs_core_desc_path, "%r/%r/%s", &nxs_fw_ctl_cfg.nxs_fw_desc_path, &nxs_fw_version, NXS_FW_CTL_NXS_FW_MODS_DESC_PATH);
 
 	if(nxs_fw_ctl_u_projects_core_modules_read(c_mods, &nxs_core_desc_path) != NXS_FW_CTL_E_OK) {
@@ -632,8 +632,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_settingsfile_get_mods(nxs_string_t *proj_
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_string_printf_dyn(
-	        &nxs_core_desc_path, "%r/%r/%s", &nxs_fw_ctl_cfg.nxs_fw_desc_path, &version, NXS_FW_CTL_NXS_FW_MODS_DESC_PATH);
+	nxs_string_printf(&nxs_core_desc_path, "%r/%r/%s", &nxs_fw_ctl_cfg.nxs_fw_desc_path, &version, NXS_FW_CTL_NXS_FW_MODS_DESC_PATH);
 
 	if(nxs_fw_ctl_u_projects_core_modules_read(c_mods, &nxs_core_desc_path) != NXS_FW_CTL_E_OK) {
 
@@ -693,7 +692,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_fs_struct(nxs_fw_ctl_u_projec
 
 	for(i = 0; nxs_string_str(&init_dirs[i]) != NULL; i++) {
 
-		nxs_string_printf_dyn(&path, "%r%r", &u_ctx->root, &init_dirs[i]);
+		nxs_string_printf(&path, "%r%r", &u_ctx->root, &init_dirs[i]);
 
 		nxs_fw_ctl_c_copy_tpl_path(&subs, &path);
 
@@ -750,9 +749,9 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_makefiles(nxs_fw_ctl_u_projec
 
 	for(i = 0; nxs_string_len(&makefiles[i].src) > 0; i++) {
 
-		nxs_string_printf_dyn(
+		nxs_string_printf(
 		        &tpl_path, "%r/%r/" NXS_FW_CTL_DIR_NEW_PROJ_TPL "/%r", &nxs_fw_ctl_cfg.tpls_path, fw_version, &makefiles[i].src);
-		nxs_string_printf_dyn(&dst_path, "%r%r", &u_ctx->root, &makefiles[i].dst);
+		nxs_string_printf(&dst_path, "%r%r", &u_ctx->root, &makefiles[i].dst);
 
 		if(nxs_fw_ctl_c_copy_tpl(&subs, &tpl_path, &dst_path, makefiles[i].mode) != NXS_FW_CTL_E_OK) {
 
@@ -790,9 +789,9 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_genfiles(nxs_fw_ctl_u_project
 
 	for(i = 0; nxs_string_len(&genfiles[i].src) > 0; i++) {
 
-		nxs_string_printf_dyn(
+		nxs_string_printf(
 		        &tpl_path, "%r/%r/" NXS_FW_CTL_DIR_NEW_PROJ_TPL "/%r", &nxs_fw_ctl_cfg.tpls_path, fw_version, &genfiles[i].src);
-		nxs_string_printf_dyn(&dst_path, "%r%r", &u_ctx->root, &genfiles[i].dst);
+		nxs_string_printf(&dst_path, "%r%r", &u_ctx->root, &genfiles[i].dst);
 
 		nxs_fw_ctl_c_copy_tpl_path(&subs, &dst_path);
 
@@ -830,11 +829,11 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_up_config_mk(nxs_string_t *path,
 	nxs_string_init(&nxs_core_links);
 	nxs_string_init(&nxs_fw_version);
 
-	nxs_string_printf_dyn(&nxs_use_modules, "%r\t\t\t\t=\t%r\n", &_s_use_nxs_modules, use_modules);
-	nxs_string_printf_dyn(&nxs_includes, "%r\t\t\t\t=\t%r\n", &_s_nxs_includes, includes);
-	nxs_string_printf_dyn(&nxs_links, "%r\t\t\t\t\t=\t%r\n", &_s_nxs_links, link_opts);
-	nxs_string_printf_dyn(&nxs_core_links, "%r\t\t\t\t=\t%r\n", &_s_nxs_core_links, core_links);
-	nxs_string_printf_dyn(&nxs_fw_version, "%r\t\t\t\t=\t%r\n", &_s_nxs_fw_version, fw_version);
+	nxs_string_printf(&nxs_use_modules, "%r\t\t\t\t=\t%r\n", &_s_use_nxs_modules, use_modules);
+	nxs_string_printf(&nxs_includes, "%r\t\t\t\t=\t%r\n", &_s_nxs_includes, includes);
+	nxs_string_printf(&nxs_links, "%r\t\t\t\t\t=\t%r\n", &_s_nxs_links, link_opts);
+	nxs_string_printf(&nxs_core_links, "%r\t\t\t\t=\t%r\n", &_s_nxs_core_links, core_links);
+	nxs_string_printf(&nxs_fw_version, "%r\t\t\t\t=\t%r\n", &_s_nxs_fw_version, fw_version);
 
 	/* NXS_FW_VERSION */
 	if(nxs_fw_ctl_c_subs_includes(path, NXS_YES, &nxs_fw_version, &_s_nxs_fw_version, &_s_eol) != NXS_FW_CTL_E_OK) {
@@ -904,10 +903,10 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_settingsfile_get(nxs_string_t *pro
 
 	if(nxs_string_get_char(&setting_path, nxs_string_len(&setting_path) - 1) != (u_char)'/') {
 
-		nxs_string_char_add_char_dyn(&setting_path, (u_char)'/');
+		nxs_string_char_add_char(&setting_path, (u_char)'/');
 	}
 
-	nxs_string_printf2_cat_dyn(&setting_path, ".nxs-fw-settings/settings.json");
+	nxs_string_printf2_cat(&setting_path, ".nxs-fw-settings/settings.json");
 
 	rc = nxs_fw_ctl_u_projects_sttngs_read(&setting_path, name, version, proj_selected_mods);
 

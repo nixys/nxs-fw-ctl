@@ -113,7 +113,7 @@ nxs_bool_t nxs_fw_ctl_c_rlfields_yesno(nxs_string_t *question)
 
 	nxs_fw_ctl_c_rlfields_arr_str_free(&arr_str_bool);
 
-	if(nxs_string_cmp(&answer, 0, &_s_y, 0) == NXS_STRING_CMP_EQ) {
+	if(nxs_string_cmp(&answer, 0, &_s_y, 0) == NXS_YES) {
 
 		rc = NXS_YES;
 	}
@@ -244,13 +244,13 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_rlfields_exec(nxs_array_t *rlfields)
 				for(k = l - 1; k > j && d[k] == ' '; k--)
 					;
 
-				nxs_string_char_ncpy_dyn(el->data, 0, (u_char *)(d + j), k - j + 1);
+				nxs_string_char_ncpy(el->data, 0, (u_char *)(d + j), k - j + 1);
 
 				nxs_string_escape(el->data, NULL, NXS_STRING_ESCAPE_TYPE_JSON);
 			}
 			else {
 
-				nxs_string_char_cpy_dyn(el->data, 0, (u_char *)d);
+				nxs_string_char_cpy(el->data, 0, (u_char *)d);
 
 				nxs_string_escape(el->data, NULL, NXS_STRING_ESCAPE_TYPE_JSON);
 			}
@@ -261,7 +261,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_rlfields_exec(nxs_array_t *rlfields)
 
 				/* Если строка пустая или не задано значение по умолчанию для пустых строк */
 
-				nxs_string_cpy_dyn(el->data, 0, el->empty_value, 0);
+				nxs_string_cpy(el->data, 0, el->empty_value, 0);
 
 				nxs_string_escape(el->data, NULL, NXS_STRING_ESCAPE_TYPE_JSON);
 
@@ -278,7 +278,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_rlfields_exec(nxs_array_t *rlfields)
 
 						vs = nxs_array_get(el->valid_set, j);
 
-						if(nxs_string_cmp(vs, 0, el->data, 0) == NXS_STRING_CMP_EQ) {
+						if(nxs_string_cmp(vs, 0, el->data, 0) == NXS_YES) {
 
 							f = NXS_YES;
 
@@ -363,7 +363,7 @@ static char *nxs_fw_ctl_c_rlfields_complete_gen(const char *text, int state)
 
 		list_index++;
 
-		if(nxs_string_char_ncmp(str, 0, (u_char *)text, len) == NXS_STRING_CMP_EQ) {
+		if(nxs_string_char_ncmp(str, 0, (u_char *)text, len) == NXS_YES) {
 
 			r = nxs_malloc(NULL, nxs_string_len(str) + 1);
 

@@ -214,7 +214,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_project_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_string_printf_dyn(&pwd, "%r%r/", &nxs_fw_ctl_cfg.proj_root, name);
+	nxs_string_printf(&pwd, "%r%r/", &nxs_fw_ctl_cfg.proj_root, name);
 
 	if(nxs_fw_ctl_u_projects_setup(proj_ctx, &pwd, name) != NXS_FW_CTL_E_OK) {
 

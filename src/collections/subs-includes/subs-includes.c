@@ -104,7 +104,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_subs_includes(nxs_string_t *substitution_file,
 				continue;
 			}
 
-			nxs_string_ncpy_dyn(&tpl_str, 0, &hfile, c1, c2 - c1 + nxs_string_len(tpl_headers_e));
+			nxs_string_ncpy(&tpl_str, 0, &hfile, c1, c2 - c1 + nxs_string_len(tpl_headers_e));
 
 			if(nxs_string_subs(&hfile, NULL, &tpl_str, new_headers, 1) > 0) {
 

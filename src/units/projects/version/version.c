@@ -73,7 +73,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_version_available(nxs_string_t *nxs_fw_co
 
 		while((rd = nxs_fs_readdir(dir, &dir_entry, NXS_FS_MODE_SET_SKEEP_DOT)) == 0) {
 
-			nxs_string_cpy_dyn(&file, root_len, dir_entry.d_name, 0);
+			nxs_string_cpy(&file, root_len, dir_entry.d_name, 0);
 
 			if(nxs_fs_lstat(&file, &file_stat) < 0) {
 

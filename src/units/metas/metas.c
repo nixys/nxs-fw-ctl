@@ -136,21 +136,21 @@ void nxs_fw_ctl_u_metas_setup(nxs_fw_ctl_u_metas_t *u_ctx, nxs_string_t *proj_na
 
 	/* name */
 
-	nxs_string_cpy_dyn(&u_ctx->name, 0, m_name, 0);
+	nxs_string_cpy(&u_ctx->name, 0, m_name, 0);
 
 	/* path, rpath, ppath */
 
-	nxs_string_printf_dyn(&u_ctx->path, "%r/src/meta/", proj_root);
+	nxs_string_printf(&u_ctx->path, "%r/src/meta/", proj_root);
 
 	/* unit_obj, unit_upcase_name, unit_inline_name */
 
-	nxs_string_printf_dyn(&m_full_name, "%r-m-%r", proj_name, m_name);
+	nxs_string_printf(&m_full_name, "%r-m-%r", proj_name, m_name);
 
 	nxs_fw_ctl_c_set_names(&m_full_name, NULL, &u_ctx->upcase_name, &u_ctx->inline_name);
 
 	/* proj_root */
 
-	nxs_string_cpy_dyn(&u_ctx->proj_root, 0, proj_root, 0);
+	nxs_string_cpy(&u_ctx->proj_root, 0, proj_root, 0);
 
 	/* proj_name */
 
@@ -171,7 +171,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_add(nxs_fw_ctl_u_metas_t *u_ctx, nxs_string_
 
 	/* Проверка существования "meta" с таким именем */
 
-	nxs_string_printf_dyn(&meta_path, "%r%r.h", &u_ctx->path, &u_ctx->name);
+	nxs_string_printf(&meta_path, "%r%r.h", &u_ctx->path, &u_ctx->name);
 
 	if(nxs_fs_lstat(&meta_path, &file_stat) < 0) {
 
@@ -222,7 +222,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_del(nxs_fw_ctl_u_metas_t *u_ctx)
 	nxs_string_init(&objs_path);
 	nxs_string_init(&meta_path);
 
-	nxs_string_printf_dyn(&meta_path, "%r%r.h", &u_ctx->path, &u_ctx->name);
+	nxs_string_printf(&meta_path, "%r%r.h", &u_ctx->path, &u_ctx->name);
 
 	/* Проверка существования "meta" с таким именем */
 
@@ -233,7 +233,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_del(nxs_fw_ctl_u_metas_t *u_ctx)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_string_printf_dyn(&objs_path, "%r/objs/", &u_ctx->proj_root);
+	nxs_string_printf(&objs_path, "%r/objs/", &u_ctx->proj_root);
 
 	nxs_log_write_console(&process, "\tthis meta will be deleted from project '%s':", nxs_string_str(&u_ctx->proj_name));
 	nxs_log_write_console(&process, "\t* %s", nxs_string_str(&u_ctx->name));
@@ -290,12 +290,12 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_make_genfiles(nxs_fw_ctl_u_metas_t *u
 
 	for(i = 0; nxs_string_len(&genfiles[i].src) > 0; i++) {
 
-		nxs_string_printf_dyn(&tpl_path,
-		                      "%r/%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_METAS "/%r",
-		                      &nxs_fw_ctl_cfg.tpls_path,
-		                      fw_version,
-		                      &genfiles[i].src);
-		nxs_string_printf_dyn(&dst_path, "%r%r", &u_ctx->path, &genfiles[i].dst);
+		nxs_string_printf(&tpl_path,
+		                  "%r/%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_METAS "/%r",
+		                  &nxs_fw_ctl_cfg.tpls_path,
+		                  fw_version,
+		                  &genfiles[i].src);
+		nxs_string_printf(&dst_path, "%r%r", &u_ctx->path, &genfiles[i].dst);
 
 		nxs_fw_ctl_c_copy_tpl_path(&subs, &dst_path);
 
@@ -343,16 +343,16 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_make_sub_headers(nxs_fw_ctl_u_metas_t
 
 		s = nxs_array_get(&sub_els, i);
 
-		nxs_string_printf2_cat_dyn(&meta_headers, "#include <meta/%r>\n", s);
+		nxs_string_printf2_cat(&meta_headers, "#include <meta/%r>\n", s);
 	}
 
-	nxs_string_char_cat_dyn(&meta_headers, (u_char *)NXS_FW_CTL_U_METAS_TPL_M_HEADERS_E);
+	nxs_string_char_cat(&meta_headers, (u_char *)NXS_FW_CTL_U_METAS_TPL_M_HEADERS_E);
 
 	/*
 	 * Процесс замещения блока 'includes'
 	 */
 
-	nxs_string_printf_dyn(&header_path, "%rsrc/%r-meta.h", &u_ctx->proj_root, &u_ctx->proj_name);
+	nxs_string_printf(&header_path, "%rsrc/%r-meta.h", &u_ctx->proj_root, &u_ctx->proj_name);
 
 	/* headers */
 

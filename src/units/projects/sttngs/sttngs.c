@@ -152,22 +152,22 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_sttngs_write(nxs_string_t *path,
 
 		if(i > 0) {
 
-			nxs_string_char_add_char_dyn(&mods, (u_char)',');
+			nxs_string_char_add_char(&mods, (u_char)',');
 		}
 
-		nxs_string_printf2_cat_dyn(&mods, "\n\t\t\"%r\"", s);
+		nxs_string_printf2_cat(&mods, "\n\t\t\"%r\"", s);
 	}
 
-	nxs_string_printf_dyn(&settings,
-	                      "{\n"
-	                      "\t\"project_name\": \"%r\",\n"
-	                      "\t\"nxs_fw_version\": \"%r\",\n"
-	                      "\t\"project_modules\": [%r\n"
-	                      "\t]\n"
-	                      "}\n",
-	                      proj_name,
-	                      nxs_fw_version,
-	                      &mods);
+	nxs_string_printf(&settings,
+	                  "{\n"
+	                  "\t\"project_name\": \"%r\",\n"
+	                  "\t\"nxs_fw_version\": \"%r\",\n"
+	                  "\t\"project_modules\": [%r\n"
+	                  "\t]\n"
+	                  "}\n",
+	                  proj_name,
+	                  nxs_fw_version,
+	                  &mods);
 
 	if(nxs_fs_write_file(path, (nxs_buf_t *)&settings, NXS_FW_CTL_FILE_MODE_DEF) < 0) {
 

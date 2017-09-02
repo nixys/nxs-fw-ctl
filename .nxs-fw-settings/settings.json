@@ -1,6 +1,6 @@
 {
 	"project_name": "nxs-fw-ctl",
-	"nxs_fw_version": "1.8.8",
+	"nxs_fw_version": "1.10.0",
 	"project_modules": [
 		"nxs-cfg-json",
 		"nxs-json"

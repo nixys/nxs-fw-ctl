@@ -9,8 +9,10 @@ else
 		command=$1
 fi
 
-echo -n "Input package version: "
-read VER
+make
+
+P_NAME="nxs-fw-ctl"
+VER=`./objs/nxs-fw-ctl -V`
 
 function build_package()
 {
@@ -18,7 +20,7 @@ function build_package()
 	clean_build_files
 
 	(
-		dh_make -p nxs-fw-ctl_${VER} --email b.ershov@nixys.ru --single --templates `pwd`/build-pkgs-tpls/debian --yes --createorig
+		dh_make -p ${P_NAME}_${VER} --email b.ershov@nixys.ru --single --templates `pwd`/build-pkgs-tpls/debian --yes --createorig
 
 		dpkg-buildpackage
 
@@ -29,7 +31,7 @@ function build_package()
 function clean_build_files()
 {
 
-	rm ../nxs-fw-ctl_${VER}-1_amd64.changes ../nxs-fw-ctl_${VER}-1_amd64.deb ../nxs-fw-ctl_${VER}-1.debian.tar.xz ../nxs-fw-ctl_${VER}-1.dsc ../nxs-fw-ctl_${VER}.orig.tar.xz
+	rm ../${P_NAME}_${VER}-1_amd64.changes ../${P_NAME}_${VER}-1_amd64.deb ../${P_NAME}_${VER}-1.debian.tar.xz ../${P_NAME}_${VER}-1.dsc ../${P_NAME}_${VER}.orig.tar.xz
 }
 
 case $command in

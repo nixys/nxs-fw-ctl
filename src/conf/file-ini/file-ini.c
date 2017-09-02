@@ -64,7 +64,7 @@ void nxs_fw_ctl_conf_file_ini_init(nxs_cfg_t *cfg, nxs_fw_ctl_cfg_ctx_t *cfg_ctx
 nxs_fw_ctl_err_t nxs_fw_ctl_conf_file_ini_runtime(nxs_cfg_t cfg, nxs_fw_ctl_cfg_ctx_t *cfg_ctx)
 {
 
-	nxs_string_cpy_dyn(&cfg.cfg_path, 0, &cfg_ctx->cfg_path, 0);
+	nxs_string_cpy(&cfg.cfg_path, 0, &cfg_ctx->cfg_path, 0);
 
 	if(nxs_cfg_read(&process, cfg) != NXS_CFG_CONF_OK) {
 

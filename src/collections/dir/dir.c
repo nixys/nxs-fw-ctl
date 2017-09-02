@@ -79,7 +79,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_clean(nxs_string_t *dir_path)
 
 		while((rd = nxs_fs_readdir(dir, &dir_entry, NXS_FS_MODE_SET_SKEEP_DOT)) == 0) {
 
-			nxs_string_cpy_dyn(&dirent, dir_path_len, dir_entry.d_name, NXS_STRING_NO_OFFSET);
+			nxs_string_cpy(&dirent, dir_path_len, dir_entry.d_name, 0);
 
 			if(nxs_fs_lstat(&dirent, &file_stat) < 0) {
 
@@ -157,7 +157,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_del(nxs_string_t *dir_path)
 
 		while((rd = nxs_fs_readdir(dir, &dir_entry, NXS_FS_MODE_SET_SKEEP_DOT)) == 0) {
 
-			nxs_string_cpy_dyn(&dirent, dir_path_len, dir_entry.d_name, NXS_STRING_NO_OFFSET);
+			nxs_string_cpy(&dirent, dir_path_len, dir_entry.d_name, 0);
 
 			if(nxs_fs_lstat(&dirent, &file_stat) < 0) {
 
@@ -184,7 +184,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_del(nxs_string_t *dir_path)
 
 					if(S_ISDIR(file_stat.st_mode)) {
 
-						nxs_string_char_add_char_dyn(&dirent, (u_char)'/');
+						nxs_string_char_add_char(&dirent, (u_char)'/');
 
 						if(nxs_fw_ctl_c_dir_del(&dirent) != NXS_FW_CTL_E_OK) {
 
@@ -299,7 +299,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_get_name_objects(nxs_string_t *        
 
 		while((rd = nxs_fs_readdir(dir, &dir_entry, NXS_FS_MODE_SET_SKEEP_DOT)) == 0) {
 
-			nxs_string_cpy_dyn(&dirent, dir_path_len, dir_entry.d_name, NXS_STRING_NO_OFFSET);
+			nxs_string_cpy(&dirent, dir_path_len, dir_entry.d_name, 0);
 
 			if(nxs_fs_lstat(&dirent, &file_stat) < 0) {
 
@@ -316,7 +316,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_get_name_objects(nxs_string_t *        
 
 						s = nxs_array_get(skip_names, i);
 
-						if(nxs_string_cmp(s, 0, dir_entry.d_name, 0) == NXS_STRING_CMP_EQ) {
+						if(nxs_string_cmp(s, 0, dir_entry.d_name, 0) == NXS_YES) {
 
 							skip = NXS_YES;
 							break;
@@ -345,7 +345,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_get_name_objects(nxs_string_t *        
 
 								nxs_string_init(s);
 
-								nxs_string_printf_dyn(s, "%r.%r", parent_name, dir_entry.d_name);
+								nxs_string_printf(s, "%r.%r", parent_name, dir_entry.d_name);
 							}
 						}
 
@@ -365,7 +365,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_get_name_objects(nxs_string_t *        
 
 								nxs_string_init(s);
 
-								nxs_string_printf_dyn(s, "%r.%r", parent_name, dir_entry.d_name);
+								nxs_string_printf(s, "%r.%r", parent_name, dir_entry.d_name);
 							}
 						}
 
@@ -380,14 +380,14 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_get_name_objects(nxs_string_t *        
 
 					if(parent_name == NULL) {
 
-						nxs_string_cpy_dyn(&new_parent_name, 0, dir_entry.d_name, 0);
+						nxs_string_cpy(&new_parent_name, 0, dir_entry.d_name, 0);
 					}
 					else {
 
-						nxs_string_printf_dyn(&new_parent_name, "%r.%r", parent_name, dir_entry.d_name);
+						nxs_string_printf(&new_parent_name, "%r.%r", parent_name, dir_entry.d_name);
 					}
 
-					nxs_string_char_add_char_dyn(&dirent, (u_char)'/');
+					nxs_string_char_add_char(&dirent, (u_char)'/');
 
 					if(nxs_fw_ctl_c_dir_get_name_objects(
 					           &dirent, obj_names, type, recursive, &new_parent_name, skip_names) != NXS_FW_CTL_E_OK) {

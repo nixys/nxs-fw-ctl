@@ -174,23 +174,23 @@ void nxs_fw_ctl_u_collections_setup(nxs_fw_ctl_u_collections_t *u_ctx,
 
 	/* name */
 
-	nxs_string_cpy_dyn(&u_ctx->name, 0, c_name, 0);
+	nxs_string_cpy(&u_ctx->name, 0, c_name, 0);
 
 	/* path, rpath, ppath */
 
-	nxs_string_printf_dyn(&u_ctx->path, "%r/src/collections/%r/", proj_root, c_name);
-	nxs_string_printf_dyn(&u_ctx->rpath, "%r/", c_name);
-	nxs_string_printf_dyn(&u_ctx->ppath, "%r/src/collections/", proj_root);
+	nxs_string_printf(&u_ctx->path, "%r/src/collections/%r/", proj_root, c_name);
+	nxs_string_printf(&u_ctx->rpath, "%r/", c_name);
+	nxs_string_printf(&u_ctx->ppath, "%r/src/collections/", proj_root);
 
 	/* unit_obj, unit_upcase_name, unit_inline_name */
 
-	nxs_string_printf_dyn(&c_full_name, "%r-c-%r", proj_name, c_name);
+	nxs_string_printf(&c_full_name, "%r-c-%r", proj_name, c_name);
 
 	nxs_fw_ctl_c_set_names(&c_full_name, &u_ctx->obj_name, &u_ctx->upcase_name, &u_ctx->inline_name);
 
 	/* proj_root */
 
-	nxs_string_cpy_dyn(&u_ctx->proj_root, 0, proj_root, 0);
+	nxs_string_cpy(&u_ctx->proj_root, 0, proj_root, 0);
 
 	/* proj_name */
 
@@ -239,7 +239,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_collections_del(nxs_fw_ctl_u_collections_t *u_ctx)
 
 	nxs_string_init(&objs_path);
 
-	nxs_string_printf_dyn(&objs_path, "%r/objs/", &u_ctx->proj_root);
+	nxs_string_printf(&objs_path, "%r/objs/", &u_ctx->proj_root);
 
 	nxs_log_write_console(&process, "\tthis collection will be deleted from project '%s':", nxs_string_str(&u_ctx->proj_name));
 	nxs_log_write_console(&process, "\t* %s", nxs_string_str(&u_ctx->name));
@@ -320,12 +320,12 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_collections_make_makefiles(nxs_fw_ctl_u_col
 
 	for(i = 0; nxs_string_len(&makefiles[i].src) > 0; i++) {
 
-		nxs_string_printf_dyn(&tpl_path,
-		                      "%r/%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_COLLECTIONS "/%r",
-		                      &nxs_fw_ctl_cfg.tpls_path,
-		                      fw_version,
-		                      &makefiles[i].src);
-		nxs_string_printf_dyn(&dst_path, "%r/%r", &u_ctx->path, &makefiles[i].dst);
+		nxs_string_printf(&tpl_path,
+		                  "%r/%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_COLLECTIONS "/%r",
+		                  &nxs_fw_ctl_cfg.tpls_path,
+		                  fw_version,
+		                  &makefiles[i].src);
+		nxs_string_printf(&dst_path, "%r/%r", &u_ctx->path, &makefiles[i].dst);
 
 		if(nxs_fw_ctl_c_copy_tpl(&subs, &tpl_path, &dst_path, makefiles[i].mode) != NXS_FW_CTL_E_OK) {
 
@@ -367,12 +367,12 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_collections_make_genfiles(nxs_fw_ctl_u_coll
 
 	for(i = 0; nxs_string_len(&genfiles[i].src) > 0; i++) {
 
-		nxs_string_printf_dyn(&tpl_path,
-		                      "%r/%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_COLLECTIONS "/%r",
-		                      &nxs_fw_ctl_cfg.tpls_path,
-		                      fw_version,
-		                      &genfiles[i].src);
-		nxs_string_printf_dyn(&dst_path, "%r/%r", &u_ctx->path, &genfiles[i].dst);
+		nxs_string_printf(&tpl_path,
+		                  "%r/%r/" NXS_FW_CTL_DIR_ADD_TPL "/" NXS_FW_CTL_DIR_COLLECTIONS "/%r",
+		                  &nxs_fw_ctl_cfg.tpls_path,
+		                  fw_version,
+		                  &genfiles[i].src);
+		nxs_string_printf(&dst_path, "%r/%r", &u_ctx->path, &genfiles[i].dst);
 
 		nxs_fw_ctl_c_copy_tpl_path(&subs, &dst_path);
 
@@ -420,16 +420,16 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_collections_make_sub_headers(nxs_fw_ctl_u_c
 
 		s = nxs_array_get(&sub_els, i);
 
-		nxs_string_printf2_cat_dyn(&coll_headers, "#include <collections/%r/%r.h>\n", s, s);
+		nxs_string_printf2_cat(&coll_headers, "#include <collections/%r/%r.h>\n", s, s);
 	}
 
-	nxs_string_char_cat_dyn(&coll_headers, (u_char *)NXS_FW_CTL_U_COLLS_TPL_C_HEADERS_E);
+	nxs_string_char_cat(&coll_headers, (u_char *)NXS_FW_CTL_U_COLLS_TPL_C_HEADERS_E);
 
 	/*
 	 * Процесс замещения блока 'includes'
 	 */
 
-	nxs_string_printf_dyn(&header_path, "%rsrc/%r-collections.h", &u_ctx->proj_root, &u_ctx->proj_name);
+	nxs_string_printf(&header_path, "%rsrc/%r-collections.h", &u_ctx->proj_root, &u_ctx->proj_name);
 
 	/* headers */
 
