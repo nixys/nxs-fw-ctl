@@ -50,7 +50,7 @@ function build_package()
 
 		clean_build_files
 
-		dh_make -p ${P_NAME}_${VER} --email b.ershov@nixys.ru --single --templates ${TPL_PATH} --yes --createorig
+		dh_make -p ${P_NAME}_${VER} --email b.ershov@nixys.ru --copyright gpl3 --single --templates ${TPL_PATH} --yes --createorig
 
 		dpkg-buildpackage
 	)
