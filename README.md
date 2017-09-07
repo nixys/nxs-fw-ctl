@@ -152,7 +152,7 @@ You may consider the nxs-fw-ctl source core as an example of Nixys Framework app
     apt-get update
     ```
 
-4.  Choose and install needed nxs-fw-libs version. For example:
+4.  Install nxs-fw-ctl package:
 
     ```
     apt-get install nxs-fw-ctl
