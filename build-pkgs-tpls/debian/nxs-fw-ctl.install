@@ -1,3 +1,0 @@
-./objs/nxs-fw-ctl /usr/bin
-./build-pkgs-tpls/conf/etc/nxs-fw-ctl /etc
-./build-pkgs-tpls/conf/usr/share/nxs-fw-ctl /usr/share

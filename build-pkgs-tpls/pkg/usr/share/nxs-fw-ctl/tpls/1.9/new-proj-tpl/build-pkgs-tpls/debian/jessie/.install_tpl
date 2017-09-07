@@ -1,0 +1,2 @@
+./objs/%%NXS_TPL_P_NAME%% /usr/bin
+./pkg/etc/%%NXS_TPL_P_NAME%% /etc

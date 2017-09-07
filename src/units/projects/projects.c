@@ -117,10 +117,11 @@ static nxs_string_t init_dirs[] =
 	nxs_string("src/proc/"),
 	nxs_string("src/units/"),
 	nxs_string("build-pkgs-tpls"),
-	nxs_string("build-pkgs-tpls/conf"),
-	nxs_string("build-pkgs-tpls/conf/etc"),
-	nxs_string("build-pkgs-tpls/conf/etc/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME),
+	nxs_string("build-pkgs-tpls/pkg"),
+	nxs_string("build-pkgs-tpls/pkg/etc"),
+	nxs_string("build-pkgs-tpls/pkg/etc/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME),
 	nxs_string("build-pkgs-tpls/debian"),
+	nxs_string("build-pkgs-tpls/debian/jessie"),
 
 	{NULL, 0, 0}
 };
@@ -170,13 +171,13 @@ static nxs_fw_ctl_u_projects_path_t genfiles[] =
 	{nxs_string("logs/.gitignore"),					nxs_string("logs/.gitignore"),													NXS_FW_CTL_FILE_MODE_DEF},
 	{nxs_string("objs/.gitignore"),					nxs_string("objs/.gitignore"),													NXS_FW_CTL_FILE_MODE_DEF},
 	{nxs_string("build-pkgs"),					nxs_string("build-pkgs"),													0755},
-	{nxs_string("build-pkgs-tpls/conf/etc/prog/.conf_tpl"),		nxs_string("build-pkgs-tpls/conf/etc/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME ".conf"),		NXS_FW_CTL_FILE_MODE_DEF},
-	{nxs_string("build-pkgs-tpls/debian/.install_tpl"),		nxs_string("build-pkgs-tpls/debian/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME ".install"),						NXS_FW_CTL_FILE_MODE_DEF},
-	{nxs_string("build-pkgs-tpls/debian/README.Debian_tpl"),	nxs_string("build-pkgs-tpls/debian/README.Debian"),										NXS_FW_CTL_FILE_MODE_DEF},
-	{nxs_string("build-pkgs-tpls/debian/README.source_tpl"),	nxs_string("build-pkgs-tpls/debian/README.source"),										NXS_FW_CTL_FILE_MODE_DEF},
-	{nxs_string("build-pkgs-tpls/debian/changelog_tpl"),		nxs_string("build-pkgs-tpls/debian/changelog"),											NXS_FW_CTL_FILE_MODE_DEF},
-	{nxs_string("build-pkgs-tpls/debian/compat_tpl"),		nxs_string("build-pkgs-tpls/debian/compat"),											NXS_FW_CTL_FILE_MODE_DEF},
-	{nxs_string("build-pkgs-tpls/debian/control_tpl"),		nxs_string("build-pkgs-tpls/debian/control"),											NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("build-pkgs-tpls/pkg/etc/prog/.conf_tpl"),		nxs_string("build-pkgs-tpls/pkg/etc/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME "/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME ".conf"),		NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("build-pkgs-tpls/debian/jessie/.install_tpl"),	nxs_string("build-pkgs-tpls/debian/jessie/" NXS_FW_CTL_U_PROJECTS_TPL_P_NAME ".install"),					NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("build-pkgs-tpls/debian/jessie/README.Debian_tpl"),	nxs_string("build-pkgs-tpls/debian/jessie/README.Debian"),									NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("build-pkgs-tpls/debian/jessie/README.source_tpl"),	nxs_string("build-pkgs-tpls/debian/jessie/README.source"),									NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("build-pkgs-tpls/debian/jessie/changelog_tpl"),	nxs_string("build-pkgs-tpls/debian/jessie/changelog"),										NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("build-pkgs-tpls/debian/jessie/compat_tpl"),	nxs_string("build-pkgs-tpls/debian/jessie/compat"),										NXS_FW_CTL_FILE_MODE_DEF},
+	{nxs_string("build-pkgs-tpls/debian/jessie/control_tpl"),	nxs_string("build-pkgs-tpls/debian/jessie/control"),										NXS_FW_CTL_FILE_MODE_DEF},
 
 	{{NULL, 0, 0}, {NULL, 0, 0}, 0}
 };
@@ -829,11 +830,11 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_up_config_mk(nxs_string_t *path,
 	nxs_string_init(&nxs_core_links);
 	nxs_string_init(&nxs_fw_version);
 
-	nxs_string_printf(&nxs_use_modules, "%r\t\t\t\t=\t%r\n", &_s_use_nxs_modules, use_modules);
-	nxs_string_printf(&nxs_includes, "%r\t\t\t\t=\t%r\n", &_s_nxs_includes, includes);
+	nxs_string_printf(&nxs_use_modules, "%r\t\t\t\t\t=\t%r\n", &_s_use_nxs_modules, use_modules);
+	nxs_string_printf(&nxs_includes, "%r\t\t\t\t\t=\t%r\n", &_s_nxs_includes, includes);
 	nxs_string_printf(&nxs_links, "%r\t\t\t\t\t=\t%r\n", &_s_nxs_links, link_opts);
-	nxs_string_printf(&nxs_core_links, "%r\t\t\t\t=\t%r\n", &_s_nxs_core_links, core_links);
-	nxs_string_printf(&nxs_fw_version, "%r\t\t\t\t=\t%r\n", &_s_nxs_fw_version, fw_version);
+	nxs_string_printf(&nxs_core_links, "%r\t\t\t\t\t=\t%r\n", &_s_nxs_core_links, core_links);
+	nxs_string_printf(&nxs_fw_version, "%r\t\t\t\t\t=\t%r\n", &_s_nxs_fw_version, fw_version);
 
 	/* NXS_FW_VERSION */
 	if(nxs_fw_ctl_c_subs_includes(path, NXS_YES, &nxs_fw_version, &_s_nxs_fw_version, &_s_eol) != NXS_FW_CTL_E_OK) {

@@ -1,0 +1,3 @@
+./objs/nxs-fw-ctl /usr/bin
+./pkg/etc/nxs-fw-ctl /etc
+./pkg/usr/share/nxs-fw-ctl /usr/share
