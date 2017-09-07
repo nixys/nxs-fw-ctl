@@ -363,14 +363,14 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_dals_del(nxs_fw_ctl_u_dals_t *u_ctx)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(&process, "\tnext dals will be deleted from project '%s':", nxs_string_str(&u_ctx->proj_name));
-	nxs_log_write_console(&process, "\t* %s", nxs_string_str(&dal_name));
+	nxs_log_write_console(&process, "\tnext dals will be deleted from project '%r':", &u_ctx->proj_name);
+	nxs_log_write_console(&process, "\t* %r", &dal_name);
 
 	for(i = 0; i < nxs_array_count(&sub_objects); i++) {
 
 		s = nxs_array_get(&sub_objects, i);
 
-		nxs_log_write_console(&process, "\t* %s.%s", nxs_string_str(&dal_name), nxs_string_str(s));
+		nxs_log_write_console(&process, "\t* %r.%r", &dal_name, s);
 	}
 
 	if(nxs_fw_ctl_c_rlfields_yesno(&_s_question_dals_del) == NXS_NO) {
@@ -419,16 +419,14 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_dals_make_fs_struct(nxs_fw_ctl_u_dals_t *u_
 
 		if(errno == EEXIST) {
 
-			nxs_log_write_error(&process, "can't create new dal: dal exist (dal path: %s)", nxs_string_str(&u_ctx->path));
+			nxs_log_write_error(&process, "can't create new dal: dal exist (dal path: %r)", &u_ctx->path);
 
 			return NXS_FW_CTL_E_ERR;
 		}
 		else {
 
-			nxs_log_write_error(&process,
-			                    "can't create dal fs structure: %s (creating dir: %s)",
-			                    strerror(errno),
-			                    nxs_string_str(&u_ctx->path));
+			nxs_log_write_error(
+			        &process, "can't create dal fs structure: %s (creating dir: %r)", strerror(errno), &u_ctx->path);
 
 			return NXS_FW_CTL_E_ERR;
 		}

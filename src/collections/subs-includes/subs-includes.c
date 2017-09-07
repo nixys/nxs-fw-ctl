@@ -65,8 +65,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_subs_includes(nxs_string_t *substitution_file,
 
 	if(nxs_fs_read_file_to_str(substitution_file, &hfile) < 0) {
 
-		nxs_log_write_error(
-		        &process, "can't read substitution file: %s (file path: %s)", strerror(errno), nxs_string_str(substitution_file));
+		nxs_log_write_error(&process, "can't read substitution file: %s (file path: %r)", strerror(errno), substitution_file);
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -121,8 +120,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_subs_includes(nxs_string_t *substitution_file,
 
 	if(nxs_fs_write_file(substitution_file, (nxs_buf_t *)&hfile, NXS_FW_CTL_FILE_MODE_DEF) < 0) {
 
-		nxs_log_write_error(
-		        &process, "can't write substitution file: %s (file path: %s)", strerror(errno), nxs_string_str(substitution_file));
+		nxs_log_write_error(&process, "can't write substitution file: %s (file path: %r)", strerror(errno), substitution_file);
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}

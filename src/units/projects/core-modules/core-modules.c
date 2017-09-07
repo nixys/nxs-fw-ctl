@@ -443,7 +443,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_core_modules_read(nxs_fw_ctl_u_projects_c
 
 	if(nxs_cfg_json_read_file(&process, cfg_json) != NXS_CFG_JSON_CONF_OK) {
 
-		nxs_log_write_error(&process, "can't read nxs-fw core modules config (cfg file: %s)", nxs_string_str(nxs_core_desc_path));
+		nxs_log_write_error(&process, "can't read nxs-fw core modules config (cfg file: %r)", nxs_core_desc_path);
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}

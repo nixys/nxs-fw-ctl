@@ -178,16 +178,16 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_add(nxs_fw_ctl_u_metas_t *u_ctx, nxs_string_
 		if(errno != ENOENT) {
 
 			nxs_log_write_error(&process,
-			                    "can't create new meta: error check meta existing (error: %s, meta path: %s)",
+			                    "can't create new meta: error check meta existing (error: %s, meta path: %r)",
 			                    strerror(errno),
-			                    nxs_string_str(&meta_path));
+			                    &meta_path);
 
 			nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 		}
 	}
 	else {
 
-		nxs_log_write_error(&process, "can't create new meta: meta exist (meta path: %s)", nxs_string_str(&meta_path));
+		nxs_log_write_error(&process, "can't create new meta: meta exist (meta path: %r)", &meta_path);
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -228,15 +228,15 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_del(nxs_fw_ctl_u_metas_t *u_ctx)
 
 	if(nxs_fs_lstat(&meta_path, &file_stat) < 0) {
 
-		nxs_log_write_error(&process, "can't delete meta (error: %s, meta path: %s)", strerror(errno), nxs_string_str(&meta_path));
+		nxs_log_write_error(&process, "can't delete meta (error: %s, meta path: %r)", strerror(errno), &meta_path);
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
 	nxs_string_printf(&objs_path, "%r/objs/", &u_ctx->proj_root);
 
-	nxs_log_write_console(&process, "\tthis meta will be deleted from project '%s':", nxs_string_str(&u_ctx->proj_name));
-	nxs_log_write_console(&process, "\t* %s", nxs_string_str(&u_ctx->name));
+	nxs_log_write_console(&process, "\tthis meta will be deleted from project '%r':", &u_ctx->proj_name);
+	nxs_log_write_console(&process, "\t* %r", &u_ctx->name);
 
 	if(nxs_fw_ctl_c_rlfields_yesno(&_s_question_meta_del) == NXS_NO) {
 
@@ -250,7 +250,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_del(nxs_fw_ctl_u_metas_t *u_ctx)
 
 	if(nxs_fs_unlink(&meta_path)) {
 
-		nxs_log_write_error(&process, "can't delete meta (error: %s, meta path: %s)", strerror(errno), nxs_string_str(&meta_path));
+		nxs_log_write_error(&process, "can't delete meta (error: %s, meta path: %r)", strerror(errno), &meta_path);
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}

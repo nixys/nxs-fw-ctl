@@ -83,8 +83,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_clean(nxs_string_t *dir_path)
 
 			if(nxs_fs_lstat(&dirent, &file_stat) < 0) {
 
-				nxs_log_write_error(
-				        &process, "can't execute stat for object \"%s\": %s", nxs_string_str(&dirent), strerror(errno));
+				nxs_log_write_error(&process, "can't execute stat for object \"%r\": %s", &dirent, strerror(errno));
 
 				nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 			}
@@ -98,9 +97,9 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_clean(nxs_string_t *dir_path)
 						if(nxs_fs_unlink(&dirent) < 0) {
 
 							nxs_log_write_error(&process,
-							                    "can't remove core-object file: %s (path: %s)",
+							                    "can't remove core-object file: %s (path: %r)",
 							                    strerror(errno),
-							                    nxs_string_str(&dirent));
+							                    &dirent);
 
 							nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 						}
@@ -111,14 +110,14 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_clean(nxs_string_t *dir_path)
 
 		if(rd > 0) {
 
-			nxs_log_write_error(&process, "can't read dir \"%s\": %s", nxs_string_str(dir_path), strerror(rd));
+			nxs_log_write_error(&process, "can't read dir \"%r\": %s", dir_path, strerror(rd));
 
 			nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 		}
 	}
 	else {
 
-		nxs_log_write_error(&process, "can't open dir \"%s\": %s", nxs_string_str(dir_path), strerror(errno));
+		nxs_log_write_error(&process, "can't open dir \"%r\": %s", dir_path, strerror(errno));
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -161,8 +160,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_del(nxs_string_t *dir_path)
 
 			if(nxs_fs_lstat(&dirent, &file_stat) < 0) {
 
-				nxs_log_write_error(
-				        &process, "can't execute stat for object \"%s\": %s", nxs_string_str(&dirent), strerror(errno));
+				nxs_log_write_error(&process, "can't execute stat for object \"%r\": %s", &dirent, strerror(errno));
 
 				nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 			}
@@ -172,10 +170,8 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_del(nxs_string_t *dir_path)
 
 					if(nxs_fs_unlink(&dirent) < 0) {
 
-						nxs_log_write_error(&process,
-						                    "can't remove core-object file: %s (path: %s)",
-						                    strerror(errno),
-						                    nxs_string_str(&dirent));
+						nxs_log_write_error(
+						        &process, "can't remove core-object file: %s (path: %r)", strerror(errno), &dirent);
 
 						nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 					}
@@ -197,21 +193,21 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_del(nxs_string_t *dir_path)
 
 		if(rd > 0) {
 
-			nxs_log_write_error(&process, "can't read dir \"%s\": %s", nxs_string_str(dir_path), strerror(rd));
+			nxs_log_write_error(&process, "can't read dir \"%r\": %s", dir_path, strerror(rd));
 
 			nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 		}
 	}
 	else {
 
-		nxs_log_write_error(&process, "can't open dir \"%s\": %s", nxs_string_str(dir_path), strerror(errno));
+		nxs_log_write_error(&process, "can't open dir \"%r\": %s", dir_path, strerror(errno));
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
 	if(nxs_fs_rmdir(dir_path) < 0) {
 
-		nxs_log_write_error(&process, "can't delete dir \"%s\": %s", nxs_string_str(dir_path), strerror(errno));
+		nxs_log_write_error(&process, "can't delete dir \"%r\": %s", dir_path, strerror(errno));
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -303,8 +299,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_get_name_objects(nxs_string_t *        
 
 			if(nxs_fs_lstat(&dirent, &file_stat) < 0) {
 
-				nxs_log_write_error(
-				        &process, "can't execute stat for object \"%s\": %s", nxs_string_str(&dirent), strerror(errno));
+				nxs_log_write_error(&process, "can't execute stat for object \"%r\": %s", &dirent, strerror(errno));
 
 				nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 			}
@@ -400,14 +395,14 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_c_dir_get_name_objects(nxs_string_t *        
 
 		if(rd > 0) {
 
-			nxs_log_write_error(&process, "can't read dir \"%s\": %s", nxs_string_str(dir_path), strerror(rd));
+			nxs_log_write_error(&process, "can't read dir \"%r\": %s", dir_path, strerror(rd));
 
 			nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 		}
 	}
 	else {
 
-		nxs_log_write_error(&process, "can't open dir \"%s\": %s", nxs_string_str(dir_path), strerror(errno));
+		nxs_log_write_error(&process, "can't open dir \"%r\": %s", dir_path, strerror(errno));
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}

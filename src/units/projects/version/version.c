@@ -77,8 +77,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_version_available(nxs_string_t *nxs_fw_co
 
 			if(nxs_fs_lstat(&file, &file_stat) < 0) {
 
-				nxs_log_write_error(
-				        &process, "can't stat for object: %s (object: \"%s\")", strerror(errno), nxs_string_str(&file));
+				nxs_log_write_error(&process, "can't stat for object: %s (object: \"%r\")", strerror(errno), &file);
 
 				nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 			}
@@ -95,15 +94,14 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_version_available(nxs_string_t *nxs_fw_co
 
 		if(rd > 0) {
 
-			nxs_log_write_error(
-			        &process, "can't read dir: %s (dir path: \"%s\")", strerror(rd), nxs_string_str(nxs_fw_conf_root));
+			nxs_log_write_error(&process, "can't read dir: %s (dir path: \"%r\")", strerror(rd), nxs_fw_conf_root);
 
 			nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 		}
 	}
 	else {
 
-		nxs_log_write_error(&process, "can't open dir: %s, (dir path: \"%s\")", strerror(errno), nxs_string_str(nxs_fw_conf_root));
+		nxs_log_write_error(&process, "can't open dir: %s, (dir path: \"%r\")", strerror(errno), nxs_fw_conf_root);
 	}
 
 error:

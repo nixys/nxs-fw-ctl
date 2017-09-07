@@ -113,7 +113,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_sttngs_read(nxs_string_t *path,
 
 	if(nxs_cfg_json_read_file(&process, cfg_json) != NXS_CFG_JSON_CONF_OK) {
 
-		nxs_log_write_error(&process, "can't read or parse project settings file (settings file: %s)", nxs_string_str(path));
+		nxs_log_write_error(&process, "can't read or parse project settings file (settings file: %r)", path);
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -171,8 +171,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_sttngs_write(nxs_string_t *path,
 
 	if(nxs_fs_write_file(path, (nxs_buf_t *)&settings, NXS_FW_CTL_FILE_MODE_DEF) < 0) {
 
-		nxs_log_write_error(
-		        &process, "can't write project setting file: %s (settings file: %s)", strerror(errno), nxs_string_str(path));
+		nxs_log_write_error(&process, "can't write project setting file: %s (settings file: %r)", strerror(errno), path);
 
 		rc = NXS_FW_CTL_E_ERR;
 	}

@@ -241,8 +241,8 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_collections_del(nxs_fw_ctl_u_collections_t *u_ctx)
 
 	nxs_string_printf(&objs_path, "%r/objs/", &u_ctx->proj_root);
 
-	nxs_log_write_console(&process, "\tthis collection will be deleted from project '%s':", nxs_string_str(&u_ctx->proj_name));
-	nxs_log_write_console(&process, "\t* %s", nxs_string_str(&u_ctx->name));
+	nxs_log_write_console(&process, "\tthis collection will be deleted from project '%r':", &u_ctx->proj_name);
+	nxs_log_write_console(&process, "\t* %r", &u_ctx->name);
 
 	if(nxs_fw_ctl_c_rlfields_yesno(&_s_question_collection_del) == NXS_NO) {
 
@@ -280,18 +280,14 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_collections_make_fs_struct(nxs_fw_ctl_u_col
 
 		if(errno == EEXIST) {
 
-			nxs_log_write_error(&process,
-			                    "can't create new collection: collection exist (collection path: %s)",
-			                    nxs_string_str(&u_ctx->path));
+			nxs_log_write_error(&process, "can't create new collection: collection exist (collection path: %r)", &u_ctx->path);
 
 			return NXS_FW_CTL_E_ERR;
 		}
 		else {
 
-			nxs_log_write_error(&process,
-			                    "can't create collection fs structure: %s (creating dir: %s)",
-			                    strerror(errno),
-			                    nxs_string_str(&u_ctx->path));
+			nxs_log_write_error(
+			        &process, "can't create collection fs structure: %s (creating dir: %r)", strerror(errno), &u_ctx->path);
 
 			return NXS_FW_CTL_E_ERR;
 		}

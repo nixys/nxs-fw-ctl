@@ -74,7 +74,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_copy_tpl(nxs_array_t *subs, nxs_string_t *src, nxs
 
 	if(nxs_fs_read_file_to_str(src, &file) < 0) {
 
-		nxs_log_write_error(&process, "can't read template file: %s (path: %s)", strerror(errno), nxs_string_str(src));
+		nxs_log_write_error(&process, "can't read template file: %s (path: %r)", strerror(errno), src);
 
 		return NXS_FW_CTL_E_ERR;
 	}
@@ -88,7 +88,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_copy_tpl(nxs_array_t *subs, nxs_string_t *src, nxs
 
 	if(nxs_fs_write_file(dst, (nxs_buf_t *)&file, mode) < 0) {
 
-		nxs_log_write_error(&process, "can't write template file: %s (src: %s, dst: %s)", strerror(errno), nxs_string_str(dst));
+		nxs_log_write_error(&process, "can't write template file: %s (src: %s, dst: %r)", strerror(errno), dst);
 
 		return NXS_FW_CTL_E_ERR;
 	}

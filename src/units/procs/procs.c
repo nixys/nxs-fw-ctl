@@ -380,14 +380,14 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_del(nxs_fw_ctl_u_procs_t *u_ctx)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(&process, "\tnext processes will be deleted from project '%s':", nxs_string_str(&u_ctx->proj_name));
-	nxs_log_write_console(&process, "\t* %s", nxs_string_str(&proc_name));
+	nxs_log_write_console(&process, "\tnext processes will be deleted from project '%r':", &u_ctx->proj_name);
+	nxs_log_write_console(&process, "\t* %r", &proc_name);
 
 	for(i = 0; i < nxs_array_count(&sub_objects); i++) {
 
 		s = nxs_array_get(&sub_objects, i);
 
-		nxs_log_write_console(&process, "\t* %s.%s", nxs_string_str(&proc_name), nxs_string_str(s));
+		nxs_log_write_console(&process, "\t* %r.%r", &proc_name, s);
 	}
 
 	if(nxs_fw_ctl_c_rlfields_yesno(&_s_question_procs_del) == NXS_NO) {
@@ -455,17 +455,14 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_procs_make_fs_struct(nxs_fw_ctl_u_procs_t *
 
 			if(errno == EEXIST) {
 
-				nxs_log_write_error(
-				        &process, "can't create new proc: proc dir exist (dir path: %s)", nxs_string_str(&path));
+				nxs_log_write_error(&process, "can't create new proc: proc dir exist (dir path: %r)", &path);
 
 				nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 			}
 			else {
 
-				nxs_log_write_error(&process,
-				                    "can't create proc fs structure: %s (creating dir: %s)",
-				                    strerror(errno),
-				                    nxs_string_str(&path));
+				nxs_log_write_error(
+				        &process, "can't create proc fs structure: %s (creating dir: %r)", strerror(errno), &path);
 
 				nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 			}

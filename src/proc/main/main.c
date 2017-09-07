@@ -226,7 +226,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_project_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(&process, "project '%s' successfully created", nxs_string_str(name));
+	nxs_log_write_console(&process, "project '%r' successfully created", name);
 
 error:
 
@@ -266,19 +266,19 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_project_del(void)
 
 		case NXS_FW_CTL_E_OK:
 
-			nxs_log_write_console(&process, "project '%s' successfully deleted", nxs_string_str(&p_name));
+			nxs_log_write_console(&process, "project '%r' successfully deleted", &p_name);
 
 			break;
 
 		case NXS_FW_CTL_E_CANCEL:
 
-			nxs_log_write_console(&process, "project '%s' delete canceled", nxs_string_str(&p_name));
+			nxs_log_write_console(&process, "project '%r' delete canceled", &p_name);
 
 			break;
 
 		default:
 
-			nxs_log_write_console(&process, "project '%s' delete error", nxs_string_str(&p_name));
+			nxs_log_write_console(&process, "project '%r' delete error", &p_name);
 
 			rc = NXS_FW_CTL_E_ERR;
 
@@ -332,12 +332,12 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_unit_add(void)
 
 	if(nxs_fw_ctl_u_units_add(unit_ctx, &fw_version) != NXS_FW_CTL_E_OK) {
 
-		nxs_log_write_console(&process, "unit '%s' creation error", nxs_string_str(name));
+		nxs_log_write_console(&process, "unit '%r' creation error", name);
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(&process, "unit '%s' successfully created", nxs_string_str(name));
+	nxs_log_write_console(&process, "unit '%r' successfully created", name);
 
 error:
 
@@ -388,19 +388,19 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_unit_del(void)
 
 		case NXS_FW_CTL_E_OK:
 
-			nxs_log_write_console(&process, "unit '%s' successfully deleted", nxs_string_str(name));
+			nxs_log_write_console(&process, "unit '%r' successfully deleted", name);
 
 			break;
 
 		case NXS_FW_CTL_E_CANCEL:
 
-			nxs_log_write_console(&process, "unit '%s' delete canceled", nxs_string_str(name));
+			nxs_log_write_console(&process, "unit '%r' delete canceled", name);
 
 			break;
 
 		default:
 
-			nxs_log_write_console(&process, "unit '%s' delete error", nxs_string_str(name));
+			nxs_log_write_console(&process, "unit '%r' delete error", name);
 
 			rc = NXS_FW_CTL_E_ERR;
 
@@ -454,7 +454,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_collection_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(&process, "collection '%s' successfully created", nxs_string_str(name));
+	nxs_log_write_console(&process, "collection '%r' successfully created", name);
 
 error:
 
@@ -502,19 +502,19 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_collection_del(void)
 
 		case NXS_FW_CTL_E_OK:
 
-			nxs_log_write_console(&process, "collection '%s' successfully deleted", nxs_string_str(name));
+			nxs_log_write_console(&process, "collection '%r' successfully deleted", name);
 
 			break;
 
 		case NXS_FW_CTL_E_CANCEL:
 
-			nxs_log_write_console(&process, "collection '%s' delete canceled", nxs_string_str(name));
+			nxs_log_write_console(&process, "collection '%r' delete canceled", name);
 
 			break;
 
 		default:
 
-			nxs_log_write_console(&process, "collection '%s' delete error", nxs_string_str(name));
+			nxs_log_write_console(&process, "collection '%r' delete error", name);
 
 			rc = NXS_FW_CTL_E_ERR;
 
@@ -568,7 +568,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_meta_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(&process, "meta '%s' successfully created", nxs_string_str(name));
+	nxs_log_write_console(&process, "meta '%r' successfully created", name);
 
 error:
 
@@ -616,19 +616,19 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_meta_del(void)
 
 		case NXS_FW_CTL_E_OK:
 
-			nxs_log_write_console(&process, "meta '%s' successfully deleted", nxs_string_str(name));
+			nxs_log_write_console(&process, "meta '%r' successfully deleted", name);
 
 			break;
 
 		case NXS_FW_CTL_E_CANCEL:
 
-			nxs_log_write_console(&process, "meta '%s' delete canceled", nxs_string_str(name));
+			nxs_log_write_console(&process, "meta '%r' delete canceled", name);
 
 			break;
 
 		default:
 
-			nxs_log_write_console(&process, "meta '%s' delete error", nxs_string_str(name));
+			nxs_log_write_console(&process, "meta '%r' delete error", name);
 
 			rc = NXS_FW_CTL_E_ERR;
 
@@ -685,7 +685,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_proc_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(&process, "process '%s' successfully created", nxs_string_str(name));
+	nxs_log_write_console(&process, "process '%r' successfully created", name);
 
 error:
 
@@ -736,19 +736,19 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_proc_del(void)
 
 		case NXS_FW_CTL_E_OK:
 
-			nxs_log_write_console(&process, "process '%s' successfully deleted", nxs_string_str(name));
+			nxs_log_write_console(&process, "process '%r' successfully deleted", name);
 
 			break;
 
 		case NXS_FW_CTL_E_CANCEL:
 
-			nxs_log_write_console(&process, "process '%s' delete canceled", nxs_string_str(name));
+			nxs_log_write_console(&process, "process '%r' delete canceled", name);
 
 			break;
 
 		default:
 
-			nxs_log_write_console(&process, "process '%s' delete error", nxs_string_str(name));
+			nxs_log_write_console(&process, "process '%r' delete error", name);
 
 			rc = NXS_FW_CTL_E_ERR;
 
@@ -802,7 +802,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_conf_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(&process, "conf '%s' successfully created", nxs_string_str(name));
+	nxs_log_write_console(&process, "conf '%r' successfully created", name);
 
 error:
 
@@ -850,19 +850,19 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_conf_del(void)
 
 		case NXS_FW_CTL_E_OK:
 
-			nxs_log_write_console(&process, "conf '%s' successfully deleted", nxs_string_str(name));
+			nxs_log_write_console(&process, "conf '%r' successfully deleted", name);
 
 			break;
 
 		case NXS_FW_CTL_E_CANCEL:
 
-			nxs_log_write_console(&process, "conf '%s' delete canceled", nxs_string_str(name));
+			nxs_log_write_console(&process, "conf '%r' delete canceled", name);
 
 			break;
 
 		default:
 
-			nxs_log_write_console(&process, "conf '%s' delete error", nxs_string_str(name));
+			nxs_log_write_console(&process, "conf '%r' delete error", name);
 
 			rc = NXS_FW_CTL_E_ERR;
 
@@ -919,7 +919,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_dal_add(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(&process, "dal '%s' successfully created", nxs_string_str(name));
+	nxs_log_write_console(&process, "dal '%r' successfully created", name);
 
 error:
 
@@ -970,19 +970,19 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_dal_del(void)
 
 		case NXS_FW_CTL_E_OK:
 
-			nxs_log_write_console(&process, "dal '%s' successfully deleted", nxs_string_str(name));
+			nxs_log_write_console(&process, "dal '%r' successfully deleted", name);
 
 			break;
 
 		case NXS_FW_CTL_E_CANCEL:
 
-			nxs_log_write_console(&process, "dal '%s' delete canceled", nxs_string_str(name));
+			nxs_log_write_console(&process, "dal '%r' delete canceled", name);
 
 			break;
 
 		default:
 
-			nxs_log_write_console(&process, "dal '%s' delete error", nxs_string_str(name));
+			nxs_log_write_console(&process, "dal '%r' delete error", name);
 
 			rc = NXS_FW_CTL_E_ERR;
 
@@ -1031,7 +1031,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_core_list_change(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(&process, "nxs-fw core modules for project '%s' successfully changed", nxs_string_str(&p_name));
+	nxs_log_write_console(&process, "nxs-fw core modules for project '%r' successfully changed", &p_name);
 
 error:
 
@@ -1064,13 +1064,13 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_core_list_info(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(&process, "nxs-fw core modules using for project '%s':", nxs_string_str(&p_name));
+	nxs_log_write_console(&process, "nxs-fw core modules using for project '%r':", &p_name);
 
 	for(i = 0; i < nxs_array_count(&mods); i++) {
 
 		s = nxs_array_get(&mods, i);
 
-		nxs_log_write_console(&process, "* %s", nxs_string_str(s));
+		nxs_log_write_console(&process, "* %r", s);
 	}
 
 error:
@@ -1122,7 +1122,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_core_version_change(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(&process, "nxs-fw core version for project '%s' successfully changed", nxs_string_str(&p_name));
+	nxs_log_write_console(&process, "nxs-fw core version for project '%r' successfully changed", &p_name);
 
 error:
 
@@ -1152,8 +1152,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_core_version_info(void)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(
-	        &process, "nxs-fw version using for project '%s': %s", nxs_string_str(&p_name), nxs_string_str(&core_version));
+	nxs_log_write_console(&process, "nxs-fw version using for project '%r': %r", &p_name, &core_version);
 
 error:
 

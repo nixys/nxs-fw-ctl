@@ -265,7 +265,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_add(nxs_fw_ctl_u_projects_t *u_ctx)
 
 	if(nxs_fw_ctl_u_projects_sttngs_check(&setting_path) == NXS_YES) {
 
-		nxs_log_write_warn(&process, "can't create project: project exist (settings file: %s)", nxs_string_str(&setting_path));
+		nxs_log_write_warn(&process, "can't create project: project exist (settings file: %r)", &setting_path);
 
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
@@ -275,7 +275,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_add(nxs_fw_ctl_u_projects_t *u_ctx)
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(&process, "\n  project root: %s", nxs_string_str(&nxs_fw_ctl_cfg.proj_root));
+	nxs_log_write_console(&process, "\n  project root: %r", &nxs_fw_ctl_cfg.proj_root);
 	nxs_log_write_console(&process, "\n  choose nxs-fw version:");
 
 	nxs_fw_ctl_u_projects_version_select(&nxs_fw_version, &versions);
@@ -345,7 +345,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_del(nxs_fw_ctl_u_projects_t *u_ctx)
 
 	rc = NXS_FW_CTL_E_OK;
 
-	nxs_log_write_console(&process, "\tproject '%s' will be deleted:", nxs_string_str(&u_ctx->name));
+	nxs_log_write_console(&process, "\tproject '%r' will be deleted:", &u_ctx->name);
 
 	if(nxs_fw_ctl_c_rlfields_yesno(&_s_question_project_del) == NXS_NO) {
 
@@ -502,7 +502,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_change_core_version(nxs_fw_ctl_u_projects
 		nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 	}
 
-	nxs_log_write_console(&process, "\n  choose nxs-fw version (current: %s):", nxs_string_str(&nxs_fw_version_cur));
+	nxs_log_write_console(&process, "\n  choose nxs-fw version (current: %r):", &nxs_fw_version_cur);
 
 	nxs_fw_ctl_u_projects_version_select(&nxs_fw_version, &versions);
 
@@ -701,10 +701,8 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_make_fs_struct(nxs_fw_ctl_u_projec
 
 			if(errno != EEXIST) {
 
-				nxs_log_write_error(&process,
-				                    "can't create project fs structure: %s (creating dir: %s)",
-				                    strerror(errno),
-				                    nxs_string_str(&path));
+				nxs_log_write_error(
+				        &process, "can't create project fs structure: %s (creating dir: %r)", strerror(errno), &path);
 
 				nxs_error(rc, NXS_FW_CTL_E_ERR, error);
 			}

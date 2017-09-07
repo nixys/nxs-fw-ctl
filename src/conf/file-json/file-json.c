@@ -141,8 +141,8 @@ static nxs_cfg_json_state_t nxs_fw_ctl_conf_file_json_projs_root(nxs_process_t *
 	if(nxs_json_type_get(json) != NXS_JSON_TYPE_STRING) {
 
 		nxs_log_write_error(proc,
-		                    "json cfg process error: wrong type for value (option: \"%s\", type: %s, expected type: string)",
-		                    nxs_string_str(nxs_json_get_key(json)),
+		                    "json cfg process error: wrong type for value (option: \"%r\", type: %s, expected type: string)",
+		                    nxs_json_get_key(json),
 		                    nxs_json_type_string(json));
 
 		return NXS_CFG_JSON_CONF_ERROR;

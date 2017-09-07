@@ -2,4 +2,5 @@
 /.autotools
 /.cproject
 /.settings
+/build-pkgs-tpls/pkg/usr/share/nxs-fw-ctl/tpls/dev
 /nxs-fw-ctl.conf
