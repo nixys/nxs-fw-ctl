@@ -46,7 +46,7 @@ Each block on schema is an isolated (in accordance with arrows) Nixys Framework 
 
 *  **DALs**
 
-    `DALs` is a *Data Application Layer* and used for handling data from different sources (databases, filesystem, external Rest API interfaces,  etc).
+    `DALs` is a *Data Access Layer* and used for handling data from different sources (databases, filesystem, external Rest API interfaces,  etc).
     
     Each `Dal` has its own context.
 
