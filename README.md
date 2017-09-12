@@ -56,7 +56,7 @@ Each block on schema is an isolated (in accordance with arrows) Nixys Framework 
     
     For example, `Meta` may be useful to transfer large number of elements between the `DAL` and `Unit` contexts.
 
-You may consider the nxs-fw-ctl source core as an example of Nixys Framework application.
+You may consider the nxs-fw-ctl source code as an example of Nixys Framework application.
 
 ### Available nxs-fw-ctl commands
 
