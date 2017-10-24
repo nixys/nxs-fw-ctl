@@ -45,7 +45,7 @@ extern		nxs_fw_ctl_cfg_t			nxs_fw_ctl_cfg;
 void nxs_fw_ctl_c_copy_tpl_init(nxs_array_t *subs)
 {
 
-	nxs_array_init(subs, 0, sizeof(nxs_fw_ctl_m_subs_t), 1);
+	nxs_array_init(subs, 0, sizeof(nxs_fw_ctl_m_subs_t), 1, NULL, NULL);
 }
 
 void nxs_fw_ctl_c_copy_tpl_free(nxs_array_t *subs)

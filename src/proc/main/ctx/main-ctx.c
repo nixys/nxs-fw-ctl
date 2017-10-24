@@ -5,6 +5,8 @@
 /* Project core include */
 #include <nxs-fw-ctl-core.h>
 #include <nxs-fw-ctl-meta.h>
+#include <nxs-fw-ctl-collections.h>
+#include <nxs-fw-ctl-units.h>
 
 #include <proc/main/ctx/main-ctx.h>
 

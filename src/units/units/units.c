@@ -144,7 +144,7 @@ nxs_fw_ctl_u_units_t *nxs_fw_ctl_u_units_init(void)
 
 	nxs_string_init(&u_ctx->proj_root);
 
-	nxs_array_init(&u_ctx->units_chain, 0, sizeof(nxs_string_t), 1);
+	nxs_array_init(&u_ctx->units_chain, 0, sizeof(nxs_string_t), 1, NULL, NULL);
 
 	return u_ctx;
 }
@@ -341,7 +341,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_units_del(nxs_fw_ctl_u_units_t *u_ctx)
 	nxs_string_init(&unit_name);
 	nxs_string_init(&objs_path);
 
-	nxs_array_init(&sub_objects, 0, sizeof(nxs_string_t), 1);
+	nxs_array_init(&sub_objects, 0, sizeof(nxs_string_t), 1, NULL, NULL);
 
 	nxs_string_printf(&objs_path, "%r/objs/", &u_ctx->proj_root);
 
@@ -536,7 +536,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_units_make_sub_headers(nxs_fw_ctl_u_units_t
 
 	rc = NXS_FW_CTL_E_OK;
 
-	nxs_array_init(&sub_els, 0, sizeof(nxs_string_t), 1);
+	nxs_array_init(&sub_els, 0, sizeof(nxs_string_t), 1, NULL, NULL);
 
 	nxs_string_init(&header_path);
 

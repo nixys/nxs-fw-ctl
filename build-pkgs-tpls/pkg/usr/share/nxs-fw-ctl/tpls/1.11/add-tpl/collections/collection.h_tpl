@@ -1,0 +1,10 @@
+#ifndef _INCLUDE_%%NXS_TPL_C_UPCASE_NAME%%_H
+#define _INCLUDE_%%NXS_TPL_C_UPCASE_NAME%%_H
+
+// clang-format off
+
+/* Prototypes */
+
+void					%%NXS_TPL_C_INLINE_NAME%%					(void);
+
+#endif /* _INCLUDE_%%NXS_TPL_C_UPCASE_NAME%%_H */

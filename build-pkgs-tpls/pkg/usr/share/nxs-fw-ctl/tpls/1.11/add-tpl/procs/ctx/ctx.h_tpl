@@ -1,0 +1,14 @@
+#ifndef _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_CTX_H
+#define _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_CTX_H
+
+// clang-format off
+
+typedef struct
+{
+
+} %%NXS_TPL_P_INLINE_NAME%%_ctx_t;
+
+void						%%NXS_TPL_P_INLINE_NAME%%_ctx_init				(%%NXS_TPL_P_INLINE_NAME%%_ctx_t *p_ctx);
+void						%%NXS_TPL_P_INLINE_NAME%%_ctx_free				(%%NXS_TPL_P_INLINE_NAME%%_ctx_t *p_ctx);
+
+#endif /* _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_CTX_H */

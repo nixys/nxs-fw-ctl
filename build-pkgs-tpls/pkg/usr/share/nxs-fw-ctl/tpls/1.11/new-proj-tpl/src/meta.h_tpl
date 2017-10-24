@@ -1,0 +1,9 @@
+#ifndef _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_META_H
+#define _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_META_H
+
+// clang-format off
+
+/*%%_NXS_TPL_HEADERS_BEGIN_%%*/
+/*%%_NXS_TPL_HEADERS_END_%%*/
+
+#endif /* _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_META_H */

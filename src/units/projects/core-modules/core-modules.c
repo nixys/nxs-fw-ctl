@@ -105,9 +105,9 @@ nxs_fw_ctl_u_projects_core_modules_t *nxs_fw_ctl_u_projects_core_modules_init(vo
 
 	u_ctx = (nxs_fw_ctl_u_projects_core_modules_t *)nxs_malloc(NULL, sizeof(nxs_fw_ctl_u_projects_core_modules_t));
 
-	nxs_array_init(&u_ctx->modules, 0, sizeof(nxs_fw_ctl_u_projects_core_modules_el_t), 1);
-	nxs_array_init(&u_ctx->using.mods, 0, sizeof(nxs_string_t), 1);
-	nxs_array_init(&u_ctx->selected_modules, 0, sizeof(nxs_string_t), 1);
+	nxs_array_init(&u_ctx->modules, 0, sizeof(nxs_fw_ctl_u_projects_core_modules_el_t), 1, NULL, NULL);
+	nxs_array_init(&u_ctx->using.mods, 0, sizeof(nxs_string_t), 1, NULL, NULL);
+	nxs_array_init(&u_ctx->selected_modules, 0, sizeof(nxs_string_t), 1, NULL, NULL);
 
 	nxs_string_init(&u_ctx->using.use_flags);
 	nxs_string_init(&u_ctx->using.link_opts);
@@ -262,7 +262,7 @@ void nxs_fw_ctl_u_projects_core_modules_select(nxs_fw_ctl_u_projects_core_module
 
 	nxs_string_init(&spaces);
 
-	nxs_array_init(&select_mods, 0, sizeof(nxs_fw_ctl_u_projects_core_modules_select_mods_t), 1);
+	nxs_array_init(&select_mods, 0, sizeof(nxs_fw_ctl_u_projects_core_modules_select_mods_t), 1, NULL, NULL);
 
 	/* bool autocomplete */
 
@@ -474,8 +474,8 @@ static nxs_cfg_json_state_t nxs_fw_ctl_u_projects_core_modules_read_arr(nxs_proc
 	nxs_string_init(&mod->link_opt);
 	nxs_string_init(&mod->includes);
 
-	nxs_array_init(&mod->deps, 0, sizeof(nxs_string_t), 1);
-	nxs_array_init(&mod->libs, 0, sizeof(nxs_string_t), 1);
+	nxs_array_init(&mod->deps, 0, sizeof(nxs_string_t), 1, NULL, NULL);
+	nxs_array_init(&mod->libs, 0, sizeof(nxs_string_t), 1, NULL, NULL);
 
 	mod->mandatory = NXS_NO;
 

@@ -1057,7 +1057,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_p_main_core_list_info(void)
 
 	nxs_fs_getcwd(&pwd);
 
-	nxs_array_init(&mods, 0, sizeof(nxs_string_t), 1);
+	nxs_array_init(&mods, 0, sizeof(nxs_string_t), 1, NULL, NULL);
 
 	if(nxs_fw_ctl_u_projects_settingsfile_get_mods(&pwd, &p_name, &mods) != NXS_FW_CTL_E_OK) {
 

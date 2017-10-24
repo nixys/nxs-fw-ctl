@@ -259,7 +259,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_add(nxs_fw_ctl_u_projects_t *u_ctx)
 	nxs_string_printf(&setting_path, "%r.nxs-fw-settings/settings.json", &u_ctx->root);
 	nxs_string_printf(&core_mods_dst, "%r", &u_ctx->root);
 
-	nxs_array_init(&versions, 0, sizeof(nxs_string_t), 1);
+	nxs_array_init(&versions, 0, sizeof(nxs_string_t), 1, NULL, NULL);
 
 	c_mods = nxs_fw_ctl_u_projects_core_modules_init();
 
@@ -381,7 +381,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_change_core_mods(nxs_fw_ctl_u_projects_t 
 
 	rc = NXS_FW_CTL_E_OK;
 
-	nxs_array_init(&read_selected_mods, 0, sizeof(nxs_string_t), 1);
+	nxs_array_init(&read_selected_mods, 0, sizeof(nxs_string_t), 1, NULL, NULL);
 
 	nxs_string_init(&setting_path);
 	nxs_string_init(&configmk_path);
@@ -473,9 +473,9 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_change_core_version(nxs_fw_ctl_u_projects
 
 	rc = NXS_FW_CTL_E_OK;
 
-	nxs_array_init(&read_selected_mods, 0, sizeof(nxs_string_t), 1);
+	nxs_array_init(&read_selected_mods, 0, sizeof(nxs_string_t), 1, NULL, NULL);
 
-	nxs_array_init(&versions, 0, sizeof(nxs_string_t), 1);
+	nxs_array_init(&versions, 0, sizeof(nxs_string_t), 1, NULL, NULL);
 
 	nxs_string_init(&setting_path);
 	nxs_string_init(&configmk_path);
@@ -623,7 +623,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_u_projects_settingsfile_get_mods(nxs_string_t *proj_
 
 	c_mods = nxs_fw_ctl_u_projects_core_modules_init();
 
-	nxs_array_init(&mods_tmp, 0, sizeof(nxs_string_t), 1);
+	nxs_array_init(&mods_tmp, 0, sizeof(nxs_string_t), 1, NULL, NULL);
 
 	nxs_string_init(&version);
 	nxs_string_init(&nxs_core_desc_path);

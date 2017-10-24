@@ -324,7 +324,7 @@ static nxs_fw_ctl_err_t nxs_fw_ctl_u_metas_make_sub_headers(nxs_fw_ctl_u_metas_t
 
 	rc = NXS_FW_CTL_E_OK;
 
-	nxs_array_init(&sub_els, 0, sizeof(nxs_string_t), 1);
+	nxs_array_init(&sub_els, 0, sizeof(nxs_string_t), 1, NULL, NULL);
 
 	nxs_string_init(&header_path);
 

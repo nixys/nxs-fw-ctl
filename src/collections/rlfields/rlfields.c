@@ -70,7 +70,7 @@ void nxs_fw_ctl_c_rlfields_init(nxs_array_t *rlfields)
 		return;
 	}
 
-	nxs_array_init(rlfields, 0, sizeof(nxs_fw_ctl_c_rlfields_el_t), 1);
+	nxs_array_init(rlfields, 0, sizeof(nxs_fw_ctl_c_rlfields_el_t), 1, NULL, NULL);
 }
 
 void nxs_fw_ctl_c_rlfields_free(nxs_array_t *rlfields)
@@ -302,7 +302,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_rlfields_exec(nxs_array_t *rlfields)
 void nxs_fw_ctl_c_rlfields_arr_str_init(nxs_array_t *arr_str)
 {
 
-	nxs_array_init(arr_str, 0, sizeof(nxs_string_t), 1);
+	nxs_array_init(arr_str, 0, sizeof(nxs_string_t), 1, NULL, NULL);
 }
 
 void nxs_fw_ctl_c_rlfields_arr_str_free(nxs_array_t *arr_str)

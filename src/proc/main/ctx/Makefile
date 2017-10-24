@@ -4,6 +4,8 @@ objs/nxs-fw-ctl-p-main-ctx.o: ./src/proc/main/ctx/main-ctx.c \
 	./src/proc/main/ctx/main-ctx.h \
 	$(PROJ_CORE_HEADERS) \
 	$(PROJ_META_HEADERS) \
+	$(PROJ_UNITS_HEADERS) \
+	$(PROJ_COLLECTOINS_HEADERS) \
 	$(NXS_CORE_OBJS) \
 	$(NXS_CORE_HEADERS)
 

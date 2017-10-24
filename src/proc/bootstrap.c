@@ -5,6 +5,7 @@
 /* Project core include */
 #include <nxs-fw-ctl-core.h>
 #include <nxs-fw-ctl-meta.h>
+#include <nxs-fw-ctl-collections.h>
 #include <nxs-fw-ctl-proc.h>
 
 #include <proc/bootstrap-subproc.h>
