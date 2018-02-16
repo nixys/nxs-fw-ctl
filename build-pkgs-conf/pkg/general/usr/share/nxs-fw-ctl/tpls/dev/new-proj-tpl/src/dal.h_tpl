@@ -1,0 +1,12 @@
+#ifndef _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_DAL_H
+#define _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_DAL_H
+
+// clang-format off
+
+/*%%_NXS_TPL_HEADERS_TYPEDEF_BEGIN_%%*/
+/*%%_NXS_TPL_HEADERS_TYPEDEF_END_%%*/
+
+/*%%_NXS_TPL_HEADERS_BEGIN_%%*/
+/*%%_NXS_TPL_HEADERS_END_%%*/
+
+#endif /* _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_DAL_H */

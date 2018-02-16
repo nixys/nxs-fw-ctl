@@ -1,0 +1,11 @@
+include config.mk
+
+objs/%%NXS_TPL_P_OBJ%%-ctx.o: ./src/proc/%%NXS_TPL_P_RPATH%%ctx/%%NXS_TPL_P_FILENAME%%-ctx.c \
+				./src/proc/%%NXS_TPL_P_RPATH%%ctx/%%NXS_TPL_P_FILENAME%%-ctx.h \
+				$(PROJ_CORE_HEADERS) \
+				$(PROJ_META_HEADERS) \
+				$(PROJ_UNITS_HEADERS) \
+				$(PROJ_COLLECTOINS_HEADERS) \
+				$(NXS_CORE_HEADERS)
+
+				$(CC) -c $(CFLAGS) $(CFLAGS32) $(NXS_CORE_INCLUDES) $(PROJ_INCLUDES) $(NXS_INCLUDES) $(USE_NXS_MODULES) -o objs/%%NXS_TPL_P_OBJ%%-ctx.o ./src/proc/%%NXS_TPL_P_RPATH%%ctx/%%NXS_TPL_P_FILENAME%%-ctx.c

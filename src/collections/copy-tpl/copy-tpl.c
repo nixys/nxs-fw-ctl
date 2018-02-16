@@ -88,7 +88,7 @@ nxs_fw_ctl_err_t nxs_fw_ctl_c_copy_tpl(nxs_array_t *subs, nxs_string_t *src, nxs
 
 	if(nxs_fs_write_file(dst, (nxs_buf_t *)&file, mode) < 0) {
 
-		nxs_log_write_error(&process, "can't write template file: %s (src: %s, dst: %r)", strerror(errno), dst);
+		nxs_log_write_error(&process, "can't write template file: %s (src: %r, dst: %r)", strerror(errno), src, dst);
 
 		return NXS_FW_CTL_E_ERR;
 	}

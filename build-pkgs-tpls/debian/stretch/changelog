@@ -1,5 +1,0 @@
-#PACKAGE# (#VERSION#-deb9u1) stable; urgency=low
-
-  * New version nxs-fw-ctl
-
- -- Boris Ershov <b.ershov@nixys.ru>  #DATE#

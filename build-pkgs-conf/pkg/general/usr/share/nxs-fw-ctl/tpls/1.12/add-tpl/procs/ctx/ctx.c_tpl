@@ -1,0 +1,54 @@
+#include <nxs-core/nxs-core.h>
+
+// clang-format off
+
+/* Project core include */
+#include <%%NXS_TPL_PROJ_NAME%%-core.h>
+#include <%%NXS_TPL_PROJ_NAME%%-meta.h>
+#include <%%NXS_TPL_PROJ_NAME%%-collections.h>
+#include <%%NXS_TPL_PROJ_NAME%%-units.h>
+
+#include <proc/%%NXS_TPL_P_RPATH%%ctx/%%NXS_TPL_P_FILENAME%%-ctx.h>
+
+/* Definitions */
+
+
+/* Project globals */
+extern		nxs_process_t				process;
+extern		%%NXS_TPL_PROJ_INLINE_NAME%%_cfg_t	%%NXS_TPL_PROJ_INLINE_NAME%%_cfg;
+
+/* Module typedefs */
+
+
+
+/* Module declarations */
+
+
+
+/* Module internal (static) functions prototypes */
+
+// clang-format on
+
+// clang-format off
+
+/* Module initializations */
+
+
+
+/* Module global functions */
+
+// clang-format on
+
+void %%NXS_TPL_P_INLINE_NAME%%_ctx_init(%%NXS_TPL_P_INLINE_NAME%%_ctx_t *p_ctx)
+{
+
+
+}
+
+void %%NXS_TPL_P_INLINE_NAME%%_ctx_free(%%NXS_TPL_P_INLINE_NAME%%_ctx_t *p_ctx)
+{
+
+
+}
+
+/* Module internal (static) functions */

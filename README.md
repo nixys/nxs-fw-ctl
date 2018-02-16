@@ -136,14 +136,18 @@ You may consider the nxs-fw-ctl source code as an example of Nixys Framework app
     wget -O - http://packages.nixys.ru/packages.nixys.ru.gpg.key | apt-key add -
     ```
 
-2.  Add the repository. Debian jessie and wheezy are available:
+2.  Add the repository. Debian wheezy, jessie and stretch are available:
+
+    ```
+    echo "deb [arch=amd64] http://packages.nixys.ru/debian/ wheezy main" > /etc/apt/sources.list.d/packages.nixys.ru.list
+    ```
 
     ```
     echo "deb [arch=amd64] http://packages.nixys.ru/debian/ jessie main" > /etc/apt/sources.list.d/packages.nixys.ru.list
     ```
 
     ```
-    echo "deb [arch=amd64] http://packages.nixys.ru/debian/ wheezy main" > /etc/apt/sources.list.d/packages.nixys.ru.list
+    echo "deb [arch=amd64] http://packages.nixys.ru/debian/ stretch main" > /etc/apt/sources.list.d/packages.nixys.ru.list
     ```
 
 3.  Make an update:
