@@ -31,8 +31,9 @@ extern		nxs_fw_ctl_cfg_t			nxs_fw_ctl_cfg;
 static nxs_cfg_json_state_t nxs_fw_ctl_conf_file_json_prep(nxs_cfg_json_t cfg);
 static nxs_cfg_json_state_t nxs_fw_ctl_conf_file_json_post(nxs_cfg_json_t cfg);
 
-static nxs_cfg_json_state_t
-        nxs_fw_ctl_conf_file_json_projs_root(nxs_process_t *proc, nxs_json_t *json, nxs_cfg_json_par_t *cfg_json_par_el);
+static nxs_cfg_json_state_t nxs_fw_ctl_conf_file_json_projs_root(nxs_process_t *     proc,
+                                                                 nxs_json_t *        json,
+                                                                 nxs_cfg_json_par_t *cfg_json_par_el);
 
 // clang-format off
 
@@ -124,6 +125,16 @@ static nxs_cfg_json_state_t nxs_fw_ctl_conf_file_json_post(nxs_cfg_json_t cfg)
 	if((u_char)nxs_string_get_char(&nxs_fw_ctl_cfg.proj_root, nxs_string_len(&nxs_fw_ctl_cfg.proj_root) - 1) != '/') {
 
 		nxs_string_char_add_char(&nxs_fw_ctl_cfg.proj_root, (u_char)'/');
+	}
+
+	if((u_char)nxs_string_get_char(&nxs_fw_ctl_cfg.tpls_path, nxs_string_len(&nxs_fw_ctl_cfg.tpls_path) - 1) != '/') {
+
+		nxs_string_char_add_char(&nxs_fw_ctl_cfg.tpls_path, (u_char)'/');
+	}
+
+	if((u_char)nxs_string_get_char(&nxs_fw_ctl_cfg.nxs_fw_desc_path, nxs_string_len(&nxs_fw_ctl_cfg.nxs_fw_desc_path) - 1) != '/') {
+
+		nxs_string_char_add_char(&nxs_fw_ctl_cfg.nxs_fw_desc_path, (u_char)'/');
 	}
 
 	return NXS_CFG_JSON_CONF_OK;

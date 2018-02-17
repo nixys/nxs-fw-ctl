@@ -1,0 +1,14 @@
+Source: #PACKAGE#
+Section: devel
+Priority: optional
+Maintainer: #USERNAME# <#EMAIL#>
+Build-Depends: #BUILD_DEPS#
+Standards-Version: #POLICY#
+Homepage: https://nixys.ru
+
+Package: #PACKAGE#
+Architecture: amd64
+Depends: ${misc:Depends}, libevent-nxs, libssl1.0.2, make, gcc, libmariadbclient-dev, libncurses5-dev, libxml2-dev, libjansson-dev, libssl1.0-dev, libcurl4-openssl-dev, libreadline-dev, dh-make, lsb-release, rsync
+Description: Nixys Framework Control Tools
+ Control tools for Nixys Framework.
+ It's help to create and manage projects developed on NXS FW.

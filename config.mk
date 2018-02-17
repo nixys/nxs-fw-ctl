@@ -1,3 +1,5 @@
+include distrib.mk
+
 CC						=	cc
 CFLAGS						=	-pipe -O -W -Wall -Wpointer-arith -Wno-unused-parameter -Werror -g -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=2
 CFLAGS32					=
@@ -7,7 +9,10 @@ ifeq ($(shell getconf LONG_BIT),32)
 CFLAGS32					=	-D_FILE_OFFSET_BITS=64
 endif
 
-NXS_FW_VERSION					=	1.11
+OS_DISTRIB					=	$(shell lsb_release -d | awk '{print $$2}')
+OS_RELEASE					=	$(shell lsb_release -r | awk '{print $$2}' | cut -d '.' -f 1)
+
+NXS_FW_VERSION					=	1.12
 
 NXS_FW_CORE_INCLUDES_PATH			=	/usr/include/nxs-fw-libs
 NXS_FW_CORE_LIBS_PATH				=	/usr/lib/nxs-fw-libs
@@ -21,8 +26,8 @@ PROJ_INCLUDES					=	-I ./src
 NXS_CORE_HEADERS				=	$(shell find $(NXS_FW_CORE_INCLUDES_PATH)/$(NXS_FW_VERSION) -type f -name "*.h")
 NXS_CORE_LINKS					=	-L$(NXS_FW_CORE_LIBS_PATH)/$(NXS_FW_VERSION) -lnxs-general -lnxs-cfg-json -lnxs-json 
 
-NXS_INCLUDES					=	
-NXS_LINKS					=	-ljansson 
+NXS_INCLUDES					=	 $(NXS_DISTRIB_INCLUDES_$(OS_DISTRIB)_$(OS_RELEASE))
+NXS_LINKS					=	-ljansson  $(NXS_DISTRIB_LINKS_$(OS_DISTRIB)_$(OS_RELEASE))
 
 NXS_USER_INCLUDES				=	
 NXS_USER_LINKS					=	-lreadline

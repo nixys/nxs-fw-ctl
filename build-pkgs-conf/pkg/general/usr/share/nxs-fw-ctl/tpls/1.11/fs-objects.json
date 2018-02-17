@@ -1,0 +1,249 @@
+{
+	"init_dirs": [
+		"",
+		".nxs-fw-settings",
+		"docs/",
+		"logs/",
+		"objs/",
+		"src/",
+		"src/collections/",
+		"src/conf/",
+		"src/conf/args/",
+		"src/conf/file-ini/",
+		"src/conf/file-json/",
+		"src/dal/",
+		"src/meta/",
+		"src/proc/",
+		"src/units/",
+		"build-pkgs-tpls",
+		"build-pkgs-tpls/pkg",
+		"build-pkgs-tpls/pkg/etc",
+		"build-pkgs-tpls/pkg/etc/%%NXS_TPL_P_NAME%%",
+		"build-pkgs-tpls/debian",
+		"build-pkgs-tpls/debian/jessie"
+	],
+	"makefiles": [
+		{
+			"src": "Makefile_tpl",
+			"dst": "Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "config.mk_tpl",
+			"dst": "config.mk",
+			"mode": "0644"
+		},
+		{
+			"src": "src/collections/Makefile_tpl",
+			"dst": "src/collections/Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/Makefile_tpl",
+			"dst": "src/conf/Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/args/Makefile_tpl",
+			"dst": "src/conf/args/Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/file-ini/Makefile_tpl",
+			"dst": "src/conf/file-ini/Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/file-json/Makefile_tpl",
+			"dst": "src/conf/file-json/Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "src/dal/Makefile_tpl",
+			"dst": "src/dal/Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "src/proc/Makefile_tpl",
+			"dst": "src/proc/Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "src/units/Makefile_tpl",
+			"dst": "src/units/Makefile",
+			"mode": "0644"
+		}
+	],
+	"genfiles": [
+		{
+			"src": ".conf.dist-ini_tpl",
+			"dst": "%%NXS_TPL_P_NAME%%.conf.dist-ini",
+			"mode": "0644"
+		},
+		{
+			"src": ".conf.dist-json_tpl",
+			"dst": "%%NXS_TPL_P_NAME%%.conf.dist-json",
+			"mode": "0644"
+		},
+		{
+			"src": "src/collections.h_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-collections.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf.h_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-conf.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/core.c_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-core.c",
+			"mode": "0644"
+		},
+		{
+			"src": "src/core.h_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-core.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/dal.h_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-dal.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/meta.h_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-meta.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/proc.h_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-proc.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/units.h_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-units.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/conf.c_tpl",
+			"dst": "src/conf/conf.c",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/conf.h_tpl",
+			"dst": "src/conf/conf.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/args/args.c_tpl",
+			"dst": "src/conf/args/args.c",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/args/args.h_tpl",
+			"dst": "src/conf/args/args.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/file-ini/file-ini.c_tpl",
+			"dst": "src/conf/file-ini/file-ini.c",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/file-ini/file-ini.h_tpl",
+			"dst": "src/conf/file-ini/file-ini.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/file-json/file-json.c_tpl",
+			"dst": "src/conf/file-json/file-json.c",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/file-json/file-json.h_tpl",
+			"dst": "src/conf/file-json/file-json.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/proc/bootstrap.c_tpl",
+			"dst": "src/proc/bootstrap.c",
+			"mode": "0644"
+		},
+		{
+			"src": "src/proc/bootstrap.h_tpl",
+			"dst": "src/proc/bootstrap.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/proc/bootstrap-subproc.h_tpl",
+			"dst": "src/proc/bootstrap-subproc.h",
+			"mode": "0644"
+		},
+		{
+			"src": ".clang-format_tpl",
+			"dst": ".clang-format",
+			"mode": "0644"
+		},
+		{
+			"src": ".gitignore_tpl",
+			"dst": ".gitignore",
+			"mode": "0644"
+		},
+		{
+			"src": "docs/.placeholder",
+			"dst": "docs/.placeholder",
+			"mode": "0644"
+		},
+		{
+			"src": "logs/.gitignore",
+			"dst": "logs/.gitignore",
+			"mode": "0644"
+		},
+		{
+			"src": "objs/.gitignore",
+			"dst": "objs/.gitignore",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs",
+			"dst": "build-pkgs",
+			"mode": "0755"
+		},
+		{
+			"src": "build-pkgs-tpls/pkg/etc/prog/.conf_tpl",
+			"dst": "build-pkgs-tpls/pkg/etc/%%NXS_TPL_P_NAME%%/%%NXS_TPL_P_NAME%%.conf",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-tpls/debian/jessie/.install_tpl",
+			"dst": "build-pkgs-tpls/debian/jessie/%%NXS_TPL_P_NAME%%.install",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-tpls/debian/jessie/README.Debian_tpl",
+			"dst": "build-pkgs-tpls/debian/jessie/README.Debian",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-tpls/debian/jessie/README.source_tpl",
+			"dst": "build-pkgs-tpls/debian/jessie/README.source",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-tpls/debian/jessie/changelog_tpl",
+			"dst": "build-pkgs-tpls/debian/jessie/changelog",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-tpls/debian/jessie/compat_tpl",
+			"dst": "build-pkgs-tpls/debian/jessie/compat",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-tpls/debian/jessie/control_tpl",
+			"dst": "build-pkgs-tpls/debian/jessie/control",
+			"mode": "0644"
+		}
+	]
+}

@@ -1,0 +1,59 @@
+#ifndef _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_CORE_H
+#define _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_CORE_H
+
+// clang-format off
+
+/* Project version */
+#define %%NXS_TPL_P_UPCASE_NAME%%_VERSION		"0.0.1"
+
+/* Project basic global definitions */
+
+#define	%%NXS_TPL_P_UPCASE_NAME%%_CONF_PATH_DEFAULT	"/etc/%%NXS_TPL_P_NAME%%/%%NXS_TPL_P_NAME%%.conf"
+
+/* Project global typedefs */
+
+
+
+/* Project global structures */
+
+
+
+/* Project errors */
+typedef enum
+{
+	%%NXS_TPL_P_UPCASE_NAME%%_E_OK,
+	%%NXS_TPL_P_UPCASE_NAME%%_E_WARN,
+	%%NXS_TPL_P_UPCASE_NAME%%_E_ERR,
+	%%NXS_TPL_P_UPCASE_NAME%%_E_PTR,
+	%%NXS_TPL_P_UPCASE_NAME%%_E_INIT,
+	%%NXS_TPL_P_UPCASE_NAME%%_E_EXIT,
+	%%NXS_TPL_P_UPCASE_NAME%%_E_EXIST,
+} %%NXS_TPL_P_INLINE_NAME%%_err_t;
+
+/* Project config structures */
+
+typedef struct
+{
+	nxs_string_t				cfg_path;
+} %%NXS_TPL_P_INLINE_NAME%%_cfg_ctx_t;
+
+typedef struct
+{
+	nxs_string_t				path;
+	int					level;
+} %%NXS_TPL_P_INLINE_NAME%%_cfg_log_t;
+
+typedef struct
+{
+	%%NXS_TPL_P_INLINE_NAME%%_cfg_log_t	log;
+} %%NXS_TPL_P_INLINE_NAME%%_cfg_t;
+
+/* Project includes */
+
+
+
+/* Global functions for project's core module */
+
+
+
+#endif /* _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_CORE_H */
