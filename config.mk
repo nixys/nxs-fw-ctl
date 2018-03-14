@@ -9,10 +9,10 @@ ifeq ($(shell getconf LONG_BIT),32)
 CFLAGS32					=	-D_FILE_OFFSET_BITS=64
 endif
 
-OS_DISTRIB					=	$(shell lsb_release -d | awk '{print $$2}')
+OS_DISTRIB					=	$(shell lsb_release -d | awk '{print $$2}' | tr '[:lower:]' '[:upper:]')
 OS_RELEASE					=	$(shell lsb_release -r | awk '{print $$2}' | cut -d '.' -f 1)
 
-NXS_FW_VERSION					=	1.12
+NXS_FW_VERSION					=	1.13
 
 NXS_FW_CORE_INCLUDES_PATH			=	/usr/include/nxs-fw-libs
 NXS_FW_CORE_LIBS_PATH				=	/usr/lib/nxs-fw-libs

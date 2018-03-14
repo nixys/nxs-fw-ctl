@@ -128,7 +128,7 @@ You may consider the nxs-fw-ctl source code as an example of Nixys Framework app
     nxs-fw-ctl -u version
     ```
 
-## Install
+## Install in Debian
 
 1.  Add the Nixys repository key:
 
@@ -162,4 +162,39 @@ You may consider the nxs-fw-ctl source code as an example of Nixys Framework app
     apt-get install nxs-fw-ctl
     ```
 
-5. You also need to install one or more different versions of [Nixys Framework Libraries](https://github.com/nixys/nxs-fw-libs) before creating any project.
+5.  You also need to install one or more different versions of [Nixys Framework Libraries](https://github.com/nixys/nxs-fw-libs) before creating any project.
+
+## Install in CentOS
+
+1.  Add Nixys repository key:
+
+    ```
+    rpm --import http://packages.nixys.ru/packages.nixys.ru.gpg.key
+    ```
+
+2.  Add the repository. Currently CentOS 6 and 7 are available:
+
+    ```
+    cat <<EOF > /etc/yum.repos.d/packages.nixys.ru.repo
+    [packages.nixys.ru]
+    name=Nixys Packages for CentOS \$releasever - \$basearch
+    baseurl=http://packages.nixys.ru/centos/\$releasever/\$basearch
+    enabled=1
+    gpgcheck=1
+    gpgkey=http://packages.nixys.ru/packages.nixys.ru.gpg.key
+    EOF
+    ```
+
+3.  For CentOS 6 (to install `jansson-devel`):
+
+    ```
+    yum install -y epel-release
+    ```
+
+4.  Install nxs-fw-ctl package:
+
+    ```
+    yum install nxs-fw-ctl
+    ```
+
+5.  You also need to install one or more different versions of [Nixys Framework Libraries](https://github.com/nixys/nxs-fw-libs) before creating any project.

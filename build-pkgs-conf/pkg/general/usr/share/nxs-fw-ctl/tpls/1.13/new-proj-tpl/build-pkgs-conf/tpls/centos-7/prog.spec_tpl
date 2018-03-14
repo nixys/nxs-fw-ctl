@@ -1,0 +1,46 @@
+Name:           %%NXS_TPL_P_NAME%%
+Version:        $$VERSION$$
+Release:        $$BUILD_VERSION$$%{?dist}
+Summary:        Program description
+
+Group:          Development/Tools
+License:        GPL3
+URL:            https://nixys.ru
+Source0:        %{name}-%{version}.tar.gz
+
+BuildRequires:  
+Requires:       
+
+
+%description
+ Program description
+
+
+%prep
+%setup -q
+
+
+%build
+make
+
+
+%install
+mkdir -p $RPM_BUILD_ROOT/usr/sbin
+mkdir -p $RPM_BUILD_ROOT/etc
+mkdir -p $RPM_BUILD_ROOT/lib/systemd/system
+cp ./objs/%%NXS_TPL_P_NAME%% $RPM_BUILD_ROOT/usr/sbin
+cp -r ./pkg/etc $RPM_BUILD_ROOT/
+cp ./pkg/lib/systemd/system/%%NXS_TPL_P_NAME%%.service $RPM_BUILD_ROOT/lib/systemd/system
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+
+%files
+%defattr(-,root,root,-)
+/usr/sbin/%%NXS_TPL_P_NAME%%
+/etc/%%NXS_TPL_P_NAME%%
+/etc/logrotate.d/%%NXS_TPL_P_NAME%%
+/lib/systemd/system/%%NXS_TPL_P_NAME%%.service
+
+%changelog

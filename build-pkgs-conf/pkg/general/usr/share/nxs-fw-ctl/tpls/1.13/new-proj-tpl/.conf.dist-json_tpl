@@ -1,0 +1,6 @@
+{
+	"logging": {
+		"level": 31,
+		"path": "./logs/%%NXS_TPL_P_NAME%%.log"
+	}
+}
