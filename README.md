@@ -133,7 +133,7 @@ You may consider the nxs-fw-ctl source code as an example of Nixys Framework app
 1.  Add the Nixys repository key:
 
     ```
-    wget -O - http://packages.nixys.ru/packages.nixys.ru.gpg.key | apt-key add -
+    wget -O - http://packages.nixys.ru/debian/repository.gpg.key | apt-key add -
     ```
 
 2.  Add the repository. Debian wheezy, jessie and stretch are available:
@@ -169,7 +169,7 @@ You may consider the nxs-fw-ctl source code as an example of Nixys Framework app
 1.  Add Nixys repository key:
 
     ```
-    rpm --import http://packages.nixys.ru/packages.nixys.ru.gpg.key
+    rpm --import http://packages.nixys.ru/centos/repository.gpg.key
     ```
 
 2.  Add the repository. Currently CentOS 6 and 7 are available:
@@ -181,7 +181,7 @@ You may consider the nxs-fw-ctl source code as an example of Nixys Framework app
     baseurl=http://packages.nixys.ru/centos/\$releasever/\$basearch
     enabled=1
     gpgcheck=1
-    gpgkey=http://packages.nixys.ru/packages.nixys.ru.gpg.key
+    gpgkey=http://packages.nixys.ru/centos/repository.gpg.key
     EOF
     ```
 
