@@ -30,8 +30,8 @@ mkdir -p $RPM_BUILD_ROOT/usr/bin
 mkdir -p $RPM_BUILD_ROOT/etc
 mkdir -p $RPM_BUILD_ROOT/usr/share
 cp ./objs/nxs-fw-ctl $RPM_BUILD_ROOT/usr/bin
-cp -r ./pkg/etc/nxs-fw-ctl $RPM_BUILD_ROOT/etc
-cp -r ./pkg/usr/share/nxs-fw-ctl $RPM_BUILD_ROOT/usr/share
+cp -r ./pkg/general/etc/nxs-fw-ctl $RPM_BUILD_ROOT/etc
+cp -r ./pkg/general/usr/share/nxs-fw-ctl $RPM_BUILD_ROOT/usr/share
 
 %clean
 rm -rf $RPM_BUILD_ROOT

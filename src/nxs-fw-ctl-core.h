@@ -4,7 +4,7 @@
 // clang-format off
 
 /* Project version */
-#define NXS_FW_CTL_VERSION			"0.8.1"
+#define NXS_FW_CTL_VERSION			"0.9.0"
 
 /* Project basic global definitions */
 
