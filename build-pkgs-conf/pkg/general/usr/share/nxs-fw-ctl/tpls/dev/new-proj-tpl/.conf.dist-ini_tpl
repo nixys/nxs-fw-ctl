@@ -1,2 +1,0 @@
-loglevel = 31
-logpath = "./logs/%%NXS_TPL_P_NAME%%.log"

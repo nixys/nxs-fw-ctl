@@ -1,5 +1,0 @@
-#PACKAGE# (#VERSION#-$$BUILD_VERSION$$) jessie; urgency=low
-
-  * New version %%NXS_TPL_P_NAME%%
-
- -- #USERNAME# <#EMAIL#>  #DATE#

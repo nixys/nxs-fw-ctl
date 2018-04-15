@@ -1,9 +1,0 @@
-#ifndef _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_CONF_FILE_INI_H
-#define _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_CONF_FILE_INI_H
-
-// clang-format off
-
-void						%%NXS_TPL_P_INLINE_NAME%%_conf_file_ini_init				(nxs_cfg_t *cfg, %%NXS_TPL_P_INLINE_NAME%%_cfg_ctx_t *cfg_ctx);
-%%NXS_TPL_P_INLINE_NAME%%_err_t			%%NXS_TPL_P_INLINE_NAME%%_conf_file_ini_runtime				(nxs_cfg_t cfg, %%NXS_TPL_P_INLINE_NAME%%_cfg_ctx_t *cfg_ctx);
-
-#endif /* _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_CONF_FILE_INI_H */

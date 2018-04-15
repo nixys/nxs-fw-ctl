@@ -1,9 +1,0 @@
-#ifndef _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_CONF_ARGS_H
-#define _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_CONF_ARGS_H
-
-// clang-format off
-
-void						%%NXS_TPL_P_INLINE_NAME%%_conf_args_init				(nxs_args_t *args, void *user_ctx);
-%%NXS_TPL_P_INLINE_NAME%%_err_t			%%NXS_TPL_P_INLINE_NAME%%_conf_args_runtime				(nxs_args_t args, int argc, u_char **argv);
-
-#endif /* _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_CONF_ARGS_H */

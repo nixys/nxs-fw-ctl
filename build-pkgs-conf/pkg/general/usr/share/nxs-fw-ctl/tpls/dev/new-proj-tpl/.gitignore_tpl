@@ -1,8 +1,0 @@
-/.project
-/.autotools
-/.cproject
-/.settings
-/%%NXS_TPL_P_NAME%%.conf*
-/%%NXS_TPL_P_NAME%%.conf.dist-ini
-/%%NXS_TPL_P_NAME%%.conf.dist-json
-/tmp

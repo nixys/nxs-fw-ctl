@@ -1,8 +1,0 @@
-#ifndef _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_PROC_H
-#define _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_PROC_H
-
-// clang-format off
-
-#include <proc/bootstrap.h>
-
-#endif /* _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_PROC_H */

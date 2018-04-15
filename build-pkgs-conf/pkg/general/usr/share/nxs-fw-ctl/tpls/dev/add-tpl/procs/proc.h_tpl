@@ -1,8 +1,0 @@
-#ifndef _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_H
-#define _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_H
-
-// clang-format off
-
-%%NXS_TPL_PROJ_INLINE_NAME%%_err_t				%%NXS_TPL_P_INLINE_NAME%%_runtime			(void);
-
-#endif /* _INCLUDE_%%NXS_TPL_P_UPCASE_NAME%%_H */

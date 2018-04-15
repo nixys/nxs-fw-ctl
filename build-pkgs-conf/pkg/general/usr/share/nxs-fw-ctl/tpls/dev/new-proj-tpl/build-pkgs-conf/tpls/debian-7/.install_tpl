@@ -1,4 +1,0 @@
-./objs/%%NXS_TPL_P_NAME%% /usr/sbin
-./pkg/etc/%%NXS_TPL_P_NAME%% /etc
-./pkg/etc/logrotate.d /etc
-./pkg/etc/init.d /etc
