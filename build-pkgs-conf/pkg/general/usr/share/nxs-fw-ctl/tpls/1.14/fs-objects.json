@@ -1,0 +1,564 @@
+{
+	"init_dirs": [
+		"",
+		".nxs-fw-settings",
+		"docs/",
+		"logs/",
+		"objs/",
+		"src/",
+		"src/collections/",
+		"src/conf/",
+		"src/conf/args/",
+		"src/conf/file-ini/",
+		"src/conf/file-json/",
+		"src/dal/",
+		"src/meta/",
+		"src/proc/",
+		"src/units/",
+		"build-pkgs-conf/",
+		"build-pkgs-conf/docker/",
+		"build-pkgs-conf/docker/debian-general/",
+		"build-pkgs-conf/docker/debian-9/",
+		"build-pkgs-conf/docker/debian-8/",
+		"build-pkgs-conf/docker/debian-7/",
+		"build-pkgs-conf/docker/centos-general/",
+		"build-pkgs-conf/docker/centos-7/",
+		"build-pkgs-conf/docker/centos-6/",
+		"build-pkgs-conf/tpls/",
+		"build-pkgs-conf/tpls/debian-general/",
+		"build-pkgs-conf/tpls/debian-9/",
+		"build-pkgs-conf/tpls/debian-8/",
+		"build-pkgs-conf/tpls/debian-7/",
+		"build-pkgs-conf/tpls/centos-general/",
+		"build-pkgs-conf/tpls/centos-7/",
+		"build-pkgs-conf/tpls/centos-6/",
+		"build-pkgs-conf/pkg/",
+		"build-pkgs-conf/pkg/general/",
+		"build-pkgs-conf/pkg/general/etc/",
+		"build-pkgs-conf/pkg/general/etc/logrotate.d/",
+		"build-pkgs-conf/pkg/general/etc/%%NXS_TPL_P_NAME%%/",
+		"build-pkgs-conf/pkg/os/",
+		"build-pkgs-conf/pkg/os/debian-9/",
+		"build-pkgs-conf/pkg/os/debian-9/lib/",
+		"build-pkgs-conf/pkg/os/debian-9/lib/systemd/",
+		"build-pkgs-conf/pkg/os/debian-9/lib/systemd/system/",
+		"build-pkgs-conf/pkg/os/debian-8/",
+		"build-pkgs-conf/pkg/os/debian-8/lib/",
+		"build-pkgs-conf/pkg/os/debian-8/lib/systemd/",
+		"build-pkgs-conf/pkg/os/debian-8/lib/systemd/system/",
+		"build-pkgs-conf/pkg/os/debian-7/",
+		"build-pkgs-conf/pkg/os/debian-7/etc/",
+		"build-pkgs-conf/pkg/os/debian-7/etc/init.d/",
+		"build-pkgs-conf/pkg/os/centos-7/",
+		"build-pkgs-conf/pkg/os/centos-7/lib/",
+		"build-pkgs-conf/pkg/os/centos-7/lib/systemd/",
+		"build-pkgs-conf/pkg/os/centos-7/lib/systemd/system/",
+		"build-pkgs-conf/pkg/os/centos-6/",
+		"build-pkgs-conf/pkg/os/centos-6/etc/",
+		"build-pkgs-conf/pkg/os/centos-6/etc/init.d/"
+	],
+	"makefiles": [
+		{
+			"src": "Makefile_tpl",
+			"dst": "Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "config.mk_tpl",
+			"dst": "config.mk",
+			"mode": "0644"
+		},
+		{
+			"src": "src/collections/Makefile_tpl",
+			"dst": "src/collections/Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/Makefile_tpl",
+			"dst": "src/conf/Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/args/Makefile_tpl",
+			"dst": "src/conf/args/Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/file-ini/Makefile_tpl",
+			"dst": "src/conf/file-ini/Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/file-json/Makefile_tpl",
+			"dst": "src/conf/file-json/Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "src/dal/Makefile_tpl",
+			"dst": "src/dal/Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "src/proc/Makefile_tpl",
+			"dst": "src/proc/Makefile",
+			"mode": "0644"
+		},
+		{
+			"src": "src/units/Makefile_tpl",
+			"dst": "src/units/Makefile",
+			"mode": "0644"
+		}
+	],
+	"genfiles": [
+		{
+			"src": ".conf.dist-ini_tpl",
+			"dst": "%%NXS_TPL_P_NAME%%.conf.dist-ini",
+			"mode": "0644"
+		},
+		{
+			"src": ".conf.dist-json_tpl",
+			"dst": "%%NXS_TPL_P_NAME%%.conf.dist-json",
+			"mode": "0644"
+		},
+		{
+			"src": "src/collections.h_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-collections.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf.h_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-conf.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/core.c_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-core.c",
+			"mode": "0644"
+		},
+		{
+			"src": "src/core.h_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-core.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/dal.h_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-dal.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/meta.h_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-meta.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/proc.h_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-proc.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/units.h_tpl",
+			"dst": "src/%%NXS_TPL_P_NAME%%-units.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/conf.c_tpl",
+			"dst": "src/conf/conf.c",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/conf.h_tpl",
+			"dst": "src/conf/conf.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/args/args.c_tpl",
+			"dst": "src/conf/args/args.c",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/args/args.h_tpl",
+			"dst": "src/conf/args/args.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/file-ini/file-ini.c_tpl",
+			"dst": "src/conf/file-ini/file-ini.c",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/file-ini/file-ini.h_tpl",
+			"dst": "src/conf/file-ini/file-ini.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/file-json/file-json.c_tpl",
+			"dst": "src/conf/file-json/file-json.c",
+			"mode": "0644"
+		},
+		{
+			"src": "src/conf/file-json/file-json.h_tpl",
+			"dst": "src/conf/file-json/file-json.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/proc/bootstrap.c_tpl",
+			"dst": "src/proc/bootstrap.c",
+			"mode": "0644"
+		},
+		{
+			"src": "src/proc/bootstrap.h_tpl",
+			"dst": "src/proc/bootstrap.h",
+			"mode": "0644"
+		},
+		{
+			"src": "src/proc/bootstrap-subproc.h_tpl",
+			"dst": "src/proc/bootstrap-subproc.h",
+			"mode": "0644"
+		},
+		{
+			"src": ".clang-format_tpl",
+			"dst": ".clang-format",
+			"mode": "0644"
+		},
+		{
+			"src": ".gitignore_tpl",
+			"dst": ".gitignore",
+			"mode": "0644"
+		},
+		{
+			"src": "docs/.placeholder_tpl",
+			"dst": "docs/.placeholder",
+			"mode": "0644"
+		},
+		{
+			"src": "logs/.gitignore_tpl",
+			"dst": "logs/.gitignore",
+			"mode": "0644"
+		},
+		{
+			"src": "objs/.gitignore_tpl",
+			"dst": "objs/.gitignore",
+			"mode": "0644"
+		},
+		{
+			"src": "LICENSE_tpl",
+			"dst": "LICENSE",
+			"mode": "0644"
+		},
+		{
+			"src": "README.md_tpl",
+			"dst": "README.md",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs_tpl",
+			"dst": "build-pkgs",
+			"mode": "0755"
+		},
+		{
+			"src": "build-pkgs-conf/docker/deb-build.sh_tpl",
+			"dst": "build-pkgs-conf/docker/deb-build.sh",
+			"mode": "0755"
+		},
+		{
+			"src": "build-pkgs-conf/docker/rpm-build.sh_tpl",
+			"dst": "build-pkgs-conf/docker/rpm-build.sh",
+			"mode": "0755"
+		},
+		{
+			"src": "build-pkgs-conf/docker/debian-general/Dockerfile_tpl",
+			"dst": "build-pkgs-conf/docker/debian-general/Dockerfile",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/docker/debian-general/docker-entrypoint.sh_tpl",
+			"dst": "build-pkgs-conf/docker/debian-general/docker-entrypoint.sh",
+			"mode": "0755"
+		},
+		{
+			"src": "build-pkgs-conf/docker/debian-9/Dockerfile_tpl",
+			"dst": "build-pkgs-conf/docker/debian-9/Dockerfile",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/docker/debian-9/docker-entrypoint.sh_tpl",
+			"dst": "build-pkgs-conf/docker/debian-9/docker-entrypoint.sh",
+			"mode": "0755"
+		},
+		{
+			"src": "build-pkgs-conf/docker/debian-8/Dockerfile_tpl",
+			"dst": "build-pkgs-conf/docker/debian-8/Dockerfile",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/docker/debian-8/docker-entrypoint.sh_tpl",
+			"dst": "build-pkgs-conf/docker/debian-8/docker-entrypoint.sh",
+			"mode": "0755"
+		},
+		{
+			"src": "build-pkgs-conf/docker/debian-7/Dockerfile_tpl",
+			"dst": "build-pkgs-conf/docker/debian-7/Dockerfile",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/docker/debian-7/docker-entrypoint.sh_tpl",
+			"dst": "build-pkgs-conf/docker/debian-7/docker-entrypoint.sh",
+			"mode": "0755"
+		},
+		{
+			"src": "build-pkgs-conf/docker/centos-general/Dockerfile_tpl",
+			"dst": "build-pkgs-conf/docker/centos-general/Dockerfile",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/docker/centos-general/packages.nixys.ru.repo_tpl",
+			"dst": "build-pkgs-conf/docker/centos-general/packages.nixys.ru.repo",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/docker/centos-general/docker-entrypoint.sh_tpl",
+			"dst": "build-pkgs-conf/docker/centos-general/docker-entrypoint.sh",
+			"mode": "0755"
+		},
+		{
+			"src": "build-pkgs-conf/docker/centos-7/Dockerfile_tpl",
+			"dst": "build-pkgs-conf/docker/centos-7/Dockerfile",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/docker/centos-7/packages.nixys.ru.repo_tpl",
+			"dst": "build-pkgs-conf/docker/centos-7/packages.nixys.ru.repo",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/docker/centos-7/docker-entrypoint.sh_tpl",
+			"dst": "build-pkgs-conf/docker/centos-7/docker-entrypoint.sh",
+			"mode": "0755"
+		},
+		{
+			"src": "build-pkgs-conf/docker/centos-6/Dockerfile_tpl",
+			"dst": "build-pkgs-conf/docker/centos-6/Dockerfile",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/docker/centos-6/packages.nixys.ru.repo_tpl",
+			"dst": "build-pkgs-conf/docker/centos-6/packages.nixys.ru.repo",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/docker/centos-6/docker-entrypoint.sh_tpl",
+			"dst": "build-pkgs-conf/docker/centos-6/docker-entrypoint.sh",
+			"mode": "0755"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-general/changelog_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-general/changelog",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-general/README.Debian_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-general/README.Debian",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-general/compat_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-general/compat",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-general/control_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-general/control",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-general/README.source_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-general/README.source",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-general/copyright_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-general/copyright",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-general/.install_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-general/%%NXS_TPL_P_NAME%%.install",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-general/dirs",
+			"dst": "build-pkgs-conf/tpls/debian-general/dirs",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-9/changelog_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-9/changelog",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-9/README.Debian_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-9/README.Debian",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-9/compat_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-9/compat",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-9/control_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-9/control",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-9/README.source_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-9/README.source",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-9/copyright_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-9/copyright",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-9/.install_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-9/%%NXS_TPL_P_NAME%%.install",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-9/dirs",
+			"dst": "build-pkgs-conf/tpls/debian-9/dirs",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-8/changelog_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-8/changelog",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-8/README.Debian_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-8/README.Debian",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-8/compat_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-8/compat",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-8/control_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-8/control",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-8/README.source_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-8/README.source",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-8/copyright_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-8/copyright",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-8/.install_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-8/%%NXS_TPL_P_NAME%%.install",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-8/dirs",
+			"dst": "build-pkgs-conf/tpls/debian-8/dirs",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-7/changelog_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-7/changelog",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-7/README.Debian_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-7/README.Debian",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-7/compat_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-7/compat",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-7/control_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-7/control",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-7/README.source_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-7/README.source",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-7/copyright_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-7/copyright",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-7/.install_tpl",
+			"dst": "build-pkgs-conf/tpls/debian-7/%%NXS_TPL_P_NAME%%.install",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/debian-7/dirs",
+			"dst": "build-pkgs-conf/tpls/debian-7/dirs",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/centos-general/prog.spec_tpl",
+			"dst": "build-pkgs-conf/tpls/centos-general/%%NXS_TPL_P_NAME%%.spec",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/centos-7/prog.spec_tpl",
+			"dst": "build-pkgs-conf/tpls/centos-7/%%NXS_TPL_P_NAME%%.spec",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/tpls/centos-6/prog.spec_tpl",
+			"dst": "build-pkgs-conf/tpls/centos-6/%%NXS_TPL_P_NAME%%.spec",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/pkg/general/etc/logrotate.d/prog_tpl",
+			"dst": "build-pkgs-conf/pkg/general/etc/logrotate.d/%%NXS_TPL_P_NAME%%",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/pkg/general/etc/prog/.conf_tpl",
+			"dst": "build-pkgs-conf/pkg/general/etc/%%NXS_TPL_P_NAME%%/%%NXS_TPL_P_NAME%%.conf",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/pkg/os/debian-9/lib/systemd/system/prog.service_tpl",
+			"dst": "build-pkgs-conf/pkg/os/debian-9/lib/systemd/system/%%NXS_TPL_P_NAME%%.service",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/pkg/os/debian-8/lib/systemd/system/prog.service_tpl",
+			"dst": "build-pkgs-conf/pkg/os/debian-8/lib/systemd/system/%%NXS_TPL_P_NAME%%.service",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/pkg/os/debian-7/etc/init.d/prog_tpl",
+			"dst": "build-pkgs-conf/pkg/os/debian-7/etc/init.d/%%NXS_TPL_P_NAME%%",
+			"mode": "0755"
+		},
+		{
+			"src": "build-pkgs-conf/pkg/os/centos-7/lib/systemd/system/prog.service_tpl",
+			"dst": "build-pkgs-conf/pkg/os/centos-7/lib/systemd/system/%%NXS_TPL_P_NAME%%.service",
+			"mode": "0644"
+		},
+		{
+			"src": "build-pkgs-conf/pkg/os/centos-6/etc/init.d/prog_tpl",
+			"dst": "build-pkgs-conf/pkg/os/centos-6/etc/init.d/%%NXS_TPL_P_NAME%%",
+			"mode": "0755"
+		}
+	]
+}
